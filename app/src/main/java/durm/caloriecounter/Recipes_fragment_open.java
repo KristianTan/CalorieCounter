@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class Recipes_fragment extends Fragment {
+public class Recipes_fragment_open extends Fragment {
 
+    public TextView number;
 
-
-    public Recipes_fragment() {
+    public Recipes_fragment_open(){
 
     }
 
@@ -25,12 +25,12 @@ public class Recipes_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recipes_fragment, container, false);
+        View view = inflater.inflate(R.layout.recipes_fragment_open, container, false);
 
 
-
-
+        number = view.findViewById(R.id.TextNumber_open);
 
         return view;
     }
+
 }

@@ -20,10 +20,12 @@
         <!-- Toolbar -->
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#ffff" />
+            android:background="#FFFFFF"
+            android:fontFamily="sans-serif-light"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
+
 
     </android.support.design.widget.AppBarLayout>
 
@@ -48,6 +50,8 @@
         android:layout_height="wrap_content"
         android:accessibilityHeading="true"
         android:background="#FFFF"
+        app:itemHorizontalTranslationEnabled="true"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
