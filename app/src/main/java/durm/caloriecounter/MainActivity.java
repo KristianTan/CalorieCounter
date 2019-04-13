@@ -23,14 +23,16 @@ public class MainActivity extends AppCompatActivity {
     static final Fragment fragment2 = new Recipes_fragment();
 
     // Experimental for now.
-    static ArrayList<Recipes_fragment_open> menuFragments = new ArrayList<>();
+    static ArrayList<Food_menu_fragment_open> menuFragments = new ArrayList<>();
     static int numberOfMeals = 6;
+    static int foodActiveFragment;
 
     // Create a fragment manager
     final FragmentManager fm = getSupportFragmentManager();
 
     // Assign an active fragment
     Fragment active = fragment1;
+
 
 
 
@@ -57,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
         // Experimenting with stuff
         for(int i=0; i< numberOfMeals;i++){
 
-            menuFragments.add(new Recipes_fragment_open());
+            menuFragments.add(new Food_menu_fragment_open());
             fm.beginTransaction().add(R.id.main_container, menuFragments.get(i),2+i+"").hide(menuFragments.get(i)).commit();
 
         }
+
+
 
     }
 
@@ -114,14 +118,18 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
 
                     if(active == fragment2){ // if we are not on the home fragment
-                        fm.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(active).show(fragment1).commit();
+                        fm.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(active)
+                                .hide(menuFragments.get(foodActiveFragment)).show(fragment1).commit();
                     }
                     active = fragment1;
                     return true;
 
                 case R.id.navigation_dashboard:
                     if(active == fragment1){ // if we are not on the recipes fragment
-                        fm.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(active).show(fragment2).commit();
+                        fm.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(active)
+                                .hide(menuFragments.get(foodActiveFragment)).show(fragment2).commit();
+
+
                     }
                     active = fragment2;
                     return true;
@@ -130,5 +138,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
 
 }

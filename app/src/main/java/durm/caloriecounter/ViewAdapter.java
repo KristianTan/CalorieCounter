@@ -53,6 +53,8 @@ public class ViewAdapter extends RecyclerView.Adapter<FoodMenuViewHolder> {
             foodMenuViewHolder.infoData.setText("ERROR GETTING DATA");
         }
 
+
+
     }
 
     @Override
