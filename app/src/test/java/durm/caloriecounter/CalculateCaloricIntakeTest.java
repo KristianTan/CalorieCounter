@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import durm.caloriecounter.enumerators.enumGender;
 import durm.caloriecounter.enumerators.enumGoal;
+import durm.caloriecounter.requests.CalculateCaloricIntake;
 
 import static org.junit.Assert.*;
 
