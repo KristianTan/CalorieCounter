@@ -1,4 +1,4 @@
-package durm.caloriecounter;
+package durm.caloriecounter.enumerators;
 
 public enum enumGoal {
     LOSEWEIGHT,

@@ -1,5 +1,8 @@
 package durm.caloriecounter;
 
+import durm.caloriecounter.enumerators.enumGender;
+import durm.caloriecounter.enumerators.enumGoal;
+
 public class User {
     // Get variables from user input screen
     private double weight;
