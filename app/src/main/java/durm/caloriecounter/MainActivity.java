@@ -18,14 +18,19 @@ public class MainActivity extends AppCompatActivity {
 
     private  Toolbar toolbar;
 
+
+    static boolean createdFragments,dataWasLoaded;
+
     // Create the fragments
     static final Fragment fragment1 = new Main_fragment();
     static final Fragment fragment2 = new Recipes_fragment();
+    static final Fragment itemDataFragment = new Menu_Item_Data_Fragment();
 
     // Experimental for now.
     static ArrayList<Food_menu_fragment_open> menuFragments = new ArrayList<>();
     static int numberOfMeals = 6;
     static int foodActiveFragment;
+    static int itemOpenedNumber;
 
     // Create a fragment manager
     final FragmentManager fm = getSupportFragmentManager();
@@ -52,21 +57,98 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Add the fragments to the view
+        fm.beginTransaction().add(R.id.main_container, itemDataFragment, "3").hide(itemDataFragment).commit();
+
+
         fm.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit(); // hide it so we only have 1 active
         fm.beginTransaction().add(R.id.main_container,fragment1, "1").commit();
 
 
-        // Experimenting with stuff
-        for(int i=0; i< numberOfMeals;i++){
+        // Create fragments if they were not already.
+        if(!createdFragments){
+            for(int i=0; i< numberOfMeals;i++ ){
 
-            menuFragments.add(new Food_menu_fragment_open());
-            fm.beginTransaction().add(R.id.main_container, menuFragments.get(i),2+i+"").hide(menuFragments.get(i)).commit();
+                menuFragments.add(new Food_menu_fragment_open());
+                fm.beginTransaction().add(R.id.main_container, menuFragments.get(i),3+i+"").hide(menuFragments.get(i)).commit();
 
+            }
+        }
+
+        // Load the data if it was't loaded yet.
+        if(!dataWasLoaded){
+            createData();
         }
 
 
 
     }
+
+
+    // Add data here.
+    private void createData(){
+
+        // It only works for 6 meals for now.
+        if(MainActivity.numberOfMeals == 6) {
+
+            Main_fragment.titles.add("Breakfast");
+
+            Main_fragment.titles.add("Morning Snack");
+            Main_fragment.titles.add("Lunch");
+            Main_fragment.titles.add("Afternoon Snack");
+            Main_fragment.titles.add("Dinner");
+            Main_fragment.titles.add("Night Snack");
+
+
+            Main_fragment.info.add("300 Kcal     2 Items");
+            Main_fragment.info.add("250 Kcal     3 Items");
+            Main_fragment.info.add("100 Kcal     2 Items");
+            Main_fragment.info.add("500 Kcal     5 Items");
+            Main_fragment.info.add("200 Kcal     3 Items");
+            Main_fragment.info.add("600 Kcal     4 Items");
+        }
+
+        addDataToList();
+    }
+
+
+    // Add information specific to a fragment.
+    private void addDataToList(){
+
+
+        // Titles inside fragments.
+        addTitleData(0,"Breakfast");
+        addTitleData(1,"Morning Snack");
+        addTitleData(2,"Lunch");
+        addTitleData(3,"Afternoon Snack");
+        addTitleData(4,"Dinner");
+        addTitleData(5,"Night Snack");
+
+        // Foods inside fragments;
+
+        // Fragment 0;
+        addFoodData(0,"Bread and Butter");
+        addFoodData(0,"Black Tea");
+
+        // Fragment 1;
+        addFoodData(1,"Energy Baton");
+        addFoodData(1,"Water");
+
+        // Fragment 2;
+        addFoodData(2,"Fried Chicken");
+        addFoodData(2,"French Fries");
+        addFoodData(2,"Fizzy Drink");
+
+
+    }
+
+    // Sets and adds foods for each fragment.
+    private void addFoodData(int index, String foodName){
+       menuFragments.get(index).titles.add(foodName);
+    }
+    private void addTitleData(int index, String foodName){
+       menuFragments.get(index).titleOfFragment = foodName;
+    }
+
 
 
 

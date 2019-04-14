@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class FoodItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -29,7 +28,15 @@ public FoodItemViewHolder(@NonNull View itemView) {
 @Override
 public void onClick(View view){
 
+    AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
+    // Show that fragment.
+    activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left)
+            .show(MainActivity.itemDataFragment).hide(MainActivity.menuFragments.get(MainActivity.foodActiveFragment)).addToBackStack(null).commit();
+
+
+    MainActivity.itemOpenedNumber = getAdapterPosition();
+    
 
     }
 }
