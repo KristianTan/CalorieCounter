@@ -1,5 +1,7 @@
 package durm.caloriecounter;
 
+import durm.caloriecounter.enumerators.enumGender;
+
 public class CalculateCaloricIntake {
     public int calculateCalories(User user) {
         // Use the Mifflin-St Jeor equation to calculate caloric intake
