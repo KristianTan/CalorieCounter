@@ -1,9 +1,7 @@
 package durm.caloriecounter;
 
 public class CalculateCaloricIntake {
-
-
-    public double calculateCalories(User user) {
+    public int calculateCalories(User user) {
         // Use the Mifflin-St Jeor equation to calculate caloric intake
         // Equation uses kg and cm so may need conversion logic
         int s = user.getGender() == enumGender.MALE ? 5 : -161; // s variable is a constant for this equation
@@ -20,7 +18,7 @@ public class CalculateCaloricIntake {
                 break;
         }
 
-        return BMR;
+        return (int)Math.round(BMR);
     }
 
 }
