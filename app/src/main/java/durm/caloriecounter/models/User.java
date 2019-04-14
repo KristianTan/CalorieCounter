@@ -1,4 +1,4 @@
-package durm.caloriecounter;
+package durm.caloriecounter.models;
 
 import durm.caloriecounter.enumerators.enumGender;
 import durm.caloriecounter.enumerators.enumGoal;
