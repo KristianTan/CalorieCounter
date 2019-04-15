@@ -2,6 +2,11 @@ package durm.caloriecounter;
 
 import org.junit.Test;
 
+import durm.caloriecounter.enumerators.enumGender;
+import durm.caloriecounter.enumerators.enumGoal;
+import durm.caloriecounter.models.User;
+import durm.caloriecounter.requests.CalculateCaloricIntake;
+
 import static org.junit.Assert.*;
 
 public class CalculateCaloricIntakeTest {

@@ -1,4 +1,7 @@
-package durm.caloriecounter;
+package durm.caloriecounter.requests;
+
+import durm.caloriecounter.models.User;
+import durm.caloriecounter.enumerators.enumGender;
 
 public class CalculateCaloricIntake {
     public int calculateCalories(User user) {

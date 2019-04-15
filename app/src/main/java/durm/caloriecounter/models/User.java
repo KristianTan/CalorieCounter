@@ -1,4 +1,7 @@
-package durm.caloriecounter;
+package durm.caloriecounter.models;
+
+import durm.caloriecounter.enumerators.enumGender;
+import durm.caloriecounter.enumerators.enumGoal;
 
 public class User {
     // Get variables from user input screen
