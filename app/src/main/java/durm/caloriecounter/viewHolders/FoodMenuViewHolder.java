@@ -1,13 +1,13 @@
-package durm.caloriecounter;
+package durm.caloriecounter.viewHolders;
 
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import durm.caloriecounter.activities.MainActivity;
+import durm.caloriecounter.R;
 
 
 public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

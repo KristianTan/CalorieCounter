@@ -1,24 +1,22 @@
-package durm.caloriecounter;
+package durm.caloriecounter.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import durm.caloriecounter.R;
+import durm.caloriecounter.activities.MainActivity;
 
 /*
-*
-* This class represents the fragment that has the ingredients and the how to make section for a food.
-*
-*/
+ *
+ * This class represents the fragment that has the ingredients and the how to make section for a food.
+ *
+ */
 
-public class Menu_Item_Data_Fragment extends Fragment {
+public class Recipe_Item_Data_Fragment extends Fragment {
 
     // Food Titles
 
@@ -30,7 +28,7 @@ public class Menu_Item_Data_Fragment extends Fragment {
     private TextView howToMakeData;
 
 
-    public Menu_Item_Data_Fragment(){
+    public Recipe_Item_Data_Fragment() {
 
     }
 
@@ -42,8 +40,6 @@ public class Menu_Item_Data_Fragment extends Fragment {
         // maybe set the data here ?????
 
 
-
-
     }
 
 
@@ -51,33 +47,31 @@ public class Menu_Item_Data_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.menu_item_data_fragment, container, false);
+        View view = inflater.inflate(R.layout.recipe_item_data_fragment, container, false);
 
 
         ingredientsData = view.findViewById(R.id.ingredients_text);
         howToMakeData = view.findViewById(R.id.how_to_make_text);
 
-        ingredients = MainActivity.foodActiveFragment+"";
-        howToMake = MainActivity.itemOpenedNumber+"";
+        ingredients = MainActivity.foodActiveFragment + "";
+        howToMake = MainActivity.itemOpenedNumber + "";
 
 
-        if(ingredients != null){
+        if (ingredients != null) {
             ingredientsData.setText(ingredients);
         } else {
-            ingredientsData.setText("Error getting data!");
+            ingredientsData.setText(R.string.error_data);
         }
 
 
-
-        if(howToMake!= null){
+        if (howToMake != null) {
             howToMakeData.setText(howToMake);
         } else {
-            howToMakeData.setText("Error getting data!");
+            howToMakeData.setText(R.string.error_data);
         }
 
         return view;
     }
-
 
 
 }

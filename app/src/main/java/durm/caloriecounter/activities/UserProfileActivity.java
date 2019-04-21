@@ -1,7 +1,9 @@
-package durm.caloriecounter;
+package durm.caloriecounter.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import durm.caloriecounter.R;
 
 public class UserProfileActivity extends AppCompatActivity {
 
