@@ -1,4 +1,4 @@
-package durm.caloriecounter;
+package durm.caloriecounter.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -13,30 +13,38 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+import durm.caloriecounter.fragments.Food_menu_fragment_open;
+import durm.caloriecounter.fragments.Main_fragment;
+import durm.caloriecounter.fragments.Menu_Item_Data_Fragment;
+import durm.caloriecounter.R;
+import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
+import durm.caloriecounter.fragments.Recipes_fragment;
+
 public class MainActivity extends AppCompatActivity {
 
 
     private  Toolbar toolbar;
 
 
-    static boolean createdFragments,dataWasLoaded;
+    public static boolean createdFragments,dataWasLoaded;
 
     // Create the fragments
-    static final Fragment fragment1 = new Main_fragment();
-    static final Fragment fragment2 = new Recipes_fragment();
-    static final Fragment itemDataFragment = new Menu_Item_Data_Fragment();
+    public static final Fragment fragment1 = new Main_fragment();
+    public static final Fragment fragment2 = new Recipes_fragment();
+    public static final Fragment itemDataFragment = new Menu_Item_Data_Fragment();
+    public static final Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
 
     // Experimental for now.
-    static ArrayList<Food_menu_fragment_open> menuFragments = new ArrayList<>();
-    static int numberOfMeals = 6;
-    static int foodActiveFragment;
-    static int itemOpenedNumber;
+    public static ArrayList<Food_menu_fragment_open> menuFragments = new ArrayList<>();
+    public static int numberOfMeals = 6;
+    public static int foodActiveFragment;
+    public static int itemOpenedNumber;
 
     // Create a fragment manager
-    final FragmentManager fm = getSupportFragmentManager();
+    public final FragmentManager fm = getSupportFragmentManager();
 
     // Assign an active fragment
-    Fragment active = fragment1;
+    public Fragment active = fragment1;
 
 
 
@@ -57,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Add the fragments to the view
+        fm.beginTransaction().add(R.id.main_container, saveRecipeDataFragment, "4").hide(saveRecipeDataFragment).commit();
         fm.beginTransaction().add(R.id.main_container, itemDataFragment, "3").hide(itemDataFragment).commit();
 
 
@@ -98,6 +107,19 @@ public class MainActivity extends AppCompatActivity {
             Main_fragment.titles.add("Dinner");
             Main_fragment.titles.add("Night Snack");
 
+            Recipes_fragment.titles.add("Recipe 1 test");
+            Recipes_fragment.titles.add("Recipe 2 test");
+            Recipes_fragment.titles.add("Recipe 3 test");
+            Recipes_fragment.titles.add("Recipe 4 test");
+            Recipes_fragment.titles.add("Recipe 5 test");
+            Recipes_fragment.titles.add("Recipe 6 test");
+
+            Recipes_fragment.info.add("Recipe 1 info");
+            Recipes_fragment.info.add("Recipe 2 info");
+            Recipes_fragment.info.add("Recipe 3 info");
+            Recipes_fragment.info.add("Recipe 4 info");
+            Recipes_fragment.info.add("Recipe 5 info");
+            Recipes_fragment.info.add("Recipe 6 info");
 
             Main_fragment.info.add("300 Kcal     2 Items");
             Main_fragment.info.add("250 Kcal     3 Items");

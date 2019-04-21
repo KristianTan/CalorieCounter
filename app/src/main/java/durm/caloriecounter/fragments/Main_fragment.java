@@ -1,4 +1,4 @@
-package durm.caloriecounter;
+package durm.caloriecounter.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import durm.caloriecounter.R;
+import durm.caloriecounter.viewAdapters.ViewAdapter;
+
 ///
 /// Main Screen view.
 ///
@@ -21,8 +24,8 @@ public class Main_fragment extends Fragment {
    public TextView titleText;
 
     // Test Data Arrays.
-    public static ArrayList<String> titles = new ArrayList<>();
-    public static ArrayList<String> info = new ArrayList<>();
+   final public static ArrayList<String> titles = new ArrayList<>();
+   final public static ArrayList<String> info = new ArrayList<>();
     // Access it from anywhere
     static String FoodChoiceVar = "All food"; // Value set for test only. Maybe make an ENUM instead?
 

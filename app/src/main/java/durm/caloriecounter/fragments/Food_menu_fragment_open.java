@@ -1,4 +1,4 @@
-package durm.caloriecounter;
+package durm.caloriecounter.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import durm.caloriecounter.R;
+import durm.caloriecounter.viewAdapters.ViewAdapterFoodItem;
 
 public class Food_menu_fragment_open extends Fragment {
 

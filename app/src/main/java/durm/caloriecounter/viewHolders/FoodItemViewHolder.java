@@ -1,10 +1,13 @@
-package durm.caloriecounter;
+package durm.caloriecounter.viewHolders;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import durm.caloriecounter.R;
+import durm.caloriecounter.activities.MainActivity;
 
 public class FoodItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -36,7 +39,7 @@ public void onClick(View view){
 
 
     MainActivity.itemOpenedNumber = getAdapterPosition();
-    
+
 
     }
 }

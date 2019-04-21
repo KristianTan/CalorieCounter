@@ -1,4 +1,4 @@
-package durm.caloriecounter;
+package durm.caloriecounter.viewAdapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import durm.caloriecounter.R;
+import durm.caloriecounter.viewHolders.FoodMenuViewHolder;
 
 public class ViewAdapter extends RecyclerView.Adapter<FoodMenuViewHolder> {
 
