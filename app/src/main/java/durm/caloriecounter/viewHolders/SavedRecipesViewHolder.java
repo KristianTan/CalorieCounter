@@ -40,7 +40,7 @@ public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements V
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
         // Show that fragment.
-        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left)
+        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .show(MainActivity.saveRecipeDataFragment).hide(MainActivity.fragment2).addToBackStack(null).commit();
 
     }

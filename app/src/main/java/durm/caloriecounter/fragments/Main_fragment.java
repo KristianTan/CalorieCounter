@@ -1,7 +1,9 @@
 package durm.caloriecounter.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +24,9 @@ import durm.caloriecounter.viewAdapters.ViewAdapter;
 public class Main_fragment extends Fragment {
 
    public TextView titleText;
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
+
 
     // Test Data Arrays.
    final public static ArrayList<String> titles = new ArrayList<>();
@@ -55,8 +60,15 @@ public class Main_fragment extends Fragment {
 
         final Context c = getContext();
 
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        mEditor = mPreferences.edit();
+
         titleText = view.findViewById(R.id.textViewFoodType);
-        titleText.setText(FoodChoiceVar + "| MENU");
+
+        // get the food choice
+        foodChoice();
+
+        titleText.setText(FoodChoiceVar + " | MENU");
 
         // create the recycler for the menu data
         RecyclerView recyclerView = view.findViewById(R.id.fragmentRecycleView);
@@ -72,6 +84,23 @@ public class Main_fragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+
+    private void foodChoice(){
+
+        switch (mPreferences.getInt("foodValue",0)){
+
+            case 0: FoodChoiceVar = "All Food";
+            break;
+            case 1: FoodChoiceVar = "Fruit Lover";
+                break;
+            case 2: FoodChoiceVar = "Vegan";
+                break;
+            case 3: FoodChoiceVar = "Meat Lover";
+                break;
+        }
+
     }
 
 
