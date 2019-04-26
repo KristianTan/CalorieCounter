@@ -54,6 +54,10 @@ public class FragmentSetUp_UserName extends Fragment {
 
 
 
+                if(name.getText().toString().equals("")){
+                    name.setText("User");
+                }
+
                 mEditor.putString("username",name.getText().toString());
                 mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)

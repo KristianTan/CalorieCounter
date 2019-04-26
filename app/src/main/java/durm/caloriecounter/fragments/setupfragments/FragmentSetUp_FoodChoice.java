@@ -21,7 +21,7 @@ public class FragmentSetUp_FoodChoice extends Fragment {
 
 
     Button next;
-    Button allfood,vegan,fruit,meat;
+    Button allfood,vegan,fruit,meat,sweet,vegetarian;
 
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
@@ -49,6 +49,9 @@ public class FragmentSetUp_FoodChoice extends Fragment {
         vegan = view.findViewById(R.id.buttonVegan);
         fruit = view.findViewById(R.id.buttonfruits);
         meat = view.findViewById(R.id.buttonMeat);
+        sweet = view.findViewById(R.id.buttonSweets);
+        vegetarian = view.findViewById(R.id.buttonVegetarian);
+
 
        allfood.setOnClickListener(new View.OnClickListener() {
 
@@ -84,6 +87,23 @@ public class FragmentSetUp_FoodChoice extends Fragment {
                 completeSetup(activity);
             }
         });
+        sweet.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mEditor.putInt("foodValue",4);
+                completeSetup(activity);
+            }
+        });
+        vegetarian.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mEditor.putInt("foodValue",5);
+                completeSetup(activity);
+            }
+        });
+
 
 
         return view;

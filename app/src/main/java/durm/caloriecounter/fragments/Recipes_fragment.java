@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SearchActivity;
-import durm.caloriecounter.activities.UserProfileActivity;
 import durm.caloriecounter.viewAdapters.SavedRecipesViewAdapter;
 
 public class Recipes_fragment extends Fragment {

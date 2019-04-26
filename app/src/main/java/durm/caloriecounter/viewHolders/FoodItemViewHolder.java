@@ -35,7 +35,7 @@ public void onClick(View view){
 
     // Show that fragment.
     activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-            .show(MainActivity.itemDataFragment).hide(MainActivity.menuFragments.get(MainActivity.foodActiveFragment)).addToBackStack(null).commit();
+            .show(MainActivity.itemDataFragment).hide(MainActivity.foodListFragment).addToBackStack(null).commit();
 
 
     MainActivity.itemOpenedNumber = getAdapterPosition();

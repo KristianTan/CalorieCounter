@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#25000000"
+    android:background="#ffff"
     >
 
 
@@ -17,9 +17,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="64dp"
         android:fontFamily="sans-serif-thin"
-        android:text="Your Food Type"
+        android:text="Select Food Type"
         android:textAlignment="center"
-        android:textColor="#ffff"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAllFood"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +35,7 @@
         android:gravity="bottom|center_vertical"
         android:text="VEGAN"
         android:textAlignment="center"
-        android:textColor="#ffff"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSweets"
         app:layout_constraintStart_toStartOf="parent" />
@@ -52,7 +51,7 @@
         android:gravity="bottom|center_vertical"
         android:text="SWEET LOVER"
         android:textAlignment="center"
-        android:textColor="#ffff"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -88,7 +87,7 @@
         android:gravity="bottom|center_vertical"
         android:text="MEAT LOVER"
         android:textAlignment="center"
-        android:textColor="#ffff"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonVegetarian"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -104,7 +103,7 @@
         android:gravity="bottom|center_vertical"
         android:text="Vegetarian"
         android:textAlignment="center"
-        android:textColor="#ffff"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -140,7 +139,7 @@
         android:gravity="bottom|center_vertical"
         android:text="ALL FOOD"
         android:textAlignment="center"
-        android:textColor="#ffff"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonVegan"
         app:layout_constraintStart_toStartOf="parent" />
@@ -156,7 +155,7 @@
         android:gravity="bottom|center_vertical"
         android:text="FRUIT LOVER"
         android:textAlignment="center"
-        android:textColor="#ffff"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMeat"
         app:layout_constraintEnd_toEndOf="parent" />

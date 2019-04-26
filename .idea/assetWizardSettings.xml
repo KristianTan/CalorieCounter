@@ -143,11 +143,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="32" />
-                            <entry key="outputName" value="ic_food_fruits" />
+                            <entry key="height" value="512" />
+                            <entry key="outputName" value="ic_food_vegetarian" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="E:\Downloads\iconfinder_cherry-cherries-berry-berries-fruit-food-spring_2189585.svg" />
-                            <entry key="width" value="32" />
+                            <entry key="sourceFile" value="E:\Downloads\iconfinder_lettuce_leaves_food_taste_vegitables_green_tasty_3976731.svg" />
+                            <entry key="width" value="512" />
                           </map>
                         </option>
                       </PersistentState>

@@ -1,77 +1,61 @@
-package durm.caloriecounter.fragments.setupfragments;
+package durm.caloriecounter.activities.settingsactivities;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import durm.caloriecounter.R;
-import durm.caloriecounter.activities.SetUpActivity;
+
+public class UserUpdateDetailsActivity extends AppCompatActivity {
 
 
-public class FragmentSetUp_UserPreferences extends Fragment {
 
-
-    Button next;
-    private int SystemUsed;
+    private TextView name;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
     private EditText height,weight,age;
     private Button metric,imperial;
-    private Button low,mid,high;
+    private Button low,mid,high,save;
     private TextView heightUnits,weightUnits;
+    private int SystemUsed;
 
-    public FragmentSetUp_UserPreferences(){
-
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.activity_user_update_details_acitvity);
 
-
-    // Create and search for UI  elements here.
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.setup_userspreferences_fragment, container, false);
-
-       final AppCompatActivity activity = (AppCompatActivity)view.getContext();
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
-        next = view.findViewById(R.id.setupbuttonNext);
+        save = findViewById(R.id.setupbuttonNext);
 
         // set the edit text
-        height = view.findViewById(R.id.setup_height);
+        height = findViewById(R.id.setup_height);
         height.setInputType(
                 InputType.TYPE_CLASS_NUMBER);
-        weight = view.findViewById(R.id.setup_weight);
+        weight = findViewById(R.id.setup_weight);
         weight.setInputType(
                 InputType.TYPE_CLASS_NUMBER);
-        age = view.findViewById(R.id.setup_age);
+        age = findViewById(R.id.setup_age);
         age.setInputType(
                 InputType.TYPE_CLASS_NUMBER);
 
-        heightUnits = view.findViewById(R.id.heightUnits);
-        weightUnits = view.findViewById(R.id.weightUnits);
+        heightUnits = findViewById(R.id.heightUnits);
+        weightUnits = findViewById(R.id.weightUnits);
 
         // set the buttons
-        metric = view.findViewById(R.id.b_metric);
-        imperial = view.findViewById(R.id.b_imperial);
-        low = view.findViewById(R.id.b_lose_weight);
-        mid = view.findViewById(R.id.b_maintain_weight);
-        high = view.findViewById(R.id.b_gain_weight);
+        metric = findViewById(R.id.b_metric);
+        imperial = findViewById(R.id.b_imperial);
+        low = findViewById(R.id.b_lose_weight);
+        mid = findViewById(R.id.b_maintain_weight);
+        high = findViewById(R.id.b_gain_weight);
 
 
         metric.setOnClickListener(new View.OnClickListener() {
@@ -116,8 +100,8 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                 // set to active
                 low.setBackgroundColor(Color.parseColor("#2196F3"));
                 // deactivate the other button
-               mid.setBackgroundColor(Color.parseColor("#002196F3"));
-               high.setBackgroundColor(Color.parseColor("#002196F3"));
+                mid.setBackgroundColor(Color.parseColor("#002196F3"));
+                high.setBackgroundColor(Color.parseColor("#002196F3"));
 
             }
         });
@@ -152,7 +136,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
 
 
-        next.setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -186,17 +170,10 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                 mEditor.commit();
 
 
-
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(SetUpActivity.userGoalFragment).hide(SetUpActivity.userPreferencesFragment).addToBackStack(null).commit();
+                finish();
 
             }
         });
 
-
-        return view;
     }
-
-
-
 }

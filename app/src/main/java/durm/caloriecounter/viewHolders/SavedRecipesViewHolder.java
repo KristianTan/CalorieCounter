@@ -1,7 +1,6 @@
 package durm.caloriecounter.viewHolders;
 
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
-import durm.caloriecounter.fragments.Main_fragment;
 
 
 public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

@@ -99,6 +99,10 @@ public class Main_fragment extends Fragment {
                 break;
             case 3: FoodChoiceVar = "Meat Lover";
                 break;
+            case 4: FoodChoiceVar = "Sweets Lover";
+                break;
+            case 5: FoodChoiceVar = "Vegetarian";
+                break;
         }
 
     }
