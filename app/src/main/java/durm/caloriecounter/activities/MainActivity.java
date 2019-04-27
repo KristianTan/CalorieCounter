@@ -14,8 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-
+import durm.caloriecounter.activities.settingsactivities.UserSettingsActivity;
 import durm.caloriecounter.fragments.Food_menu_fragment_open;
 import durm.caloriecounter.fragments.Main_fragment;
 import durm.caloriecounter.fragments.Menu_Item_Data_Fragment;
@@ -39,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
     public static final Fragment fragment2 = new Recipes_fragment();
     public static final Fragment itemDataFragment = new Menu_Item_Data_Fragment();
     public static final Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
+    public static final Fragment foodListFragment = new Food_menu_fragment_open();
 
     // Experimental for now.
-    public static ArrayList<Food_menu_fragment_open> menuFragments = new ArrayList<>();
     public static int numberOfMeals = 6;
     public static int foodActiveFragment;
     public static int itemOpenedNumber;
@@ -87,20 +86,13 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Add the fragments to the view
+        fmMain.beginTransaction().add(R.id.main_container, foodListFragment, "5").hide(foodListFragment).commit();
         fmMain.beginTransaction().add(R.id.main_container, saveRecipeDataFragment, "4").hide(saveRecipeDataFragment).commit();
         fmMain.beginTransaction().add(R.id.main_container, itemDataFragment, "3").hide(itemDataFragment).commit();
         fmMain.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit(); // hide it so we only have 1 active
         fmMain.beginTransaction().add(R.id.main_container,fragment1, "1").commit();
 
-        // Create fragments if they were not already.
-        if(true){  // testing purpose only BUGGY!!!!
-            for(int i=0; i< numberOfMeals;i++ ){
 
-                menuFragments.add(new Food_menu_fragment_open());
-                fmMain.beginTransaction().add(R.id.main_container, menuFragments.get(i),3+i+"").hide(menuFragments.get(i)).commit();
-
-            }
-        }
 
         // Load the data if it was't loaded yet.
         if(true){ // testing purpose only BUGGY!!!!
@@ -149,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             Main_fragment.info.add("600 Kcal     4 Items");
         }
 
-        addDataToList();
+
     }
 
 
@@ -185,11 +177,11 @@ public class MainActivity extends AppCompatActivity {
 
     // Sets and adds foods for each fragment.
     private void addFoodData(int index, String foodName){
-       menuFragments.get(index).titles.add(foodName);
+   //    menuFragments.get(index).titles.add(foodName);
     }
 
     private void addTitleData(int index, String foodName){
-       menuFragments.get(index).titleOfFragment = foodName;
+   //    menuFragments.get(index).titleOfFragment = foodName;
     }
 
     private void toolbarOptions(){
@@ -220,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
        // Find the settings action
         if (id == R.id.action_settings) {
 
-            Intent profileIntent = new Intent(this, UserProfileActivity.class);
+            Intent profileIntent = new Intent(this, UserSettingsActivity.class);
             startActivity(profileIntent);
            // Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
             return true;
@@ -240,16 +232,16 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
 
                     if(active == fragment2){ // if we are not on the home fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(active)
-                                .hide(menuFragments.get(foodActiveFragment)).show(fragment1).commit();
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(active).hide(foodListFragment)
+                                .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
                     }
                     active = fragment1;
                     return true;
 
                 case R.id.navigation_dashboard:
                     if(active == fragment1){ // if we are not on the recipes fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(active)
-                                .hide(menuFragments.get(foodActiveFragment)).show(fragment2).commit();
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(active).hide(foodListFragment)
+                                .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
 
 
                     }

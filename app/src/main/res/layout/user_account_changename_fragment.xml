@@ -9,17 +9,18 @@
 
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView6"
         android:layout_width="371dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="128dp"
-        android:text="USER PREFERENCES TO BE IMPLEMENTED"
+        android:layout_marginBottom="164dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Your Name"
         android:textAlignment="center"
-        android:textColor="#ffff"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/editUserName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -31,10 +32,26 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
-        android:text="Next"
-        android:textColor="#ffff"
+        android:fontFamily="sans-serif-light"
+        android:text="Save"
+        android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:singleLine="false"
+        android:text="User"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

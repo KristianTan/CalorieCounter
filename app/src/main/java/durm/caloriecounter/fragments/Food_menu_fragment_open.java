@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import durm.caloriecounter.R;
+import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.viewAdapters.ViewAdapterFoodItem;
 
 public class Food_menu_fragment_open extends Fragment {
@@ -33,6 +34,10 @@ public class Food_menu_fragment_open extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Wee need an async method for this one
+        titleOfFragment = MainActivity.foodActiveFragment+" Frag";
+        titles.add("TestFood");
     }
 
 
@@ -43,6 +48,8 @@ public class Food_menu_fragment_open extends Fragment {
         View view = inflater.inflate(R.layout.recipes_fragment_open, container, false);
 
 
+
+        // it's established at the creation of the fragment so it won;t work
 
 
         number = view.findViewById(R.id.TextNumber_open);
@@ -71,6 +78,7 @@ public class Food_menu_fragment_open extends Fragment {
 
         return view;
     }
+
 
 
 

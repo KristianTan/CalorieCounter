@@ -1,4 +1,4 @@
-package durm.caloriecounter.fragments.setupfragments;
+package durm.caloriecounter.fragments.settingsfragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,24 +13,23 @@ import android.widget.EditText;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SetUpActivity;
+import durm.caloriecounter.activities.settingsactivities.UserAccountActivity;
+
+public class AccountChangeName_Fragment extends Fragment {
 
 
-public class FragmentSetUp_UserName extends Fragment {
-
-
-    Button next;
     EditText name;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
+    private Button save;
 
-    public FragmentSetUp_UserName(){
+    public AccountChangeName_Fragment(){
 
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -39,16 +38,18 @@ public class FragmentSetUp_UserName extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.setup_username_fragment, container, false);
+        View view = inflater.inflate(R.layout.user_account_changename_fragment, container, false);
 
-       final AppCompatActivity activity = (AppCompatActivity)view.getContext();
+        final AppCompatActivity activity = (AppCompatActivity)view.getContext();
         mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         mEditor = mPreferences.edit();
 
-        next = view.findViewById(R.id.setupbuttonNext);
+        save = view.findViewById(R.id.setupbuttonNext);
         name = view.findViewById(R.id.editUserName);
 
-        next.setOnClickListener(new View.OnClickListener() {
+        name.setText(mPreferences.getString("username","User"));
+
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -61,14 +62,16 @@ public class FragmentSetUp_UserName extends Fragment {
                 mEditor.putString("username",name.getText().toString());
                 mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(SetUpActivity.userPreferencesFragment).hide(SetUpActivity.userNameFragment).addToBackStack(null).commit();
+                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeNameFragment).commit();
 
             }
         });
 
 
+
         return view;
     }
+
 
 
 
