@@ -9,28 +9,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SetUpActivity;
 
 
-public class FragmentSetUp_UserName extends Fragment {
+public class FragmentSetUp_UserGender extends Fragment {
 
 
     Button next;
-    EditText name;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
-    public FragmentSetUp_UserName(){
+    private Button male, female;
+
+
+    public FragmentSetUp_UserGender() {
 
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
 
@@ -38,37 +38,49 @@ public class FragmentSetUp_UserName extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.setup_username_fragment, container, false);
+        View view = inflater.inflate(R.layout.setup_usergender_fragment, container, false);
 
-       final AppCompatActivity activity = (AppCompatActivity)view.getContext();
+        final AppCompatActivity activity = (AppCompatActivity) view.getContext();
         mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         mEditor = mPreferences.edit();
 
         next = view.findViewById(R.id.setupbuttonNext);
-        name = view.findViewById(R.id.editUserName);
 
-        next.setOnClickListener(new View.OnClickListener() {
+        male = view.findViewById(R.id.b_male);
+        female = view.findViewById(R.id.b_female);
+
+
+
+        male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                mEditor.putInt("gender", 0);
+                next(activity);
 
+            }
+        });
+        female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                if(name.getText().toString().equals("")){
-                    name.setText("User");
-                }
+                mEditor.putInt("gender", 1);
+                next(activity);
 
-                mEditor.putString("username",name.getText().toString());
-                mEditor.commit();
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(SetUpActivity.userPreferencesFragment).hide(SetUpActivity.userNameFragment).addToBackStack(null).commit();
 
             }
         });
 
 
+
         return view;
     }
 
+    void next( AppCompatActivity activity){
+        mEditor.commit();
+        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                .show(SetUpActivity.foodChoiceFragment).hide(SetUpActivity.userGenderFragment).addToBackStack(null).commit();
+    }
 
 
 }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import durm.caloriecounter.R;
+import durm.caloriecounter.enumerators.enumFoodType;
 import durm.caloriecounter.viewAdapters.ViewAdapter;
 
 ///
@@ -32,7 +33,7 @@ public class Main_fragment extends Fragment {
    final public static ArrayList<String> titles = new ArrayList<>();
    final public static ArrayList<String> info = new ArrayList<>();
     // Access it from anywhere
-    static String FoodChoiceVar = "All food"; // Value set for test only. Maybe make an ENUM instead?
+    static String FoodChoiceVar;
 
     public  Main_fragment() {
         // Needed empty constructor.
@@ -63,12 +64,16 @@ public class Main_fragment extends Fragment {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         mEditor = mPreferences.edit();
 
+
         titleText = view.findViewById(R.id.textViewFoodType);
 
         // get the food choice
         foodChoice();
 
-        titleText.setText(FoodChoiceVar + " | MENU");
+        String foodTypeString = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
+        foodTypeString = foodTypeString.replace("_", " ");
+
+        titleText.setText(foodTypeString + " | MENU");
 
         // create the recycler for the menu data
         RecyclerView recyclerView = view.findViewById(R.id.fragmentRecycleView);

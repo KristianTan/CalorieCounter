@@ -87,7 +87,7 @@ public class FragmentSetUp_UserGoal extends Fragment {
     void next( AppCompatActivity activity){
         mEditor.commit();
         activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-                .show(SetUpActivity.foodChoiceFragment).hide(SetUpActivity.userGoalFragment).addToBackStack(null).commit();
+                .show(SetUpActivity.userGenderFragment).hide(SetUpActivity.userGoalFragment).addToBackStack(null).commit();
     }
 
 

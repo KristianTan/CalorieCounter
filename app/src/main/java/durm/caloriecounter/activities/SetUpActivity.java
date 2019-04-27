@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.fragments.setupfragments.FragmentSetUp_FoodChoice;
+import durm.caloriecounter.fragments.setupfragments.FragmentSetUp_UserGender;
 import durm.caloriecounter.fragments.setupfragments.FragmentSetUp_UserGoal;
 import durm.caloriecounter.fragments.setupfragments.FragmentSetUp_UserName;
 import durm.caloriecounter.fragments.setupfragments.FragmentSetUp_UserPreferences;
@@ -22,6 +23,7 @@ public class SetUpActivity extends AppCompatActivity {
     public static  Fragment userNameFragment = new FragmentSetUp_UserName();
     public static  Fragment userGoalFragment = new FragmentSetUp_UserGoal();
     public static  Fragment foodChoiceFragment = new FragmentSetUp_FoodChoice();
+    public static  Fragment userGenderFragment = new FragmentSetUp_UserGender();
 
     // Create a fragment manager
     public final FragmentManager fm = getSupportFragmentManager();
@@ -33,7 +35,7 @@ public class SetUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-
+        fm.beginTransaction().add(R.id.setup_container, userGenderFragment, "6").hide(userGenderFragment).commit();
         fm.beginTransaction().add(R.id.setup_container, userGoalFragment, "4").hide(userGoalFragment).commit();
         fm.beginTransaction().add(R.id.setup_container, foodChoiceFragment, "5").hide(foodChoiceFragment).commit();
         fm.beginTransaction().add(R.id.setup_container, userNameFragment, "3").hide(userNameFragment).commit();
