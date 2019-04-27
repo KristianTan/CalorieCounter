@@ -1,10 +1,10 @@
 package durm.caloriecounter.enumerators;
 
 public enum enumFoodType {
-    All,
-    Fruit,
+    All_Food,
+    Fruit_Lover,
     Vegan,
-    Meat,
-    Sweet,
+    Meat_Lover,
+    Sweet_Lover,
     Vegetarian
 }

@@ -132,7 +132,7 @@ public class FragmentSetUp_FoodChoice extends Fragment {
 
         mEditor.putInt("caloricIntake", user.getCaloricIntake());
         mEditor.commit();
-        
+
         Intent profileIntent = new Intent(activity, MainActivity.class);
         profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(profileIntent);
