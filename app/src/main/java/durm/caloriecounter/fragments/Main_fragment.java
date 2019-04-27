@@ -24,7 +24,8 @@ import durm.caloriecounter.viewAdapters.ViewAdapter;
 
 public class Main_fragment extends Fragment {
 
-   public TextView titleText;
+    public TextView titleText;
+    public TextView calories;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -66,6 +67,9 @@ public class Main_fragment extends Fragment {
 
 
         titleText = view.findViewById(R.id.textViewFoodType);
+        calories  = view.findViewById(R.id.TargetTextNumber);
+
+        calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
         // get the food choice
         foodChoice();
