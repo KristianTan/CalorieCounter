@@ -35,7 +35,7 @@ public class SetUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-
+        fm.beginTransaction().add(R.id.setup_container, userGenderFragment, "6").hide(userGenderFragment).commit();
         fm.beginTransaction().add(R.id.setup_container, userGoalFragment, "4").hide(userGoalFragment).commit();
         fm.beginTransaction().add(R.id.setup_container, foodChoiceFragment, "5").hide(foodChoiceFragment).commit();
         fm.beginTransaction().add(R.id.setup_container, userNameFragment, "3").hide(userNameFragment).commit();
