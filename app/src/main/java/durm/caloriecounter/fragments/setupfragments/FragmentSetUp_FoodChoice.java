@@ -128,8 +128,8 @@ public class FragmentSetUp_FoodChoice extends Fragment {
                 enumGoal.values()[mPreferences.getInt("goal", 0)]
         );
 
-
-
+        user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
+        
         Intent profileIntent = new Intent(activity, MainActivity.class);
         profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(profileIntent);
