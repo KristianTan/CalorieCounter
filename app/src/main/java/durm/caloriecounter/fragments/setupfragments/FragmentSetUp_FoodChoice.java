@@ -15,6 +15,10 @@ import android.widget.Button;
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.SetUpActivity;
+import durm.caloriecounter.enumerators.enumGender;
+import durm.caloriecounter.enumerators.enumGoal;
+import durm.caloriecounter.models.User;
+import durm.caloriecounter.requests.CalculateCaloricIntake;
 
 
 public class FragmentSetUp_FoodChoice extends Fragment {
@@ -113,6 +117,18 @@ public class FragmentSetUp_FoodChoice extends Fragment {
     public void completeSetup( AppCompatActivity activity){
         mEditor.putInt("setUP",1);
         mEditor.commit();
+
+        CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
+
+        User user = new User(
+                mPreferences.getInt("weight", 0),
+                mPreferences.getInt("height", 0),
+                mPreferences.getInt("age", 0),
+                enumGender.FEMALE,
+                enumGoal.values()[mPreferences.getInt("goal", 0)]
+        );
+
+
 
         Intent profileIntent = new Intent(activity, MainActivity.class);
         profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
