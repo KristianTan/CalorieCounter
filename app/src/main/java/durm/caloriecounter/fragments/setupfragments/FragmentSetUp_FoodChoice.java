@@ -124,11 +124,14 @@ public class FragmentSetUp_FoodChoice extends Fragment {
                 mPreferences.getInt("weight", 0),
                 mPreferences.getInt("height", 0),
                 mPreferences.getInt("age", 0),
-                enumGender.FEMALE,
+                enumGender.values()[mPreferences.getInt("gender", 0)],
                 enumGoal.values()[mPreferences.getInt("goal", 0)]
         );
 
         user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
+
+        mEditor.putInt("caloricIntake", user.getCaloricIntake());
+        mEditor.commit();
         
         Intent profileIntent = new Intent(activity, MainActivity.class);
         profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
