@@ -1,33 +1,26 @@
 package durm.caloriecounter.fragments.settingsfragments;
 
-import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import durm.caloriecounter.R;
-import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.settingsactivities.UserAccountActivity;
-import durm.caloriecounter.viewAdapters.ViewAdapterFoodItem;
 
-public class AccountSettings_Fragment extends Fragment {
-
+public class AccountSetGoal_Fragment extends Fragment {
 
 
-    Button goal,name,erasedata;
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
+    private Button lose, maintain, gain;
 
-    public AccountSettings_Fragment(){
+    public AccountSetGoal_Fragment(){
 
     }
 
@@ -42,43 +35,57 @@ public class AccountSettings_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.user_account_settings_fragment, container, false);
+        View view = inflater.inflate(R.layout.user_account_changegoal_fragment, container, false);
 
-       final AppCompatActivity activity = (AppCompatActivity)view.getContext();
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        mEditor = mPreferences.edit();
 
-        goal = view.findViewById(R.id.buttonAccount);
-        name = view.findViewById(R.id.buttonDetails);
-        erasedata = view.findViewById(R.id.buttonPreferences);
-
+        final AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
 
 
+        lose = view.findViewById(R.id.b_lose_weight);
+        maintain = view.findViewById(R.id.b_maintain_weight);
+        gain = view.findViewById(R.id.b_gain_weight);
 
-       goal.setOnClickListener(new View.OnClickListener() {
+
+        lose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mEditor.putInt("goal", 0);
+                mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.changeGoalFragment).hide(UserAccountActivity.accountSettings).addToBackStack(null).commit();
+                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
+
             }
         });
-        name.setOnClickListener(new View.OnClickListener() {
+        maintain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mEditor.putInt("goal", 1);
+                mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.changeNameFragment).hide(UserAccountActivity.accountSettings).addToBackStack(null).commit();
+                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
+
+
             }
         });
-        erasedata.setOnClickListener(new View.OnClickListener() {
+        gain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mEditor.putInt("goal", 2);
+                mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.eraseDataFragment).hide(UserAccountActivity.accountSettings).addToBackStack(null).commit();
+                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
+
             }
         });
 
         return view;
     }
-
 
 
 

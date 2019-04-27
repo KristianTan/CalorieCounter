@@ -63,6 +63,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-light"
         android:text="Next"
         android:textColor="#ffff"
         android:textSize="30sp"
