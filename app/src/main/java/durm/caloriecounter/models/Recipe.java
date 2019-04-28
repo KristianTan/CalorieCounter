@@ -56,4 +56,12 @@ public class Recipe {
     public int getServings() {return servings; }
 
     public void setServings(int servings){this.servings = servings; }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 }

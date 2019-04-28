@@ -11,7 +11,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-gimport durm.caloriecounter.models.Recipe;
+
+import durm.caloriecounter.activities.MainActivity;
+import durm.caloriecounter.fragments.Main_fragment;
+import durm.caloriecounter.models.Recipe;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -21,7 +24,14 @@ import okhttp3.Response;
 public class GetRecipeData {
     public final String id ="0126ac19";
     public final String key = "2e60d0a0911e3803abc6f73880340731";
-    public void api(int calories, String q) {
+    private Activity activity; //activity is defined as a global variable in your AsyncTask
+
+    public GetRecipeData(Activity activity) {
+
+        this.activity = activity;
+    }
+
+    public void httpRequest(int calories, String q) {
         String url = "https://api.edamam.com/search?app_id="+ id
                         +"&app_key=" + key
                         + "&calories=" + (calories - 50) +  "-" +  (calories + 50)
@@ -68,5 +78,14 @@ public class GetRecipeData {
 
         Random rnd = new Random();
         Recipe returnRecipe = recipes.get(rnd.nextInt(recipes.size()));
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Main_fragment.titles.add(returnRecipe.getLabel());
+                Main_fragment.info.add(returnRecipe.getCalories() + " calories")
+            }
+        });
+
     }
 }
