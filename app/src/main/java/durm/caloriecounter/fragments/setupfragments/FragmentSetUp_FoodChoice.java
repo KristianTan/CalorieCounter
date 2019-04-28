@@ -17,6 +17,7 @@ import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.SetUpActivity;
 import durm.caloriecounter.enumerators.enumGender;
 import durm.caloriecounter.enumerators.enumGoal;
+import durm.caloriecounter.enumerators.enumUnit;
 import durm.caloriecounter.models.User;
 import durm.caloriecounter.requests.CalculateCaloricIntake;
 
@@ -125,7 +126,8 @@ public class FragmentSetUp_FoodChoice extends Fragment {
                 mPreferences.getInt("height", 0),
                 mPreferences.getInt("age", 0),
                 enumGender.values()[mPreferences.getInt("gender", 0)],
-                enumGoal.values()[mPreferences.getInt("goal", 0)]
+                enumGoal.values()[mPreferences.getInt("goal", 0)],
+                enumUnit.values()[mPreferences.getInt("unit", 0)]
         );
 
         user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
