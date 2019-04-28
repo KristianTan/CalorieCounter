@@ -45,12 +45,19 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
         height = findViewById(R.id.setup_height);
         height.setInputType(
                 InputType.TYPE_CLASS_NUMBER);
+        height.setText(String.valueOf(mPreferences.getInt("height", 0)));
+
         weight = findViewById(R.id.setup_weight);
         weight.setInputType(
                 InputType.TYPE_CLASS_NUMBER);
+        weight.setText(String.valueOf(mPreferences.getInt("weight", 0)));
+
+
         age = findViewById(R.id.setup_age);
         age.setInputType(
                 InputType.TYPE_CLASS_NUMBER);
+        age.setText(String.valueOf(mPreferences.getInt("age", 0)));
+
 
         heightUnits = findViewById(R.id.heightUnits);
         weightUnits = findViewById(R.id.weightUnits);
@@ -62,6 +69,29 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
         mid = findViewById(R.id.b_maintain_weight);
         high = findViewById(R.id.b_gain_weight);
 
+        enumUnit unitUsed = enumUnit.values()[mPreferences.getInt("units", 0)];
+        if(unitUsed == enumUnit.IMPERIAL) {
+            SystemUsed = 1; // imperial
+
+            // set to active
+            imperial.setBackgroundColor(Color.parseColor("#2196F3"));
+
+            // deactivate the other button
+            metric.setBackgroundColor(Color.parseColor("#002196F3"));
+            heightUnits.setText("inch");
+            weightUnits.setText("pounds");
+        } else {
+            SystemUsed = 0; // metric default
+
+            // set to active
+            metric.setBackgroundColor(Color.parseColor("#2196F3"));
+
+            // deactivate the other button
+            imperial.setBackgroundColor(Color.parseColor("#002196F3"));
+
+            heightUnits.setText("cm");
+            weightUnits.setText("kg");
+        }
 
         metric.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +107,8 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
 
                 heightUnits.setText("cm");
                 weightUnits.setText("kg");
+
+                mEditor.putInt("units", 0);
 
             }
         });
@@ -94,6 +126,8 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                 metric.setBackgroundColor(Color.parseColor("#002196F3"));
                 heightUnits.setText("inch");
                 weightUnits.setText("pounds");
+
+                mEditor.putInt("units", 1);
             }
         });
 
@@ -168,7 +202,6 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                 }
 
 
-
                 mEditor.putInt("height",heightInt);
                 mEditor.putInt("weight",weightInt);
                 mEditor.putInt("age",Integer.parseInt(age.getText().toString()));
@@ -177,12 +210,12 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                 CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
 
                 User user = new User(
-                        mPreferences.getInt("weight", 0),
-                        mPreferences.getInt("height", 0),
-                        mPreferences.getInt("age", 0),
-                        enumGender.values()[mPreferences.getInt("gender", 0)],
-                        enumGoal.values()[mPreferences.getInt("goal", 0)],
-                        enumUnit.values()[mPreferences.getInt("unit", 0)]
+                    mPreferences.getInt("weight", 0),
+                    mPreferences.getInt("height", 0),
+                    mPreferences.getInt("age", 0),
+                    enumGender.values()[mPreferences.getInt("gender", 0)],
+                    enumGoal.values()[mPreferences.getInt("goal", 0)],
+                    enumUnit.values()[mPreferences.getInt("unit", 0)]
                 );
 
                 user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
@@ -191,7 +224,6 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                 mEditor.commit();
 
                 finish();
-
             }
         });
 
