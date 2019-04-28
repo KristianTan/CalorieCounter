@@ -16,12 +16,8 @@ public class CaloriesPerMeal {
         for(String key : caloriesPerMeal.keySet()) { sum += caloriesPerMeal.get(key); }
 
         int remainder = totalCalories - sum;
-        if(remainder < 200) {
-            // one snack
-            caloriesPerMeal.put("Snack", ((remainder + 99) /100) * 100);
-        } else {
-            caloriesPerMeal.put("Snack", remainder / 2);
-            caloriesPerMeal.put("Snack", remainder / 2);
+        if(remainder > 0) {
+            caloriesPerMeal.put("Snack", ((remainder + 99) /100) * 100); // Rounded to the nearest 100 to avoid items with too few calories
         }
 
 
