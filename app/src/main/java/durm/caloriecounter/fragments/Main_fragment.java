@@ -34,7 +34,6 @@ public class Main_fragment extends Fragment {
    final public static ArrayList<String> titles = new ArrayList<>();
    final public static ArrayList<String> info = new ArrayList<>();
     // Access it from anywhere
-    static String FoodChoiceVar;
 
     public  Main_fragment() {
         // Needed empty constructor.
@@ -71,9 +70,6 @@ public class Main_fragment extends Fragment {
 
         calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
-        // get the food choice
-        foodChoice();
-
         String foodTypeString = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
         foodTypeString = foodTypeString.replace("_", " ");
 
@@ -94,29 +90,5 @@ public class Main_fragment extends Fragment {
 
         return view;
     }
-
-
-    private void foodChoice(){
-
-        switch (mPreferences.getInt("foodValue",0)){
-
-            case 0: FoodChoiceVar = "All Food";
-            break;
-            case 1: FoodChoiceVar = "Fruit Lover";
-                break;
-            case 2: FoodChoiceVar = "Vegan";
-                break;
-            case 3: FoodChoiceVar = "Meat Lover";
-                break;
-            case 4: FoodChoiceVar = "Sweets Lover";
-                break;
-            case 5: FoodChoiceVar = "Vegetarian";
-                break;
-        }
-
-    }
-
-
-
 }
 
