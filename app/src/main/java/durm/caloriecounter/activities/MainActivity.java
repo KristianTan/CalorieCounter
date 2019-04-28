@@ -14,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Map;
 
 import durm.caloriecounter.activities.settingsactivities.UserSettingsActivity;
@@ -23,7 +26,9 @@ import durm.caloriecounter.fragments.Menu_Item_Data_Fragment;
 import durm.caloriecounter.R;
 import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
 import durm.caloriecounter.fragments.Recipes_fragment;
+import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.requests.CaloriesPerMeal;
+import durm.caloriecounter.requests.GetRecipeData;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,9 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Assign an active fragment
     public Fragment active = fragment1;
-
-
-
 
 
     @Override
@@ -102,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
             createData();
         }
 
+        GetRecipeData getRecipeData = new GetRecipeData();
+        getRecipeData.api();
 
         mEditor.putInt("dataloaded",1);
         mEditor.commit();
