@@ -122,15 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
         // It only works for 6 meals for now.
         if(MainActivity.numberOfMeals == 6) {
-
-//            Main_fragment.titles.add("Breakfast");
-//
-//            Main_fragment.titles.add("Morning Snack");
-//            Main_fragment.titles.add("Lunch");
-//            Main_fragment.titles.add("Afternoon Snack");
-//            Main_fragment.titles.add("Dinner");
-//            Main_fragment.titles.add("Night Snack");
-
             Recipes_fragment.titles.add("Recipe 1 test");
             Recipes_fragment.titles.add("Recipe 2 test");
             Recipes_fragment.titles.add("Recipe 3 test");
@@ -144,13 +135,6 @@ public class MainActivity extends AppCompatActivity {
             Recipes_fragment.info.add("Recipe 4 info");
             Recipes_fragment.info.add("Recipe 5 info");
             Recipes_fragment.info.add("Recipe 6 info");
-
-//            Main_fragment.info.add("300 Kcal     2 Items");
-//            Main_fragment.info.add("250 Kcal     3 Items");
-//            Main_fragment.info.add("100 Kcal     2 Items");
-//            Main_fragment.info.add("500 Kcal     5 Items");
-//            Main_fragment.info.add("200 Kcal     3 Items");
-//            Main_fragment.info.add("600 Kcal     4 Items");
         }
 
 
