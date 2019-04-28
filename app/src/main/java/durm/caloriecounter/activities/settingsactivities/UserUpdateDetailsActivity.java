@@ -11,6 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import durm.caloriecounter.R;
+import durm.caloriecounter.enumerators.enumGender;
+import durm.caloriecounter.enumerators.enumGoal;
+import durm.caloriecounter.enumerators.enumUnit;
+import durm.caloriecounter.models.User;
+import durm.caloriecounter.requests.CalculateCaloricIntake;
 
 public class UserUpdateDetailsActivity extends AppCompatActivity {
 
@@ -169,6 +174,21 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                 mEditor.putInt("age",Integer.parseInt(age.getText().toString()));
                 mEditor.commit();
 
+                CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
+
+                User user = new User(
+                        mPreferences.getInt("weight", 0),
+                        mPreferences.getInt("height", 0),
+                        mPreferences.getInt("age", 0),
+                        enumGender.values()[mPreferences.getInt("gender", 0)],
+                        enumGoal.values()[mPreferences.getInt("goal", 0)],
+                        enumUnit.values()[mPreferences.getInt("unit", 0)]
+                );
+
+                user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
+
+                mEditor.putInt("caloricIntake", user.getCaloricIntake());
+                mEditor.commit();
 
                 finish();
 

@@ -65,8 +65,8 @@ public class Main_fragment extends Fragment {
         mEditor = mPreferences.edit();
 
 
-        titleText = view.findViewById(R.id.textViewFoodType);
-        calories  = view.findViewById(R.id.TargetTextNumber);
+        this.titleText = view.findViewById(R.id.textViewFoodType);
+        this.calories  = view.findViewById(R.id.TargetTextNumber);
 
         calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
@@ -90,5 +90,17 @@ public class Main_fragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
+
+        String foodTypeString = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
+        foodTypeString = foodTypeString.replace("_", " ");
+
+        titleText.setText(foodTypeString + " | MENU");
+        super.onResume();
+    }
+
 }
 
