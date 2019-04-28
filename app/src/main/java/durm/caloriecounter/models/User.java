@@ -2,6 +2,7 @@ package durm.caloriecounter.models;
 
 import durm.caloriecounter.enumerators.enumGender;
 import durm.caloriecounter.enumerators.enumGoal;
+import durm.caloriecounter.enumerators.enumUnit;
 
 public class User {
     // Get variables from user input screen
@@ -12,13 +13,20 @@ public class User {
     private enumGender gender;
     private enumGoal goal;
 
-    public User(Integer weight_, Integer height_, Integer age_, enumGender gender_, enumGoal goal_) {
+
+
+    private enumUnit unit;
+
+    public User(Integer weight_, Integer height_, Integer age_, enumGender gender_, enumGoal goal_, enumUnit unit_) {
         this.weight = weight_;
         this.height = height_;
         this.age = age_;
         this.gender = gender_;
         this.goal = goal_;
+        this.unit = unit_;
     }
+
+    public User() {};
 
     public enumGoal getGoal() {
         return goal;
@@ -66,5 +74,13 @@ public class User {
 
     public void setCaloricIntake(Integer caloricIntake) {
         this.caloricIntake = caloricIntake;
+    }
+
+    public enumUnit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(enumUnit unit) {
+        this.unit = unit;
     }
 }

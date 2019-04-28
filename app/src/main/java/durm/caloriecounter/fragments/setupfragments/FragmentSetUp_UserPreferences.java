@@ -89,6 +89,8 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                 heightUnits.setText("cm");
                 weightUnits.setText("kg");
 
+                mEditor.putInt("units", SystemUsed);
+
             }
         });
 
@@ -105,6 +107,8 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                 metric.setBackgroundColor(Color.parseColor("#002196F3"));
                 heightUnits.setText("inch");
                 weightUnits.setText("pounds");
+
+                mEditor.putInt("units", SystemUsed);
             }
         });
 
