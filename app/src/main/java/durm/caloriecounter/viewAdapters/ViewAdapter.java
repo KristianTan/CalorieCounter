@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import durm.caloriecounter.R;
@@ -67,5 +68,10 @@ public class ViewAdapter extends RecyclerView.Adapter<FoodMenuViewHolder> {
         } else {
             return 0;
         }
+    }
+
+    public void updateAll(ArrayList titles, ArrayList calories) {
+        this.titleData = titles;
+        this.infoData = calories;
     }
 }

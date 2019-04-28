@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class CaloriesPerMeal {
     // Return something other than arraylist of calories?
-    public Map<String, Integer> caloreiesPerMeal(Integer totalCalories) {
+    public Map<String, Integer> caloriesPerMeal(Integer totalCalories) {
         Map<String, Integer> caloriesPerMeal = new HashMap<>();
         caloriesPerMeal.put("Breakfast", totalCalories / 100 * 20);
         caloriesPerMeal.put("Lunch", totalCalories / 100 * 40);

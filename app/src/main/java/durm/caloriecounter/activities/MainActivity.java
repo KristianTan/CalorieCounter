@@ -110,13 +110,14 @@ public class MainActivity extends AppCompatActivity {
 
     // Add data here.
     private void createData(){
-
-        CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
-        Map<String, Integer> meals = caloriesPerMeal.caloreiesPerMeal(mPreferences.getInt("caloricIntake", 0));
-        // Add the meals and calories per meal to the main menu
-        for(String key : meals.keySet()){
-            Main_fragment.titles.add(key);
-            Main_fragment.info.add(meals.get(key) + " cal");
+        if(Main_fragment.titles.size() == 0) {
+            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
+            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+            // Add the meals and calories per meal to the main menu
+            for (String key : meals.keySet()) {
+                Main_fragment.titles.add(key);
+                Main_fragment.info.add(meals.get(key) + " cal");
+            }
         }
 
         // It only works for 6 meals for now.
