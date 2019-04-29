@@ -14,7 +14,7 @@ import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.enumerators.enumFoodType;
 import durm.caloriecounter.fragments.Main_fragment;
 
-public class UserChangeFoodActivity extends AppCompatActivity {
+public class  UserChangeFoodActivity extends AppCompatActivity {
 
 
 
