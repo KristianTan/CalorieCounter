@@ -30,7 +30,7 @@ public class Main_fragment extends Fragment {
     public TextView calories;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
-    private ViewAdapter adapter;
+    public static ViewAdapter adapter;
     private RecyclerView recyclerView;
 
     // Test Data Arrays.
@@ -125,6 +125,5 @@ public class Main_fragment extends Fragment {
         titleText.setText(foodTypeString + " | MENU");
         super.onResume();
     }
-
 }
 

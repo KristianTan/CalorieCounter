@@ -28,10 +28,17 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class GetRecipeData extends AsyncTask<String, Integer, Recipe>{
+    public interface AsyncResponse {
+        void processFinish(Recipe output);
+    }
+
     public final String id ="0126ac19";
     public final String key = "2e60d0a0911e3803abc6f73880340731";
+    public AsyncResponse delegate = null;
 
-
+    public GetRecipeData(AsyncResponse delegate) {
+        this.delegate = delegate;
+    }
 
     //    public void httpRequest(int calories, String q) {
 //        String url = "https://api.edamam.com/search?app_id="+ id
@@ -73,7 +80,7 @@ public class GetRecipeData extends AsyncTask<String, Integer, Recipe>{
 //
 
 
-    public Recipe parseJson(JSONArray json) throws JSONException {
+    public Recipe getSingleRecipe(JSONArray json) throws JSONException {
         ArrayList<Recipe> recipes = new ArrayList<>();
         JSONObject val = json.getJSONObject(0); // val is a single recipe
 
@@ -106,9 +113,8 @@ public class GetRecipeData extends AsyncTask<String, Integer, Recipe>{
 
             JSONObject obj = new JSONObject(response.body().string());
             JSONArray hits = obj.getJSONArray("hits");
-//            JSONObject val = hits.getJSONObject(0); // val is a single recipe
 
-            return parseJson(hits);
+            return getSingleRecipe(hits);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -118,6 +124,6 @@ public class GetRecipeData extends AsyncTask<String, Integer, Recipe>{
     @Override
     protected void onPostExecute(Recipe recipe) {
         super.onPostExecute(recipe);
-
+        delegate.processFinish(recipe);
     }
 }

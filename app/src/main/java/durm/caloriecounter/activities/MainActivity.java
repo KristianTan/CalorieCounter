@@ -2,6 +2,7 @@ package durm.caloriecounter.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -112,15 +113,21 @@ public class MainActivity extends AppCompatActivity {
     // Add data here.
     private void createData(){
         if(Main_fragment.titles.size() == 0) {
-            GetRecipeData getRecipeData = new GetRecipeData();
-            getRecipeData.execute("500", "cheese");
-
             CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
             Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
 
             for (String key : meals.keySet()) {
-                Main_fragment.titles.add(key);
-                Main_fragment.info.add(meals.get(key) + " cal");
+//                Main_fragment.titles.add(key);
+//                Main_fragment.info.add(meals.get(key) + " cal");
+                AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
+                    @Override
+                    public void processFinish(Recipe output) {
+                    Main_fragment.titles.add(key + ": " + output.getLabel());
+                    Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()));
+                    Main_fragment.adapter.notifyDataSetChanged();
+//                        addToMenu(output.getLabel(), String.valueOf(output.getCalories()));
+                    }
+                }).execute(String.valueOf(meals.get(key)), "");
             }
         }
 
@@ -160,7 +167,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    private  void addToMenu(String title, String calories){
+        Main_fragment.titles.add(title);
+        Main_fragment.info.add(calories);
+        Main_fragment.adapter.notifyDataSetChanged();
+    }
     // Add information specific to a fragment.
     private void addDataToList(){
 
@@ -193,11 +204,11 @@ public class MainActivity extends AppCompatActivity {
 
     // Sets and adds foods for each fragment.
     private void addFoodData(int index, String foodName){
-   //    menuFragments.get(index).titles.add(foodName);
+//       menuFragments.get(index).titles.add(foodName);
     }
 
     private void addTitleData(int index, String foodName){
-   //    menuFragments.get(index).titleOfFragment = foodName;
+//       menuFragments.get(index).titleOfFragment = foodName;
     }
 
     private void toolbarOptions(){
