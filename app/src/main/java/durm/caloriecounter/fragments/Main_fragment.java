@@ -135,12 +135,12 @@ public class Main_fragment extends Fragment {
 
 
             for (String key : meals.keySet()) {
-                newTitles.add(key);
-                cals.add(meals.get(key) + " cal");
+//                newTitles.add(key);
+//                cals.add(meals.get(key) + " cal");
             }
 
-            adapter.updateAll(newTitles, cals);
-            recyclerView.setAdapter(adapter);
+//            adapter.updateAll(newTitles, cals);
+//            recyclerView.setAdapter(adapter);
 
             calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
@@ -158,7 +158,8 @@ public class Main_fragment extends Fragment {
     public void getRecipesForDay() {
         CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
         Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
-
+        titles.clear();
+        info.clear();
         for (String key : meals.keySet()) {
 //                Main_fragment.titles.add(key);
 //                Main_fragment.info.add(meals.get(key) + " cal");
@@ -166,10 +167,11 @@ public class Main_fragment extends Fragment {
                 @Override
                 public void processFinish(Recipe output) {
                     if (output != null) {
-                        Main_fragment.titles.add(key + ": " + output.getLabel());
-                        Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
+                        titles.add(key + ": " + output.getLabel());
+                        info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
 //                            meals.put(key, output.getCalories() / output.getServings());
-                        Main_fragment.adapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
+                        recyclerView.setAdapter(adapter);
                     }
                 }
             }).execute(String.valueOf(meals.get(key)), key);
