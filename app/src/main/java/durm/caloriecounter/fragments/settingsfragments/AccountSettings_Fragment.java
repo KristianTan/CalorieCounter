@@ -1,25 +1,15 @@
 package durm.caloriecounter.fragments.settingsfragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import durm.caloriecounter.R;
-import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.settingsactivities.UserAccountActivity;
-import durm.caloriecounter.viewAdapters.ViewAdapterFoodItem;
 
 public class AccountSettings_Fragment extends Fragment {
 
