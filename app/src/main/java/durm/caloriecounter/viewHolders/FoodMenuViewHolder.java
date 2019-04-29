@@ -36,8 +36,6 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View view){
 
-
-
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
         // Show that fragment.
@@ -50,7 +48,7 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
         MainActivity.foodActiveFragment = getAdapterPosition();
 
 
-     //   Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
 
     }
 

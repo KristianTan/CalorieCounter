@@ -2,6 +2,7 @@ package durm.caloriecounter.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -13,11 +14,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.enumerators.enumFoodType;
+import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.requests.CaloriesPerMeal;
+import durm.caloriecounter.requests.GetRecipeData;
 import durm.caloriecounter.viewAdapters.ViewAdapter;
 
 ///
@@ -30,15 +34,15 @@ public class Main_fragment extends Fragment {
     public TextView calories;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
-    private ViewAdapter adapter;
+    public static ViewAdapter adapter;
     private RecyclerView recyclerView;
 
     // Test Data Arrays.
-   final public static ArrayList<String> titles = new ArrayList<>();
-   final public static ArrayList<String> info = new ArrayList<>();
+    final public static ArrayList<String> titles = new ArrayList<>();
+    final public static ArrayList<String> info = new ArrayList<>();
     // Access it from anywhere
 
-    public  Main_fragment() {
+    public Main_fragment() {
         // Needed empty constructor.
     }
 
@@ -69,7 +73,7 @@ public class Main_fragment extends Fragment {
 
 
         this.titleText = view.findViewById(R.id.textViewFoodType);
-        this.calories  = view.findViewById(R.id.TargetTextNumber);
+        this.calories = view.findViewById(R.id.TargetTextNumber);
 
         calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
@@ -85,11 +89,16 @@ public class Main_fragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
+        if(Main_fragment.titles.size() == 0) {
+            setRecipesForDay();
+        }
+
         // Food menu adapter
-        adapter = new ViewAdapter(c,titles,info);
+        adapter = new ViewAdapter(c, titles, info);
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(adapter);
+
 
         return view;
     }
@@ -97,25 +106,18 @@ public class Main_fragment extends Fragment {
     @Override
     public void onResume() {
         String before = calories.getText().toString();
-        String after = mPreferences.getInt("caloricIntake", 0) +" calories";
+        String after = mPreferences.getInt("caloricIntake", 0) + " calories";
 
-        if(!before.equals(after)) {
+        if (!before.equals(after)) {
             CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
             Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
 
             ArrayList<String> newTitles = new ArrayList<>();
             ArrayList<String> cals = new ArrayList<>();
 
-
-            for (String key : meals.keySet()) {
-                newTitles.add(key);
-                cals.add(meals.get(key) + " cal");
-            }
-
-            adapter.updateAll(newTitles, cals);
-            recyclerView.setAdapter(adapter);
-
             calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
+
+            setRecipesForDay();
         }
 
 
@@ -126,5 +128,25 @@ public class Main_fragment extends Fragment {
         super.onResume();
     }
 
+    public void setRecipesForDay() {
+        CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
+        LinkedHashMap<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+        titles.clear();
+        info.clear();
+        for (String key : meals.keySet()) {
+            AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
+                @Override
+                public void processFinish(Recipe output) {
+                    if (output != null) {
+                        titles.add(key + ": " + output.getLabel());
+                        info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
+                        adapter.notifyDataSetChanged();
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+            }).execute(String.valueOf(meals.get(key)), key);
+        }
+
+    }
 }
 

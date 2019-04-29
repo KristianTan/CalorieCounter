@@ -18,6 +18,7 @@ import durm.caloriecounter.activities.SetUpActivity;
 import durm.caloriecounter.enumerators.enumGender;
 import durm.caloriecounter.enumerators.enumGoal;
 import durm.caloriecounter.enumerators.enumUnit;
+import durm.caloriecounter.fragments.Main_fragment;
 import durm.caloriecounter.models.User;
 import durm.caloriecounter.requests.CalculateCaloricIntake;
 
@@ -116,6 +117,9 @@ public class FragmentSetUp_FoodChoice extends Fragment {
 
         mEditor.putInt("caloricIntake", user.getCaloricIntake());
         mEditor.commit();
+
+        Main_fragment.titles.clear();
+        Main_fragment.info.clear();
 
         Intent profileIntent = new Intent(activity, MainActivity.class);
         profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
