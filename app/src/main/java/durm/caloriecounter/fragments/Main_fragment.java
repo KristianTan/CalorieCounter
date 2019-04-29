@@ -20,6 +20,7 @@ import java.util.Map;
 import durm.caloriecounter.R;
 import durm.caloriecounter.enumerators.enumFoodType;
 import durm.caloriecounter.models.Recipe;
+import durm.caloriecounter.models.RecipeListSingleton;
 import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.requests.GetRecipeData;
 import durm.caloriecounter.viewAdapters.ViewAdapter;
@@ -34,7 +35,7 @@ public class Main_fragment extends Fragment {
     public TextView calories;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
-    public static ViewAdapter adapter;
+    public ViewAdapter adapter;
     private RecyclerView recyclerView;
 
     // Test Data Arrays.
@@ -131,6 +132,7 @@ public class Main_fragment extends Fragment {
     public void setRecipesForDay() {
         CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
         LinkedHashMap<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+
         titles.clear();
         info.clear();
         for (String key : meals.keySet()) {
@@ -138,8 +140,11 @@ public class Main_fragment extends Fragment {
                 @Override
                 public void processFinish(Recipe output) {
                     if (output != null) {
+                        RecipeListSingleton.getInstance().recipeList.add(output);
+
                         titles.add(key + ": " + output.getLabel());
-                        info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
+                        info.add(output.getCalories() / output.getServings() + " cal");
+
                         adapter.notifyDataSetChanged();
                         recyclerView.setAdapter(adapter);
                     }

@@ -24,6 +24,22 @@ public class Menu_Item_Data_Fragment extends Fragment {
     String howToMake;
 
 
+    public TextView getIngredientsData() {
+        return ingredientsData;
+    }
+
+    public void setIngredientsData(TextView ingredientsData) {
+        this.ingredientsData = ingredientsData;
+    }
+
+    public TextView getHowToMakeData() {
+        return howToMakeData;
+    }
+
+    public void setHowToMakeData(TextView howToMakeData) {
+        this.howToMakeData = howToMakeData;
+    }
+
     private TextView ingredientsData;
     private TextView howToMakeData;
 

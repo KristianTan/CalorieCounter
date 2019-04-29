@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.R;
+import durm.caloriecounter.fragments.Menu_Item_Data_Fragment;
+import durm.caloriecounter.models.Recipe;
+import durm.caloriecounter.models.RecipeListSingleton;
 
 
 public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -47,7 +50,16 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
         // Tell the code on what fragment we are so we can access it anywhere.
         MainActivity.foodActiveFragment = getAdapterPosition();
 
+        String ingredients = "";
 
+        Recipe thisRecipe = RecipeListSingleton.getInstance().recipeList.get(getAdapterPosition());
+
+        for(String item : thisRecipe.getIngredients()) {
+            ingredients = ingredients.concat(item + "\n");
+        }
+
+        MainActivity.itemDataFragment.getIngredientsData().setText(ingredients);
+        MainActivity.itemDataFragment.getHowToMakeData().setText(thisRecipe.getRecipeURL());
 //        Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
 
     }

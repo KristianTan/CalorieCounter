@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     // Create the fragments.
     public static final Fragment fragment1 = new Main_fragment();
     public static final Fragment fragment2 = new Recipes_fragment();
-    public static final Fragment itemDataFragment = new Menu_Item_Data_Fragment();
+    public static final Menu_Item_Data_Fragment itemDataFragment = new Menu_Item_Data_Fragment();
     public static final Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
 
     // Experimental for now.
@@ -125,12 +125,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    }
-
-    private  void addToMenu(String title, String calories){
-        Main_fragment.titles.add(title);
-        Main_fragment.info.add(calories);
-        Main_fragment.adapter.notifyDataSetChanged();
     }
 
     // Add information specific to a fragment.
