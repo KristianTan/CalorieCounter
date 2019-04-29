@@ -75,7 +75,6 @@ public class Menu_Item_Data_Fragment extends Fragment {
 
 
         ingredientsData = view.findViewById(R.id.ingredients_text);
-        howToMakeData = view.findViewById(R.id.how_to_make_text);
 
         ingredients = MainActivity.foodActiveFragment + "";
         howToMake = MainActivity.itemOpenedNumber + "";
@@ -86,14 +85,7 @@ public class Menu_Item_Data_Fragment extends Fragment {
         } else {
             ingredientsData.setText(R.string.error_data);
         }
-
-
-        if (howToMake != null) {
-            howToMakeData.setText(howToMake);
-        } else {
-            howToMakeData.setText(R.string.error_data);
-        }
-
+        
         return view;
     }
 

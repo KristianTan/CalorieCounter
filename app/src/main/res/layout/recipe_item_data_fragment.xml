@@ -34,7 +34,7 @@
             android:paddingRight="16dp"
             android:text="INGREDIENTS SAMPLE TEXT"
             android:textAlignment="textStart"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
