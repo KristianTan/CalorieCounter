@@ -20,7 +20,6 @@ public class  UserChangeFoodActivity extends AppCompatActivity {
 
     public final FragmentManager fm = getSupportFragmentManager();
 
-    private TextView name;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     private Button allfood,vegan,meat,vegetarian;
@@ -78,7 +77,8 @@ public class  UserChangeFoodActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if(mPreferences.getInt("foodValue",0) != 2){
+
+                if(mPreferences.getInt("foodValue",0) != 1){
                     mEditor.putInt("foodValue",1);
                     mEditor.commit();
                     fm.popBackStack();
@@ -91,7 +91,7 @@ public class  UserChangeFoodActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if(mPreferences.getInt("foodValue",0) != 3){
+                if(mPreferences.getInt("foodValue",0) != 2){
                     mEditor.putInt("foodValue",2);
                     mEditor.commit();
                     fm.popBackStack();
@@ -103,7 +103,7 @@ public class  UserChangeFoodActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if(mPreferences.getInt("foodValue",0) != 5){
+                if(mPreferences.getInt("foodValue",0) != 3){
                     mEditor.putInt("foodValue",3);
                     fm.popBackStack();
                     mEditor.commit();

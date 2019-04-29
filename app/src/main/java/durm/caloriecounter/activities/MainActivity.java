@@ -137,8 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
     // Add information specific to a fragment.
     private void addDataToList(){
 
@@ -225,20 +223,19 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-
-                    // if we are not on the home fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(active)
-                                .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
                     fmMain.popBackStack();
-                    active = fragment1;
+                    // if we are not on the home fragment
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment2)
+                             .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
+
                     return true;
 
                 case R.id.navigation_dashboard:
 
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(active)
+                    fmMain.popBackStack();
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(fragment1)
                                 .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
-                        fmMain.popBackStack();
-                    active = fragment2;
+                        //
                     return true;
 
             }
