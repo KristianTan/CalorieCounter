@@ -20,6 +20,14 @@ public class Menu_Item_Data_Fragment extends Fragment {
 
     // Food Titles
 
+    public String getHowToMake() {
+        return howToMake;
+    }
+
+    public void setHowToMake(String howToMake) {
+        this.howToMake = howToMake;
+    }
+
     String ingredients;
     String howToMake;
 

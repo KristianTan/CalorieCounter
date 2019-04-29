@@ -59,7 +59,8 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
         }
 
         MainActivity.itemDataFragment.getIngredientsData().setText(ingredients);
-        MainActivity.itemDataFragment.getHowToMakeData().setText(thisRecipe.getRecipeURL());
+        MainActivity.itemDataFragment.setHowToMake(thisRecipe.getRecipeURL());
+        MainActivity.itemDataFragment.getHowToMakeData().setText(MainActivity.itemDataFragment.getHowToMake());
 //        Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
 
     }
