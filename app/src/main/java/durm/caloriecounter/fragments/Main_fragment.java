@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import durm.caloriecounter.R;
@@ -89,27 +90,8 @@ public class Main_fragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         if(Main_fragment.titles.size() == 0) {
-            getRecipesForDay();
+            setRecipesForDay();
         }
-//            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
-//            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
-//
-//            for (String key : meals.keySet()) {
-////                Main_fragment.titles.add(key);
-////                Main_fragment.info.add(meals.get(key) + " cal");
-//                AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
-//                    @Override
-//                    public void processFinish(Recipe output) {
-//                        if(output != null) {
-//                            Main_fragment.titles.add(key + ": " + output.getLabel());
-//                            Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
-////                            meals.put(key, output.getCalories() / output.getServings());
-//                            Main_fragment.adapter.notifyDataSetChanged();
-//                        }
-//                    }
-//                }).execute(String.valueOf(meals.get(key)), key);
-//            }
-//        }
 
         // Food menu adapter
         adapter = new ViewAdapter(c, titles, info);
@@ -133,18 +115,9 @@ public class Main_fragment extends Fragment {
             ArrayList<String> newTitles = new ArrayList<>();
             ArrayList<String> cals = new ArrayList<>();
 
-
-            for (String key : meals.keySet()) {
-//                newTitles.add(key);
-//                cals.add(meals.get(key) + " cal");
-            }
-
-//            adapter.updateAll(newTitles, cals);
-//            recyclerView.setAdapter(adapter);
-
             calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
-            getRecipesForDay();
+            setRecipesForDay();
         }
 
 
@@ -155,21 +128,18 @@ public class Main_fragment extends Fragment {
         super.onResume();
     }
 
-    public void getRecipesForDay() {
+    public void setRecipesForDay() {
         CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
-        Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+        LinkedHashMap<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
         titles.clear();
         info.clear();
         for (String key : meals.keySet()) {
-//                Main_fragment.titles.add(key);
-//                Main_fragment.info.add(meals.get(key) + " cal");
             AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
                 @Override
                 public void processFinish(Recipe output) {
                     if (output != null) {
                         titles.add(key + ": " + output.getLabel());
                         info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
-//                            meals.put(key, output.getCalories() / output.getServings());
                         adapter.notifyDataSetChanged();
                         recyclerView.setAdapter(adapter);
                     }
