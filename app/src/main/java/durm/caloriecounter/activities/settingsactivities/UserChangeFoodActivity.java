@@ -11,8 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import durm.caloriecounter.R;
+import durm.caloriecounter.activities.MainActivity;
+import durm.caloriecounter.enumerators.enumFoodType;
+import durm.caloriecounter.fragments.Main_fragment;
 
-public class UserChangeFoodActivity extends AppCompatActivity {
+public class  UserChangeFoodActivity extends AppCompatActivity {
 
 
     public final FragmentManager fm = getSupportFragmentManager();
@@ -68,7 +71,6 @@ public class UserChangeFoodActivity extends AppCompatActivity {
                     fm.popBackStack();
                     finish();
                 }
-
             }
         });
 
@@ -82,7 +84,6 @@ public class UserChangeFoodActivity extends AppCompatActivity {
                     fm.popBackStack();
                     finish();
                 }
-
             }
         });
 
@@ -96,7 +97,6 @@ public class UserChangeFoodActivity extends AppCompatActivity {
                     fm.popBackStack();
                     finish();
                 }
-
             }
         });
         vegetarian.setOnClickListener(new View.OnClickListener() {
@@ -109,9 +109,9 @@ public class UserChangeFoodActivity extends AppCompatActivity {
                     mEditor.commit();
                     finish();
                 }
-
             }
         });
+
 
 
     }

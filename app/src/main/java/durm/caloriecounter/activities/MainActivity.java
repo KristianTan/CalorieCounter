@@ -14,12 +14,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Map;
+
 import durm.caloriecounter.activities.settingsactivities.UserSettingsActivity;
 import durm.caloriecounter.fragments.Main_fragment;
 import durm.caloriecounter.fragments.Menu_Item_Data_Fragment;
 import durm.caloriecounter.R;
 import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
 import durm.caloriecounter.fragments.Recipes_fragment;
+import durm.caloriecounter.requests.CaloriesPerMeal;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -105,18 +108,18 @@ public class MainActivity extends AppCompatActivity {
 
     // Add data here.
     private void createData(){
+        if(Main_fragment.titles.size() == 0) {
+            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
+            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+            // Add the meals and calories per meal to the main menu
+            for (String key : meals.keySet()) {
+                Main_fragment.titles.add(key);
+                Main_fragment.info.add(meals.get(key) + " cal");
+            }
+        }
 
         // It only works for 6 meals for now.
         if(MainActivity.numberOfMeals == 6) {
-
-            Main_fragment.titles.add("Breakfast");
-
-            Main_fragment.titles.add("Morning Snack");
-            Main_fragment.titles.add("Lunch");
-            Main_fragment.titles.add("Afternoon Snack");
-            Main_fragment.titles.add("Dinner");
-            Main_fragment.titles.add("Night Snack");
-
             Recipes_fragment.titles.add("Recipe 1 test");
             Recipes_fragment.titles.add("Recipe 2 test");
             Recipes_fragment.titles.add("Recipe 3 test");
@@ -130,13 +133,6 @@ public class MainActivity extends AppCompatActivity {
             Recipes_fragment.info.add("Recipe 4 info");
             Recipes_fragment.info.add("Recipe 5 info");
             Recipes_fragment.info.add("Recipe 6 info");
-
-            Main_fragment.info.add("300 Kcal     2 Items");
-            Main_fragment.info.add("250 Kcal     3 Items");
-            Main_fragment.info.add("100 Kcal     2 Items");
-            Main_fragment.info.add("500 Kcal     5 Items");
-            Main_fragment.info.add("200 Kcal     3 Items");
-            Main_fragment.info.add("600 Kcal     4 Items");
         }
 
 

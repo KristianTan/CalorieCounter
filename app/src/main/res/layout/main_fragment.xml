@@ -41,7 +41,7 @@
                 android:fontFamily="sans-serif-light"
                 android:paddingLeft="16dp"
                 android:paddingTop="64dp"
-                android:text="2500 Kcal"
+                android:text="cal"
                 android:textColor="#ffffff"
                 android:textSize="30sp" />
 

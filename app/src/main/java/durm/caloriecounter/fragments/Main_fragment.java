@@ -13,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import durm.caloriecounter.R;
+import durm.caloriecounter.enumerators.enumFoodType;
+import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.viewAdapters.ViewAdapter;
 
 ///
@@ -23,16 +26,17 @@ import durm.caloriecounter.viewAdapters.ViewAdapter;
 
 public class Main_fragment extends Fragment {
 
-   public TextView titleText;
+    public TextView titleText;
+    public TextView calories;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
-
+    private ViewAdapter adapter;
+    private RecyclerView recyclerView;
 
     // Test Data Arrays.
    final public static ArrayList<String> titles = new ArrayList<>();
    final public static ArrayList<String> info = new ArrayList<>();
     // Access it from anywhere
-    static String FoodChoiceVar = "All food"; // Value set for test only. Maybe make an ENUM instead?
 
     public  Main_fragment() {
         // Needed empty constructor.
@@ -63,22 +67,26 @@ public class Main_fragment extends Fragment {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         mEditor = mPreferences.edit();
 
-        titleText = view.findViewById(R.id.textViewFoodType);
 
-        // get the food choice
-        foodChoice();
+        this.titleText = view.findViewById(R.id.textViewFoodType);
+        this.calories  = view.findViewById(R.id.TargetTextNumber);
 
-        titleText.setText(FoodChoiceVar + " | MENU");
+        calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
+
+        String foodTypeString = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
+        foodTypeString = foodTypeString.replace("_", " ");
+
+        titleText.setText(foodTypeString + " | MENU");
 
         // create the recycler for the menu data
-        RecyclerView recyclerView = view.findViewById(R.id.fragmentRecycleView);
+        recyclerView = view.findViewById(R.id.fragmentRecycleView);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
         // Food menu adapter
-        ViewAdapter adapter = new ViewAdapter(c,titles,info);
+        adapter = new ViewAdapter(c,titles,info);
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(adapter);
@@ -86,28 +94,37 @@ public class Main_fragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        String before = calories.getText().toString();
+        String after = mPreferences.getInt("caloricIntake", 0) +" calories";
 
-    private void foodChoice(){
+        if(!before.equals(after)) {
+            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
+            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
 
-        switch (mPreferences.getInt("foodValue",0)){
+            ArrayList<String> newTitles = new ArrayList<>();
+            ArrayList<String> cals = new ArrayList<>();
 
-            case 0: FoodChoiceVar = "All Food";
-            break;
-            case 1: FoodChoiceVar = "Fruit Lover";
-                break;
-            case 2: FoodChoiceVar = "Vegan";
-                break;
-            case 3: FoodChoiceVar = "Meat Lover";
-                break;
-            case 4: FoodChoiceVar = "Sweets Lover";
-                break;
-            case 5: FoodChoiceVar = "Vegetarian";
-                break;
+
+            for (String key : meals.keySet()) {
+                newTitles.add(key);
+                cals.add(meals.get(key) + " cal");
+            }
+
+            adapter.updateAll(newTitles, cals);
+            recyclerView.setAdapter(adapter);
+
+            calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
         }
 
+
+        String foodTypeString = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
+        foodTypeString = foodTypeString.replace("_", " ");
+
+        titleText.setText(foodTypeString + " | MENU");
+        super.onResume();
     }
-
-
 
 }
 

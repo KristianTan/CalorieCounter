@@ -68,9 +68,11 @@ public class UserSettingsActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-
-
-
+    @Override
+    public void onResume() {
+        name.setText(mPreferences.getString("username", ""));
+        super.onResume();
     }
 }
