@@ -109,27 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Add data here.
     private void createData(){
-        if(Main_fragment.titles.size() == 0) {
-            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
-            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
-
-            for (String key : meals.keySet()) {
-//                Main_fragment.titles.add(key);
-//                Main_fragment.info.add(meals.get(key) + " cal");
-                AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
-                    @Override
-                    public void processFinish(Recipe output) {
-                        if(output != null) {
-                            Main_fragment.titles.add(key + ": " + output.getLabel());
-                            Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
-//                            meals.put(key, output.getCalories() / output.getServings());
-                            Main_fragment.adapter.notifyDataSetChanged();
-                        }
-                    }
-                }).execute(String.valueOf(meals.get(key)), key);
-            }
-        }
-
         // It only works for 6 meals for now.
         if(MainActivity.numberOfMeals == 6) {
             Recipes_fragment.titles.add("Recipe 1 test");

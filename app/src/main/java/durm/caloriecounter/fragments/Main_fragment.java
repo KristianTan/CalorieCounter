@@ -2,6 +2,7 @@ package durm.caloriecounter.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,9 @@ import java.util.Map;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.enumerators.enumFoodType;
+import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.requests.CaloriesPerMeal;
+import durm.caloriecounter.requests.GetRecipeData;
 import durm.caloriecounter.viewAdapters.ViewAdapter;
 
 ///
@@ -34,11 +37,11 @@ public class Main_fragment extends Fragment {
     private RecyclerView recyclerView;
 
     // Test Data Arrays.
-   final public static ArrayList<String> titles = new ArrayList<>();
-   final public static ArrayList<String> info = new ArrayList<>();
+    final public static ArrayList<String> titles = new ArrayList<>();
+    final public static ArrayList<String> info = new ArrayList<>();
     // Access it from anywhere
 
-    public  Main_fragment() {
+    public Main_fragment() {
         // Needed empty constructor.
     }
 
@@ -69,7 +72,7 @@ public class Main_fragment extends Fragment {
 
 
         this.titleText = view.findViewById(R.id.textViewFoodType);
-        this.calories  = view.findViewById(R.id.TargetTextNumber);
+        this.calories = view.findViewById(R.id.TargetTextNumber);
 
         calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
@@ -85,11 +88,35 @@ public class Main_fragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
+        if(Main_fragment.titles.size() == 0) {
+            getRecipesForDay();
+        }
+//            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
+//            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+//
+//            for (String key : meals.keySet()) {
+////                Main_fragment.titles.add(key);
+////                Main_fragment.info.add(meals.get(key) + " cal");
+//                AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
+//                    @Override
+//                    public void processFinish(Recipe output) {
+//                        if(output != null) {
+//                            Main_fragment.titles.add(key + ": " + output.getLabel());
+//                            Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
+////                            meals.put(key, output.getCalories() / output.getServings());
+//                            Main_fragment.adapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                }).execute(String.valueOf(meals.get(key)), key);
+//            }
+//        }
+
         // Food menu adapter
-        adapter = new ViewAdapter(c,titles,info);
+        adapter = new ViewAdapter(c, titles, info);
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(adapter);
+
 
         return view;
     }
@@ -97,9 +124,9 @@ public class Main_fragment extends Fragment {
     @Override
     public void onResume() {
         String before = calories.getText().toString();
-        String after = mPreferences.getInt("caloricIntake", 0) +" calories";
+        String after = mPreferences.getInt("caloricIntake", 0) + " calories";
 
-        if(!before.equals(after)) {
+        if (!before.equals(after)) {
             CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
             Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
 
@@ -116,6 +143,8 @@ public class Main_fragment extends Fragment {
             recyclerView.setAdapter(adapter);
 
             calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
+
+            getRecipesForDay();
         }
 
 
@@ -124,6 +153,28 @@ public class Main_fragment extends Fragment {
 
         titleText.setText(foodTypeString + " | MENU");
         super.onResume();
+    }
+
+    public void getRecipesForDay() {
+        CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
+        Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+
+        for (String key : meals.keySet()) {
+//                Main_fragment.titles.add(key);
+//                Main_fragment.info.add(meals.get(key) + " cal");
+            AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
+                @Override
+                public void processFinish(Recipe output) {
+                    if (output != null) {
+                        Main_fragment.titles.add(key + ": " + output.getLabel());
+                        Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
+//                            meals.put(key, output.getCalories() / output.getServings());
+                        Main_fragment.adapter.notifyDataSetChanged();
+                    }
+                }
+            }).execute(String.valueOf(meals.get(key)), key);
+        }
+
     }
 }
 
