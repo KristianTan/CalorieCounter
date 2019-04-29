@@ -16,7 +16,7 @@ public class CaloriesPerMeal {
         LinkedHashMap<String, Integer> caloriesPerMeal = new LinkedHashMap<>();
         caloriesPerMeal.put("Breakfast", totalCalories / 100 * 20);
         sum += caloriesPerMeal.get("Breakfast") ;
-        
+
         caloriesPerMeal.put("Lunch", totalCalories / 100 * 40);
         sum += caloriesPerMeal.get("Lunch") * 2; // Add for dinner as well
 
