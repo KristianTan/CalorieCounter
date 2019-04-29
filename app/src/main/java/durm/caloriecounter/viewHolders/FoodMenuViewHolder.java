@@ -42,7 +42,7 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
 
         // Show that fragment.
         activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                .show(MainActivity.foodListFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
+                .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
 
 
 
@@ -50,7 +50,7 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
         MainActivity.foodActiveFragment = getAdapterPosition();
 
 
-        Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
 
     }
 

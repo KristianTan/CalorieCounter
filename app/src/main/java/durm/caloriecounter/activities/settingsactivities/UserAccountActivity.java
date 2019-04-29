@@ -16,7 +16,6 @@ import durm.caloriecounter.fragments.settingsfragments.AccountSettings_Fragment;
 public class UserAccountActivity extends AppCompatActivity {
 
 
-
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 

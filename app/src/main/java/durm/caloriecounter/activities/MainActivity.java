@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import java.util.Map;
 
 import durm.caloriecounter.activities.settingsactivities.UserSettingsActivity;
-import durm.caloriecounter.fragments.Food_menu_fragment_open;
 import durm.caloriecounter.fragments.Main_fragment;
 import durm.caloriecounter.fragments.Menu_Item_Data_Fragment;
 import durm.caloriecounter.R;
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     public static final Fragment fragment2 = new Recipes_fragment();
     public static final Fragment itemDataFragment = new Menu_Item_Data_Fragment();
     public static final Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
-    public static final Fragment foodListFragment = new Food_menu_fragment_open();
 
     // Experimental for now.
     public static int numberOfMeals = 6;
@@ -89,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Add the fragments to the view
-        fmMain.beginTransaction().add(R.id.main_container, foodListFragment, "5").hide(foodListFragment).commit();
+
         fmMain.beginTransaction().add(R.id.main_container, saveRecipeDataFragment, "4").hide(saveRecipeDataFragment).commit();
         fmMain.beginTransaction().add(R.id.main_container, itemDataFragment, "3").hide(itemDataFragment).commit();
         fmMain.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit(); // hide it so we only have 1 active
@@ -134,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         Main_fragment.info.add(calories);
         Main_fragment.adapter.notifyDataSetChanged();
     }
+
     // Add information specific to a fragment.
     private void addDataToList(){
 
@@ -220,21 +219,19 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    if(active == fragment2){ // if we are not on the home fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(active).hide(foodListFragment)
-                                .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
-                    }
-                    active = fragment1;
+                    fmMain.popBackStack();
+                    // if we are not on the home fragment
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment2)
+                             .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
+
                     return true;
 
                 case R.id.navigation_dashboard:
-                    if(active == fragment1){ // if we are not on the recipes fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(active).hide(foodListFragment)
+
+                    fmMain.popBackStack();
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(fragment1)
                                 .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
-
-
-                    }
-                    active = fragment2;
+                        //
                     return true;
 
             }
