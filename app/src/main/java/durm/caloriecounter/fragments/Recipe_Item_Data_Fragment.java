@@ -25,7 +25,6 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
 
     private TextView ingredientsData;
-    private TextView howToMakeData;
 
 
     public Recipe_Item_Data_Fragment() {
@@ -51,7 +50,6 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
 
         ingredientsData = view.findViewById(R.id.ingredients_text);
-        howToMakeData = view.findViewById(R.id.how_to_make_text);
 
         ingredients = MainActivity.foodActiveFragment + "";
         howToMake = MainActivity.itemOpenedNumber + "";
@@ -63,12 +61,6 @@ public class Recipe_Item_Data_Fragment extends Fragment {
             ingredientsData.setText(R.string.error_data);
         }
 
-
-        if (howToMake != null) {
-            howToMakeData.setText(howToMake);
-        } else {
-            howToMakeData.setText(R.string.error_data);
-        }
 
         return view;
     }
