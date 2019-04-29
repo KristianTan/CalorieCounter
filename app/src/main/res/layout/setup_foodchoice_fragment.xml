@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif-thin"
         android:text="Your Food Type"
         android:textAlignment="center"
@@ -31,26 +31,10 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="100dp"
         android:fontFamily="sans-serif-light"
         android:gravity="bottom|center_vertical"
         android:text="VEGAN"
-        android:textAlignment="center"
-        android:textColor="#ffff"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSweets"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonSweets"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="sans-serif-light"
-        android:gravity="bottom|center_vertical"
-        android:text="SWEET LOVER"
         android:textAlignment="center"
         android:textColor="#ffff"
         android:textSize="18sp"
@@ -66,16 +50,6 @@
         app:layout_constraintStart_toStartOf="@+id/buttonVegan"
         app:layout_constraintTop_toTopOf="@+id/buttonVegan"
         app:srcCompat="@drawable/ic_food_vegan" />
-
-    <ImageView
-        android:id="@+id/imageViewVegan2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/buttonSweets"
-        app:layout_constraintStart_toStartOf="@+id/buttonSweets"
-        app:layout_constraintTop_toTopOf="@+id/buttonSweets"
-        app:srcCompat="@drawable/ic_food_sweet" />
 
     <Button
         android:id="@+id/buttonMeat"
@@ -99,7 +73,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="100dp"
         android:fontFamily="sans-serif-light"
         android:gravity="bottom|center_vertical"
         android:text="Vegetarian"
@@ -145,22 +119,6 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonVegan"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/buttonfruits"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif-light"
-        android:gravity="bottom|center_vertical"
-        android:text="FRUIT LOVER"
-        android:textAlignment="center"
-        android:textColor="#ffff"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMeat"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <ImageView
         android:id="@+id/imageViewAllfood"
         android:layout_width="100dp"
@@ -170,16 +128,6 @@
         app:layout_constraintStart_toStartOf="@+id/buttonAllFood"
         app:layout_constraintTop_toTopOf="@+id/buttonAllFood"
         app:srcCompat="@drawable/ic_food_allfood" />
-
-    <ImageView
-        android:id="@+id/imageViewAllfood2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/buttonfruits"
-        app:layout_constraintStart_toStartOf="@+id/buttonfruits"
-        app:layout_constraintTop_toTopOf="@+id/buttonfruits"
-        app:srcCompat="@drawable/ic_food_fruits" />
 
 
 </android.support.constraint.ConstraintLayout>

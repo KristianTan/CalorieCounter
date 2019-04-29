@@ -26,7 +26,7 @@ public class FragmentSetUp_FoodChoice extends Fragment {
 
 
     Button next;
-    Button allfood,vegan,fruit,meat,sweet,vegetarian;
+    Button allfood,vegan,meat,vegetarian;
 
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
@@ -52,9 +52,7 @@ public class FragmentSetUp_FoodChoice extends Fragment {
 
         allfood = view.findViewById(R.id.buttonAllFood);
         vegan = view.findViewById(R.id.buttonVegan);
-        fruit = view.findViewById(R.id.buttonfruits);
         meat = view.findViewById(R.id.buttonMeat);
-        sweet = view.findViewById(R.id.buttonSweets);
         vegetarian = view.findViewById(R.id.buttonVegetarian);
 
 
@@ -66,7 +64,8 @@ public class FragmentSetUp_FoodChoice extends Fragment {
                completeSetup(activity);
            }
        });
-        fruit.setOnClickListener(new View.OnClickListener() {
+
+        vegan.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -75,7 +74,7 @@ public class FragmentSetUp_FoodChoice extends Fragment {
             }
         });
 
-        vegan.setOnClickListener(new View.OnClickListener() {
+        meat.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -83,28 +82,11 @@ public class FragmentSetUp_FoodChoice extends Fragment {
                 completeSetup(activity);
             }
         });
-
-        meat.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mEditor.putInt("foodValue",3);
-                completeSetup(activity);
-            }
-        });
-        sweet.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mEditor.putInt("foodValue",4);
-                completeSetup(activity);
-            }
-        });
         vegetarian.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                mEditor.putInt("foodValue",5);
+                mEditor.putInt("foodValue",3);
                 completeSetup(activity);
             }
         });
