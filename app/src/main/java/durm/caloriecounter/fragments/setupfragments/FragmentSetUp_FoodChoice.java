@@ -135,7 +135,7 @@ public class FragmentSetUp_FoodChoice extends Fragment {
 
         mEditor.putInt("caloricIntake", user.getCaloricIntake());
         mEditor.commit();
-        
+
         Main_fragment.titles.clear();
         Main_fragment.info.clear();
 

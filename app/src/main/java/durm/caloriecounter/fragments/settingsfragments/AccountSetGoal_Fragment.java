@@ -12,6 +12,11 @@ import android.widget.Button;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.settingsactivities.UserAccountActivity;
+import durm.caloriecounter.enumerators.enumGender;
+import durm.caloriecounter.enumerators.enumGoal;
+import durm.caloriecounter.enumerators.enumUnit;
+import durm.caloriecounter.models.User;
+import durm.caloriecounter.requests.CalculateCaloricIntake;
 
 public class AccountSetGoal_Fragment extends Fragment {
 
@@ -52,8 +57,24 @@ public class AccountSetGoal_Fragment extends Fragment {
         lose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int i = mPreferences.getInt("goal", 9);
                 mEditor.putInt("goal", 0);
+                mEditor.commit();
+                int j = mPreferences.getInt("goal", 9);
+
+                CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
+
+                int cal = calculateCaloricIntake.calculateCalories(new User(
+                        mPreferences.getInt("weight", 0),
+                        mPreferences.getInt("height", 0),
+                        mPreferences.getInt("age", 0),
+                        enumGender.values()[mPreferences.getInt("gender", 0)],
+                        enumGoal.values()[mPreferences.getInt("goal", 0)],
+                        enumUnit.values()[mPreferences.getInt("unit", 0)]
+                ));
+
+                mEditor.putInt("caloricIntake", cal);
+
                 mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                         .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
@@ -66,6 +87,21 @@ public class AccountSetGoal_Fragment extends Fragment {
 
                 mEditor.putInt("goal", 1);
                 mEditor.commit();
+
+                CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
+
+                int cal = calculateCaloricIntake.calculateCalories(new User(
+                        mPreferences.getInt("weight", 0),
+                        mPreferences.getInt("height", 0),
+                        mPreferences.getInt("age", 0),
+                        enumGender.values()[mPreferences.getInt("gender", 0)],
+                        enumGoal.values()[mPreferences.getInt("goal", 0)],
+                        enumUnit.values()[mPreferences.getInt("unit", 0)]
+                ));
+
+                mEditor.putInt("caloricIntake", cal);
+
+                mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                         .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
 
@@ -77,6 +113,21 @@ public class AccountSetGoal_Fragment extends Fragment {
             public void onClick(View v) {
 
                 mEditor.putInt("goal", 2);
+                mEditor.commit();
+
+                CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
+
+                int cal = calculateCaloricIntake.calculateCalories(new User(
+                        mPreferences.getInt("weight", 0),
+                        mPreferences.getInt("height", 0),
+                        mPreferences.getInt("age", 0),
+                        enumGender.values()[mPreferences.getInt("gender", 0)],
+                        enumGoal.values()[mPreferences.getInt("goal", 0)],
+                        enumUnit.values()[mPreferences.getInt("unit", 0)]
+                ));
+
+                mEditor.putInt("caloricIntake", cal);
+
                 mEditor.commit();
                 activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                         .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
