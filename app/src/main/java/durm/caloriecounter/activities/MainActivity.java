@@ -112,15 +112,12 @@ public class MainActivity extends AppCompatActivity {
     // Add data here.
     private void createData(){
         if(Main_fragment.titles.size() == 0) {
-            GetRecipeData getRecipeData = new GetRecipeData(this);
+            GetRecipeData getRecipeData = new GetRecipeData();
+            getRecipeData.execute("500", "cheese");
 
             CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
             Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
-            // Get recipes here and set calories
-            for (String key : meals.keySet()) {
-                getRecipeData.httpRequest(meals.get(key), "beef");
-            }
-            // Add the meals and calories per meal to the main menu
+
             for (String key : meals.keySet()) {
                 Main_fragment.titles.add(key);
                 Main_fragment.info.add(meals.get(key) + " cal");
