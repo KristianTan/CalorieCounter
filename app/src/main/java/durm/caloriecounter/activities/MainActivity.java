@@ -15,9 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Map;
 
 import durm.caloriecounter.activities.settingsactivities.UserSettingsActivity;
@@ -124,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
                     public void processFinish(Recipe output) {
                         if(output != null) {
                             Main_fragment.titles.add(key + ": " + output.getLabel());
-                            Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()));
+                            Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()) + " cal");
 //                            meals.put(key, output.getCalories() / output.getServings());
                             Main_fragment.adapter.notifyDataSetChanged();
                         }
                     }
-                }).execute(String.valueOf(meals.get(key)), " ");
+                }).execute(String.valueOf(meals.get(key)), key);
             }
         }
 
