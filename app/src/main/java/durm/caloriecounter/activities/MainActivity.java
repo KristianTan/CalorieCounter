@@ -122,12 +122,14 @@ public class MainActivity extends AppCompatActivity {
                 AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
                     @Override
                     public void processFinish(Recipe output) {
-                    Main_fragment.titles.add(key + ": " + output.getLabel());
-                    Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()));
-                    Main_fragment.adapter.notifyDataSetChanged();
-//                        addToMenu(output.getLabel(), String.valueOf(output.getCalories()));
+                        if(output != null) {
+                            Main_fragment.titles.add(key + ": " + output.getLabel());
+                            Main_fragment.info.add(String.valueOf(output.getCalories() / output.getServings()));
+//                            meals.put(key, output.getCalories() / output.getServings());
+                            Main_fragment.adapter.notifyDataSetChanged();
+                        }
                     }
-                }).execute(String.valueOf(meals.get(key)), "");
+                }).execute(String.valueOf(meals.get(key)), " ");
             }
         }
 
