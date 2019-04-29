@@ -24,7 +24,7 @@
             android:layout_marginBottom="16dp"
             android:text="Ingredients"
             android:textColor="#3d3d3d"
-            android:textSize="30sp" />
+            android:textSize="36sp" />
 
         <TextView
             android:id="@+id/ingredients_text"
@@ -32,40 +32,36 @@
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="INGREDIENTS SAMPLE TEXT" />
-
-        <TextView
-            android:id="@+id/textViewHowtoMake"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingTop="32dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:text="How To Make"
-            android:textColor="#3d3d3d"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/how_to_make_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="HOW TO MAKE SAMPLE TEXT" />
+            android:text="INGREDIENTS SAMPLE TEXT"
+            android:textAlignment="textStart"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/DeleteButton"
+        android:id="@+id/deleteButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:text="Delete"
+        android:text="DELETE"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/howToButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="HOW TO MAKE"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/deleteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
