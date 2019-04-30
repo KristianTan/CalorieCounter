@@ -117,7 +117,7 @@ public class Main_fragment extends Fragment {
             ArrayList<String> cals = new ArrayList<>();
 
             calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
-
+            RecipeListSingleton.getInstance().recipeList.clear();
             setRecipesForDay();
         }
 

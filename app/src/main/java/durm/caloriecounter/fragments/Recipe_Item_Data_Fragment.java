@@ -96,7 +96,13 @@ public class Recipe_Item_Data_Fragment extends Fragment {
             public void onClick(View v) {
                 Recipes_fragment.titles.remove(recipe.getLabel());
                 Recipes_fragment.info.remove(recipe.getCalories() / recipe.getServings() + " cal");
+                String i = RecipeListSingleton.getInstance().savedRecipeList.toString(); // Is it same object reference
+
                 RecipeListSingleton.getInstance().savedRecipeList.remove(recipe); // Is it same object reference
+
+                String j = RecipeListSingleton.getInstance().savedRecipeList.toString(); // Is it same object reference
+
+
                 Recipes_fragment.getAdapter().notifyDataSetChanged();
 
                 Map<String, ?> prefs = mPreferences.getAll();

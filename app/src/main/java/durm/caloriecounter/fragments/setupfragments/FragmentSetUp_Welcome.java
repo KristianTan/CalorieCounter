@@ -11,6 +11,7 @@ import android.widget.Button;
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.SetUpActivity;
+import durm.caloriecounter.models.RecipeListSingleton;
 
 
 public class FragmentSetUp_Welcome extends Fragment {
@@ -36,7 +37,10 @@ public class FragmentSetUp_Welcome extends Fragment {
 
        final AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
-        next = view.findViewById(R.id.setupbuttonNext);
+       RecipeListSingleton.getInstance().recipeList.clear();
+       RecipeListSingleton.getInstance().savedRecipeList.clear();
+
+       next = view.findViewById(R.id.setupbuttonNext);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
