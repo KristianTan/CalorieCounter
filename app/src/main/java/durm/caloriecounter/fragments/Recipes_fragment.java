@@ -84,9 +84,11 @@ public class Recipes_fragment extends Fragment {
     public void onResume() {
         titles.clear();
         info.clear();
+
         Map<String, ?> prefs = mPreferences.getAll();
         Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
         RecipeListSingleton.getInstance().savedRecipeList.clear();
+
         for(String key : prefs.keySet()) {
             Matcher matcher = pattern.matcher(key);
             if(prefs.get(key) instanceof String && matcher.matches()) {
@@ -94,8 +96,8 @@ public class Recipes_fragment extends Fragment {
                 Gson gson = new Gson();
                 String json = mPreferences.getString(key, "");
                 Recipe r = gson.fromJson(json, Recipe.class);
-                Recipes_fragment.titles.add(r.getLabel());
-                Recipes_fragment.info.add(r.getCalories() / r.getServings() + " cal");
+                titles.add(r.getLabel());
+                info.add(r.getCalories() / r.getServings() + " cal");
                 RecipeListSingleton.getInstance().savedRecipeList.add(r);
             }
         }

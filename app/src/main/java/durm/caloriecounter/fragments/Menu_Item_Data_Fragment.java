@@ -21,6 +21,8 @@ import java.util.regex.Pattern;
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.models.Recipe;
+import durm.caloriecounter.models.RecipeListSingleton;
+import durm.caloriecounter.viewHolders.SavedRecipesViewHolder;
 
 /*
  *
@@ -109,13 +111,12 @@ public class Menu_Item_Data_Fragment extends Fragment {
                     Matcher matcher = pattern.matcher(key);
                     if(prefs.get(key) instanceof String && matcher.matches()) {
                         count += 1;
+
                     }
                 }
 
-
                 mEditor.putString("savedRecipe" + count, json);
                 mEditor.commit();
-
             }
         });
         

@@ -47,6 +47,7 @@ public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements V
 
         MainActivity.saveRecipeDataFragment.getIngredientsData().setText(ingredients);
         MainActivity.saveRecipeDataFragment.setHowToMake(thisRecipe.getRecipeURL());
+        MainActivity.saveRecipeDataFragment.setRecipe(thisRecipe);
 
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 

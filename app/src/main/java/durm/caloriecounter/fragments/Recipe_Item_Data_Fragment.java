@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
+import durm.caloriecounter.models.Recipe;
 
 /*
  *
@@ -23,17 +24,10 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
     // Food Titles
     String ingredients;
-
-    public String getHowToMake() {
-        return howToMake;
-    }
-
-    public void setHowToMake(String howToMake) {
-        this.howToMake = howToMake;
-    }
-
     String howToMake;
+    Recipe recipe;
     private Button howToMakeButton;
+    private Button deleteButton;
 
 
     public TextView getIngredientsData() {
@@ -70,6 +64,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
         ingredients = MainActivity.foodActiveFragment + "";
         howToMake = MainActivity.itemOpenedNumber + "";
         howToMakeButton = view.findViewById(R.id.howToButton);
+        deleteButton = view.findViewById(R.id.deleteButton);
 
         howToMakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +72,17 @@ public class Recipe_Item_Data_Fragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse(howToMake));
+                intent.setData(Uri.parse(recipe.getRecipeURL()));
                 startActivity(intent);
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Remove from sharedPrefs
+                // Go back to saved recipes screen
+                // Display recipes
             }
         });
 
@@ -92,6 +96,13 @@ public class Recipe_Item_Data_Fragment extends Fragment {
         return view;
     }
 
+    public void setHowToMake(String howToMake) {
+        this.howToMake = howToMake;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
 
 
 
