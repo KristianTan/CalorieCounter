@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
+import durm.caloriecounter.models.Recipe;
+import durm.caloriecounter.models.RecipeListSingleton;
 
 
 public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -34,6 +36,18 @@ public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(View view){
+
+        Recipe thisRecipe = RecipeListSingleton.getInstance().savedRecipeList.get(getAdapterPosition());
+
+        String ingredients = "";
+
+        for(String item : thisRecipe.getIngredients()) {
+            ingredients = ingredients.concat(item + "\n");
+        }
+
+        MainActivity.saveRecipeDataFragment.getIngredientsData().setText(ingredients);
+        MainActivity.saveRecipeDataFragment.setHowToMake(thisRecipe.getRecipeURL());
+        MainActivity.saveRecipeDataFragment.setRecipe(thisRecipe);
 
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 

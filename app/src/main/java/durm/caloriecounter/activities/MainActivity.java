@@ -15,7 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
+
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import durm.caloriecounter.activities.settingsactivities.UserSettingsActivity;
 import durm.caloriecounter.fragments.Main_fragment;
@@ -24,6 +28,7 @@ import durm.caloriecounter.R;
 import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
 import durm.caloriecounter.fragments.Recipes_fragment;
 import durm.caloriecounter.models.Recipe;
+import durm.caloriecounter.models.RecipeListSingleton;
 import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.requests.GetRecipeData;
 
@@ -39,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
 
     // Create the fragments.
-    public static final Fragment fragment1 = new Main_fragment();
-    public static final Fragment fragment2 = new Recipes_fragment();
+    public static final Main_fragment fragment1 = new Main_fragment();
+    public static final Recipes_fragment fragment2 = new Recipes_fragment();
     public static final Menu_Item_Data_Fragment itemDataFragment = new Menu_Item_Data_Fragment();
-    public static final Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
+    public static final Recipe_Item_Data_Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
 
     // Experimental for now.
     public static int numberOfMeals = 6;
@@ -108,20 +113,25 @@ public class MainActivity extends AppCompatActivity {
     // Add data here.
     private void createData(){
         // It only works for 6 meals for now.
-        if(MainActivity.numberOfMeals == 6) {
-            Recipes_fragment.titles.add("Recipe 1 test");
-            Recipes_fragment.titles.add("Recipe 2 test");
-            Recipes_fragment.titles.add("Recipe 3 test");
-            Recipes_fragment.titles.add("Recipe 4 test");
-            Recipes_fragment.titles.add("Recipe 5 test");
-            Recipes_fragment.titles.add("Recipe 6 test");
 
-            Recipes_fragment.info.add("Recipe 1 info");
-            Recipes_fragment.info.add("Recipe 2 info");
-            Recipes_fragment.info.add("Recipe 3 info");
-            Recipes_fragment.info.add("Recipe 4 info");
-            Recipes_fragment.info.add("Recipe 5 info");
-            Recipes_fragment.info.add("Recipe 6 info");
+        // Display saved recipes
+        if(MainActivity.numberOfMeals == 6) {
+            Map<String, ?> prefs = mPreferences.getAll();
+            Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
+            RecipeListSingleton.getInstance().savedRecipeList.clear();
+
+            for(String key : prefs.keySet()) {
+                Matcher matcher = pattern.matcher(key);
+                if(prefs.get(key) instanceof String && matcher.matches()) {
+                    // parse and display
+                    Gson gson = new Gson();
+                    String json = mPreferences.getString(key, "");
+                    Recipe r = gson.fromJson(json, Recipe.class);
+                    Recipes_fragment.titles.add(r.getLabel());
+                    Recipes_fragment.info.add(r.getCalories() + " cal");
+                    RecipeListSingleton.getInstance().savedRecipeList.add(r);
+                }
+            }
         }
 
 
@@ -221,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_dashboard:
-
                     fmMain.popBackStack();
                         fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(fragment1)
                                 .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
