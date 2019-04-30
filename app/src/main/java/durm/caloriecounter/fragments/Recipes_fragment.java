@@ -10,11 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SearchActivity;
+import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.viewAdapters.SavedRecipesViewAdapter;
 
 public class Recipes_fragment extends Fragment {
@@ -44,7 +46,6 @@ public class Recipes_fragment extends Fragment {
         // create the recycler for the menu data
         RecyclerView recyclerView = view.findViewById(R.id.RecycleViewRecipes);
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -66,4 +67,5 @@ public class Recipes_fragment extends Fragment {
 
         return view;
     }
+
 }

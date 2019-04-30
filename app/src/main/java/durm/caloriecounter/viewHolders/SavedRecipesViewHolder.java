@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
+import durm.caloriecounter.models.Recipe;
+import durm.caloriecounter.models.RecipeListSingleton;
 
 
 public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -34,7 +36,6 @@ public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(View view){
-
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
         // Show that fragment.

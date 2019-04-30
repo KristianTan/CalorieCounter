@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Create the fragments.
     public static final Fragment fragment1 = new Main_fragment();
-    public static final Fragment fragment2 = new Recipes_fragment();
+    public static final Recipes_fragment fragment2 = new Recipes_fragment();
     public static final Menu_Item_Data_Fragment itemDataFragment = new Menu_Item_Data_Fragment();
     public static final Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
 
