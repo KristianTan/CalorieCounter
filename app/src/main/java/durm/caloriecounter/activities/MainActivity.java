@@ -15,7 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
+
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import durm.caloriecounter.activities.settingsactivities.UserSettingsActivity;
 import durm.caloriecounter.fragments.Main_fragment;
@@ -109,19 +113,20 @@ public class MainActivity extends AppCompatActivity {
     private void createData(){
         // It only works for 6 meals for now.
         if(MainActivity.numberOfMeals == 6) {
-            Recipes_fragment.titles.add("Recipe 1 test");
-            Recipes_fragment.titles.add("Recipe 2 test");
-            Recipes_fragment.titles.add("Recipe 3 test");
-            Recipes_fragment.titles.add("Recipe 4 test");
-            Recipes_fragment.titles.add("Recipe 5 test");
-            Recipes_fragment.titles.add("Recipe 6 test");
+            Map<String, ?> prefs = mPreferences.getAll();
+            Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
 
-            Recipes_fragment.info.add("Recipe 1 info");
-            Recipes_fragment.info.add("Recipe 2 info");
-            Recipes_fragment.info.add("Recipe 3 info");
-            Recipes_fragment.info.add("Recipe 4 info");
-            Recipes_fragment.info.add("Recipe 5 info");
-            Recipes_fragment.info.add("Recipe 6 info");
+            for(String key : prefs.keySet()) {
+                Matcher matcher = pattern.matcher(key);
+                if(prefs.get(key) instanceof String && matcher.matches()) {
+                    // parse and display
+                    Gson gson = new Gson();
+                    String json = mPreferences.getString(key, "");
+                    Recipe r = gson.fromJson(json, Recipe.class);
+                    Recipes_fragment.titles.add(r.getLabel());
+                    Recipes_fragment.info.add(r.getCalories() + " cal");
+                }
+            }
         }
 
 
