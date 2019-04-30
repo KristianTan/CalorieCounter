@@ -33,10 +33,10 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp"
                     android:paddingTop="16dp"
-                    android:text="Recipes"
+                    android:text="Saved Recipes"
                     android:textAlignment="viewStart"
                     android:textColor="#ffffff"
-                    android:textSize="42sp" />
+                    android:textSize="41sp" />
 
             </android.support.v7.widget.CardView>
 
