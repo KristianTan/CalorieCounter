@@ -36,6 +36,18 @@ public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(View view){
+
+        Recipe thisRecipe = RecipeListSingleton.getInstance().savedRecipeList.get(getAdapterPosition());
+
+        String ingredients = "";
+
+        for(String item : thisRecipe.getIngredients()) {
+            ingredients = ingredients.concat(item + "\n");
+        }
+
+        MainActivity.saveRecipeDataFragment.getIngredientsData().setText(ingredients);
+        MainActivity.saveRecipeDataFragment.setHowToMake(thisRecipe.getRecipeURL());
+
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
         // Show that fragment.

@@ -28,6 +28,7 @@ import durm.caloriecounter.R;
 import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
 import durm.caloriecounter.fragments.Recipes_fragment;
 import durm.caloriecounter.models.Recipe;
+import durm.caloriecounter.models.RecipeListSingleton;
 import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.requests.GetRecipeData;
 
@@ -43,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
 
     // Create the fragments.
-    public static final Fragment fragment1 = new Main_fragment();
+    public static final Main_fragment fragment1 = new Main_fragment();
     public static final Recipes_fragment fragment2 = new Recipes_fragment();
     public static final Menu_Item_Data_Fragment itemDataFragment = new Menu_Item_Data_Fragment();
-    public static final Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
+    public static final Recipe_Item_Data_Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
 
     // Experimental for now.
     public static int numberOfMeals = 6;
@@ -112,9 +113,12 @@ public class MainActivity extends AppCompatActivity {
     // Add data here.
     private void createData(){
         // It only works for 6 meals for now.
+
+        // Display saved recipes
         if(MainActivity.numberOfMeals == 6) {
             Map<String, ?> prefs = mPreferences.getAll();
             Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
+            RecipeListSingleton.getInstance().savedRecipeList.clear();
 
             for(String key : prefs.keySet()) {
                 Matcher matcher = pattern.matcher(key);
@@ -125,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     Recipe r = gson.fromJson(json, Recipe.class);
                     Recipes_fragment.titles.add(r.getLabel());
                     Recipes_fragment.info.add(r.getCalories() + " cal");
+                    RecipeListSingleton.getInstance().savedRecipeList.add(r);
                 }
             }
         }

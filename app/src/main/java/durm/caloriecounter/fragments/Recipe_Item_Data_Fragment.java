@@ -1,10 +1,13 @@
 package durm.caloriecounter.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import durm.caloriecounter.R;
@@ -19,10 +22,23 @@ import durm.caloriecounter.activities.MainActivity;
 public class Recipe_Item_Data_Fragment extends Fragment {
 
     // Food Titles
-
     String ingredients;
-    String howToMake;
 
+    public String getHowToMake() {
+        return howToMake;
+    }
+
+    public void setHowToMake(String howToMake) {
+        this.howToMake = howToMake;
+    }
+
+    String howToMake;
+    private Button howToMakeButton;
+
+
+    public TextView getIngredientsData() {
+        return ingredientsData;
+    }
 
     private TextView ingredientsData;
 
@@ -53,7 +69,18 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
         ingredients = MainActivity.foodActiveFragment + "";
         howToMake = MainActivity.itemOpenedNumber + "";
+        howToMakeButton = view.findViewById(R.id.howToButton);
 
+        howToMakeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(howToMake));
+                startActivity(intent);
+            }
+        });
 
         if (ingredients != null) {
             ingredientsData.setText(ingredients);
@@ -64,6 +91,8 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
         return view;
     }
+
+
 
 
 }
