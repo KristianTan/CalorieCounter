@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -111,12 +112,17 @@ public class Menu_Item_Data_Fragment extends Fragment {
                     Matcher matcher = pattern.matcher(key);
                     if(prefs.get(key) instanceof String && matcher.matches()) {
                         count += 1;
-
                     }
                 }
-
+                Recipes_fragment.titles.add(recipe.getLabel());
+                Recipes_fragment.info.add(recipe.getCalories() / recipe.getServings() + " cal");
+                RecipeListSingleton.getInstance().savedRecipeList.add(recipe);
+                Recipes_fragment.getAdapter().notifyDataSetChanged();
                 mEditor.putString("savedRecipe" + count, json);
                 mEditor.commit();
+
+                Toast savedToast = Toast.makeText(view.getContext(), "Recipe saved", Toast.LENGTH_SHORT);
+                savedToast.show();
             }
         });
         

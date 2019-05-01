@@ -35,6 +35,12 @@ public class Recipes_fragment extends Fragment {
     // Test Data Arrays.
     final public static ArrayList<String> titles = new ArrayList<>();
     final public static ArrayList<String> info = new ArrayList<>();
+
+    public static SavedRecipesViewAdapter getAdapter() {
+        return adapter;
+    }
+
+    private static SavedRecipesViewAdapter adapter;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     public Recipes_fragment() {
@@ -62,7 +68,7 @@ public class Recipes_fragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Food menu adapter
-        SavedRecipesViewAdapter adapter = new SavedRecipesViewAdapter(c,titles,info);
+        adapter = new SavedRecipesViewAdapter(c,titles,info);
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(adapter);

@@ -231,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_dashboard:
-
                     fmMain.popBackStack();
                         fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(fragment1)
                                 .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
