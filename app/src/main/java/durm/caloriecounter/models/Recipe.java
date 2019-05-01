@@ -10,6 +10,7 @@ public class Recipe {
     private ArrayList<String> ingredients;
     private String recipeURL;
     private String label;
+    private String key;
     private int calories;
     private int servings;
 
@@ -63,5 +64,13 @@ public class Recipe {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

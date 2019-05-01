@@ -31,6 +31,8 @@ import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.requests.GetRecipeData;
 import durm.caloriecounter.viewAdapters.ViewAdapter;
 
+import static java.util.Collections.reverse;
+
 ///
 /// Main Screen view.
 ///
@@ -105,9 +107,11 @@ public class Main_fragment extends Fragment {
         } else {
             Map<String, ?> prefs = mPreferences.getAll();
             Pattern pattern = Pattern.compile("^[a-z]+(Today)");
+
             RecipeListSingleton.getInstance().recipeList.clear();
             titles.clear();
             info.clear();
+
             for(String key : prefs.keySet()) {
                 Matcher matcher = pattern.matcher(key);
                 if(prefs.get(key) instanceof String && matcher.matches()) {
@@ -115,13 +119,22 @@ public class Main_fragment extends Fragment {
                     Gson gson = new Gson();
                     String json = mPreferences.getString(key, "");
                     Recipe r = gson.fromJson(json, Recipe.class);
-                    titles.add(r.getLabel());
-                    info.add(r.getCalories() / r.getServings() + " cal");
+
+                    String meal = key.replace("Today", "");
+                    meal = meal.substring(0, 1).toUpperCase() + meal.substring(1);
+                    r.setKey(meal);
+
                     RecipeListSingleton.getInstance().recipeList.add(r);
                 }
             }
         }
 
+        // Reverse list so they are displayed in the right order
+        reverse(RecipeListSingleton.getInstance().recipeList);
+        for(Recipe r : RecipeListSingleton.getInstance().recipeList) {
+            titles.add(r.getKey() + ": " + r.getLabel());
+            info.add(r.getCalories() / r.getServings() + " cal");
+        }
         // Food menu adapter
         adapter = new ViewAdapter(c, titles, info);
 
