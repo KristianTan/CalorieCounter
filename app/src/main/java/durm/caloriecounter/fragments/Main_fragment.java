@@ -13,7 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -90,7 +93,10 @@ public class Main_fragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
-        if(Main_fragment.titles.size() == 0) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String now = sdf.format(Calendar.getInstance().getTime());
+        String lastGenerated = mPreferences.getString("mealsGeneratedDate", null);
+        if(lastGenerated == null || !lastGenerated.equals(now)) {
             setRecipesForDay();
         }
 
@@ -110,6 +116,10 @@ public class Main_fragment extends Fragment {
         String after = mPreferences.getInt("caloricIntake", 0) + " calories";
 
         if (!before.equals(after)) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            mEditor.putString("mealsGeneratedDate", sdf.format(Calendar.getInstance().getTime()));
+            mEditor.commit();
+
             CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
             Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
 
@@ -130,9 +140,12 @@ public class Main_fragment extends Fragment {
     }
 
     public void setRecipesForDay() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        mEditor.putString("mealsGeneratedDate", sdf.format(Calendar.getInstance().getTime()));
+        mEditor.commit();
+
         CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
         LinkedHashMap<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
-
         titles.clear();
         info.clear();
         for (String key : meals.keySet()) {

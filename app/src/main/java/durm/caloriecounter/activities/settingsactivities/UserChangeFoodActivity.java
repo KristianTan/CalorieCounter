@@ -8,14 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import durm.caloriecounter.R;
-import durm.caloriecounter.activities.MainActivity;
-import durm.caloriecounter.enumerators.enumFoodType;
-import durm.caloriecounter.fragments.Main_fragment;
 
-public class  UserChangeFoodActivity extends AppCompatActivity {
+public class UserChangeFoodActivity extends AppCompatActivity {
 
 
     public final FragmentManager fm = getSupportFragmentManager();
