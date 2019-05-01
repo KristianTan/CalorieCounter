@@ -1,5 +1,6 @@
 package durm.caloriecounter.models;
 
+import durm.caloriecounter.enumerators.enumActivityLevel;
 import durm.caloriecounter.enumerators.enumGender;
 import durm.caloriecounter.enumerators.enumGoal;
 import durm.caloriecounter.enumerators.enumUnit;
@@ -12,21 +13,22 @@ public class User {
     private Integer caloricIntake;
     private enumGender gender;
     private enumGoal goal;
-
+    private enumActivityLevel activityLevel;
 
 
     private enumUnit unit;
 
-    public User(Integer weight_, Integer height_, Integer age_, enumGender gender_, enumGoal goal_, enumUnit unit_) {
+    public User(Integer weight_, Integer height_, Integer age_, enumGender gender_, enumGoal goal_, enumUnit unit_, enumActivityLevel activityLevel_) {
         this.weight = weight_;
         this.height = height_;
         this.age = age_;
         this.gender = gender_;
         this.goal = goal_;
         this.unit = unit_;
+        this.activityLevel = activityLevel_;
     }
 
-    public User() {};
+    public User() {}
 
     public enumGoal getGoal() {
         return goal;
@@ -82,5 +84,13 @@ public class User {
 
     public void setUnit(enumUnit unit) {
         this.unit = unit;
+    }
+
+    public enumActivityLevel getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(enumActivityLevel activityLevel) {
+        this.activityLevel = activityLevel;
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import durm.caloriecounter.R;
+import durm.caloriecounter.enumerators.enumActivityLevel;
 import durm.caloriecounter.enumerators.enumGender;
 import durm.caloriecounter.enumerators.enumGoal;
 import durm.caloriecounter.enumerators.enumUnit;
@@ -215,7 +216,8 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                     mPreferences.getInt("age", 0),
                     enumGender.values()[mPreferences.getInt("gender", 0)],
                     enumGoal.values()[mPreferences.getInt("goal", 0)],
-                    enumUnit.values()[mPreferences.getInt("unit", 0)]
+                    enumUnit.values()[mPreferences.getInt("unit", 0)],
+                    enumActivityLevel.values()[mPreferences.getInt("activity", 0)]
                 );
 
                 user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
