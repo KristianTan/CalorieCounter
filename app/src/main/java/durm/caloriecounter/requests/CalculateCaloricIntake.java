@@ -18,6 +18,21 @@ public class CalculateCaloricIntake {
 
         double BMR = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getAge() + s;
 
+        // Alter intake based on activity level
+        switch(user.getActivityLevel()) {
+            case LOW:
+                BMR = BMR * 1.3 - 1.375;
+                break;
+
+            case MEDIUM:
+                BMR = BMR * 1.5 - 1.55;
+                break;
+
+            case HIGH:
+                BMR = BMR * 1.7;
+                break;
+        }
+
         // Alter caloric intake based on user goal
         switch(user.getGoal()) {
             case LOSEWEIGHT:
