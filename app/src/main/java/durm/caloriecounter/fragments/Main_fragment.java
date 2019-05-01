@@ -133,30 +133,27 @@ public class Main_fragment extends Fragment {
 
     @Override
     public void onResume() {
-        String before = calories.getText().toString();
-        String after = mPreferences.getInt("caloricIntake", 0) + " calories";
+        String caloriesBefore = calories.getText().toString();
+        String caloriesAfter = mPreferences.getInt("caloricIntake", 0) + " calories";
 
-        if (!before.equals(after)) {
+        String foodTypeBefore = titleText.getText().toString();
+        String foodTypeAfter = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
+
+        if (!caloriesBefore.equals(caloriesAfter) || !foodTypeBefore.equals(foodTypeAfter)) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             mEditor.putString("mealsGeneratedDate", sdf.format(Calendar.getInstance().getTime()));
             mEditor.commit();
 
-//            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
-//            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
-//
-//            ArrayList<String> newTitles = new ArrayList<>();
-//            ArrayList<String> cals = new ArrayList<>();
-
             calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
             RecipeListSingleton.getInstance().recipeList.clear();
             setRecipesForDay();
+
+            String foodTypeString = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
+            foodTypeString = foodTypeString.replace("_", " ");
+
+            titleText.setText(foodTypeString + " | MENU");
         }
 
-
-        String foodTypeString = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
-        foodTypeString = foodTypeString.replace("_", " ");
-
-        titleText.setText(foodTypeString + " | MENU");
         super.onResume();
     }
 
