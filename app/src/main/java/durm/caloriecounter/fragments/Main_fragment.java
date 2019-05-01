@@ -136,7 +136,7 @@ public class Main_fragment extends Fragment {
         titles.clear();
         info.clear();
         for (String key : meals.keySet()) {
-            AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(new GetRecipeData.AsyncResponse() {
+            AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(recyclerView.getContext(), new GetRecipeData.AsyncResponse() {
                 @Override
                 public void processFinish(Recipe output) {
                     if (output != null) {
