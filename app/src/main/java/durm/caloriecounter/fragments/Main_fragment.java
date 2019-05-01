@@ -13,12 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.enumerators.enumFoodType;
@@ -96,8 +99,26 @@ public class Main_fragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String now = sdf.format(Calendar.getInstance().getTime());
         String lastGenerated = mPreferences.getString("mealsGeneratedDate", null);
+
         if(lastGenerated == null || !lastGenerated.equals(now)) {
             setRecipesForDay();
+        } else {
+            Map<String, ?> prefs = mPreferences.getAll();
+            Pattern pattern = Pattern.compile("^[a-z]+(Today)");
+            RecipeListSingleton.getInstance().recipeList.clear();
+
+            for(String key : prefs.keySet()) {
+                Matcher matcher = pattern.matcher(key);
+                if(prefs.get(key) instanceof String && matcher.matches()) {
+                    // parse and display
+                    Gson gson = new Gson();
+                    String json = mPreferences.getString(key, "");
+                    Recipe r = gson.fromJson(json, Recipe.class);
+                    titles.add(r.getLabel());
+                    info.add(r.getCalories() + " cal");
+                    RecipeListSingleton.getInstance().recipeList.add(r);
+                }
+            }
         }
 
         // Food menu adapter
@@ -120,11 +141,11 @@ public class Main_fragment extends Fragment {
             mEditor.putString("mealsGeneratedDate", sdf.format(Calendar.getInstance().getTime()));
             mEditor.commit();
 
-            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
-            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
-
-            ArrayList<String> newTitles = new ArrayList<>();
-            ArrayList<String> cals = new ArrayList<>();
+//            CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
+//            Map<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+//
+//            ArrayList<String> newTitles = new ArrayList<>();
+//            ArrayList<String> cals = new ArrayList<>();
 
             calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
             RecipeListSingleton.getInstance().recipeList.clear();
@@ -142,12 +163,13 @@ public class Main_fragment extends Fragment {
     public void setRecipesForDay() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         mEditor.putString("mealsGeneratedDate", sdf.format(Calendar.getInstance().getTime()));
-        mEditor.commit();
 
         CaloriesPerMeal caloriesPerMeal = new CaloriesPerMeal();
         LinkedHashMap<String, Integer> meals = caloriesPerMeal.caloriesPerMeal(mPreferences.getInt("caloricIntake", 0));
+
         titles.clear();
         info.clear();
+        Gson gson = new Gson();
         for (String key : meals.keySet()) {
             AsyncTask<String, Integer, Recipe> getRecipeData = new GetRecipeData(recyclerView.getContext(), new GetRecipeData.AsyncResponse() {
                 @Override
@@ -158,6 +180,10 @@ public class Main_fragment extends Fragment {
                         titles.add(key + ": " + output.getLabel());
                         info.add(output.getCalories() / output.getServings() + " cal");
 
+                        String json = gson.toJson(output);
+                        mEditor.putString(key.toLowerCase() + "Today", json);
+                        mEditor.commit();
+
                         adapter.notifyDataSetChanged();
                         recyclerView.setAdapter(adapter);
                     }
@@ -165,6 +191,8 @@ public class Main_fragment extends Fragment {
             }).execute(String.valueOf(meals.get(key)), key);
         }
 
+
+        mEditor.commit();
     }
 }
 
