@@ -106,7 +106,8 @@ public class Main_fragment extends Fragment {
             Map<String, ?> prefs = mPreferences.getAll();
             Pattern pattern = Pattern.compile("^[a-z]+(Today)");
             RecipeListSingleton.getInstance().recipeList.clear();
-
+            titles.clear();
+            info.clear();
             for(String key : prefs.keySet()) {
                 Matcher matcher = pattern.matcher(key);
                 if(prefs.get(key) instanceof String && matcher.matches()) {
@@ -115,7 +116,7 @@ public class Main_fragment extends Fragment {
                     String json = mPreferences.getString(key, "");
                     Recipe r = gson.fromJson(json, Recipe.class);
                     titles.add(r.getLabel());
-                    info.add(r.getCalories() + " cal");
+                    info.add(r.getCalories() / r.getServings() + " cal");
                     RecipeListSingleton.getInstance().recipeList.add(r);
                 }
             }
@@ -137,7 +138,8 @@ public class Main_fragment extends Fragment {
         String caloriesAfter = mPreferences.getInt("caloricIntake", 0) + " calories";
 
         String foodTypeBefore = titleText.getText().toString();
-        String foodTypeAfter = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name();
+        String foodTypeAfter = enumFoodType.values()[mPreferences.getInt("foodValue", 0)].name() + " | MENU";
+        foodTypeAfter = foodTypeAfter.replace("_", " ");
 
         if (!caloriesBefore.equals(caloriesAfter) || !foodTypeBefore.equals(foodTypeAfter)) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
