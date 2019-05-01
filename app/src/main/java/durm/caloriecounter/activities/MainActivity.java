@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
             Intent profileIntent = new Intent(this, SetUpActivity.class);
             profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-           startActivity(profileIntent);
-           ActivityCompat.finishAffinity(this);
+            startActivity(profileIntent);
+            ActivityCompat.finishAffinity(this);
         }
 
         // Create nav-bar
