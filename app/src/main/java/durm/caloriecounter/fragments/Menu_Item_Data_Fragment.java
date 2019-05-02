@@ -42,6 +42,7 @@ public class Menu_Item_Data_Fragment extends Fragment {
 
     private TextView ingredientsData;
     private TextView howToMakeData;
+    private TextView recipeName;
     private Recipe recipe;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
@@ -56,11 +57,6 @@ public class Menu_Item_Data_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        // maybe set the data here ?????
-
-
     }
 
 
@@ -76,6 +72,7 @@ public class Menu_Item_Data_Fragment extends Fragment {
 
         howToMakeButton = view.findViewById(R.id.howToButton);
         saveButton = view.findViewById(R.id.saveButton);
+        recipeName = view.findViewById(R.id.recipe_name);
 
         ingredients = MainActivity.foodActiveFragment + "";
         howToMake = MainActivity.itemOpenedNumber + "";
@@ -145,6 +142,9 @@ public class Menu_Item_Data_Fragment extends Fragment {
 
     public void setIngredientsData(TextView ingredientsData) {
         this.ingredientsData = ingredientsData;
+    }
+    public TextView getRecipeName(){
+        return recipeName;
     }
 
     public TextView getHowToMakeData() {
