@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="64dp"
         android:fontFamily="sans-serif-light"
         android:text="Save"
         android:textColor="#000000"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
-        android:background="#2196F3"
+        android:background="#03A9F4"
         android:fontFamily="sans-serif-light"
         android:text="LOW"
         android:textColor="#000000"
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
-        android:background="#2196F3"
+        android:background="#03A9F4"
         android:fontFamily="sans-serif-light"
         android:text="METRIC"
         android:textColor="#000000"
@@ -251,5 +251,32 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/setup_age"
         app:layout_constraintEnd_toStartOf="@+id/setup_age" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Your Details "
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/Helper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

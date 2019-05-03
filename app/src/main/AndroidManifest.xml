@@ -30,7 +30,9 @@
                 android:resource="@xml/searchable"/>
         </activity>
         <activity android:name=".activities.SetUpActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransparentTheme"
+            ></activity>
         <activity android:name=".activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

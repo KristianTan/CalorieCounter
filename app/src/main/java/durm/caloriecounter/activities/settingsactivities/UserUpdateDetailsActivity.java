@@ -9,7 +9,10 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import durm.caloriecounter.R;
 import durm.caloriecounter.enumerators.enumActivityLevel;
 import durm.caloriecounter.enumerators.enumGender;
@@ -29,6 +32,7 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
     private EditText height,weight,age;
     private Button metric,imperial;
     private Button low,mid,high,save;
+    private ImageButton back;
     private TextView heightUnits,weightUnits;
     private int SystemUsed;
 
@@ -41,6 +45,7 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
         save = findViewById(R.id.setupbuttonNext);
+        back = findViewById(R.id.imageButton);
 
         // set the edit text
         height = findViewById(R.id.setup_height);
@@ -70,29 +75,59 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
         mid = findViewById(R.id.b_maintain_weight);
         high = findViewById(R.id.b_gain_weight);
 
+        // How are you doing this, Kris?
         enumUnit unitUsed = enumUnit.values()[mPreferences.getInt("units", 0)];
+        enumActivityLevel activityLevel = enumActivityLevel.values()[mPreferences.getInt("activity",0)];
+
+        switch (activityLevel){
+            case LOW:
+                setLowMediumHighButtons(low,mid,high);
+                break;
+            case MEDIUM:
+                setLowMediumHighButtons(mid,low,high);
+                break;
+            case HIGH:
+                setLowMediumHighButtons(high,mid,low);
+                break;
+        }
+
+
         if(unitUsed == enumUnit.IMPERIAL) {
             SystemUsed = 1; // imperial
 
             // set to active
-            imperial.setBackgroundColor(Color.parseColor("#2196F3"));
+            imperial.setBackgroundColor(Color.parseColor("#03A9F4"));
+            imperial.setTextColor(Color.parseColor("#FFFFFF"));
 
             // deactivate the other button
             metric.setBackgroundColor(Color.parseColor("#002196F3"));
+            metric.setTextColor(Color.parseColor("#000000"));
             heightUnits.setText("inch");
             weightUnits.setText("pounds");
         } else {
             SystemUsed = 0; // metric default
 
             // set to active
-            metric.setBackgroundColor(Color.parseColor("#2196F3"));
+            metric.setBackgroundColor(Color.parseColor("#03A9F4"));
+            metric.setTextColor(Color.parseColor("#FFFFFF"));
 
             // deactivate the other button
             imperial.setBackgroundColor(Color.parseColor("#002196F3"));
+            imperial.setTextColor(Color.parseColor("#000000"));
 
             heightUnits.setText("cm");
             weightUnits.setText("kg");
         }
+
+
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         metric.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,10 +136,10 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                 SystemUsed = 0; // metric default
 
                 // set to active
-                metric.setBackgroundColor(Color.parseColor("#2196F3"));
+                setButtonActive(metric);
 
                 // deactivate the other button
-                imperial.setBackgroundColor(Color.parseColor("#002196F3"));
+                setButtonInactivate(imperial);
 
                 heightUnits.setText("cm");
                 weightUnits.setText("kg");
@@ -121,10 +156,10 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                 SystemUsed = 1; // imperial
 
                 // set to active
-                imperial.setBackgroundColor(Color.parseColor("#2196F3"));
-
+                setButtonActive(imperial);
                 // deactivate the other button
-                metric.setBackgroundColor(Color.parseColor("#002196F3"));
+                setButtonInactivate(metric);
+
                 heightUnits.setText("inch");
                 weightUnits.setText("pounds");
 
@@ -137,11 +172,7 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mEditor.putInt("activity",0);
-                // set to active
-                low.setBackgroundColor(Color.parseColor("#2196F3"));
-                // deactivate the other button
-                mid.setBackgroundColor(Color.parseColor("#002196F3"));
-                high.setBackgroundColor(Color.parseColor("#002196F3"));
+                setLowMediumHighButtons(low,mid,high);
 
             }
         });
@@ -150,11 +181,7 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mEditor.putInt("activity",1);
-                // set to active
-                mid.setBackgroundColor(Color.parseColor("#2196F3"));
-                // deactivate the other button
-                low.setBackgroundColor(Color.parseColor("#002196F3"));
-                high.setBackgroundColor(Color.parseColor("#002196F3"));
+                setLowMediumHighButtons(mid,low,high);
 
             }
         });
@@ -163,18 +190,10 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mEditor.putInt("activity",2);
-                // set to active
-                high.setBackgroundColor(Color.parseColor("#2196F3"));
-                // deactivate the other button
-                mid.setBackgroundColor(Color.parseColor("#002196F3"));
-                low.setBackgroundColor(Color.parseColor("#002196F3"));
+                setLowMediumHighButtons(high,mid,low);
 
             }
         });
-
-
-
-
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,54 +201,77 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
 
 
                 // in case the user deletes the text
-                if(height.getText().toString().equals("")){
+                if (height.getText().toString().equals("")) {
                     height.setText("0");
                 }
-                if(weight.getText().toString().equals("")){
+                if (weight.getText().toString().equals("")) {
                     weight.setText("0");
                 }
-                if(age.getText().toString().equals("")){
+                if (age.getText().toString().equals("")) {
                     age.setText("0");
                 }
+                if (height.getText().toString().equals("0") || weight.getText().toString().equals(0) || age.getText().toString().equals("0")) {
+                    Toast.makeText( v.getContext(),"Height, weight and age cannot be 0!", Toast.LENGTH_SHORT).show();
+                } else if (Integer.parseInt(age.getText().toString()) > 100) {
+                    Toast.makeText(v.getContext(), "Hey, you are too old for this app!", Toast.LENGTH_SHORT).show();
+                } else {
 
-                int heightInt = Integer.parseInt(height.getText().toString());
-                int weightInt = Integer.parseInt(weight.getText().toString());
+                    int heightInt = Integer.parseInt(height.getText().toString());
+                    int weightInt = Integer.parseInt(weight.getText().toString());
 
-                if(SystemUsed == 1){
+                    if (SystemUsed == 1) {
 
-                    // transform everything back to metric cm, kg
-                    heightInt =(int) (heightInt *  2.54);
-                    weightInt =(int)(weightInt / 2.2f);
+                        // transform everything back to metric cm, kg
+                        heightInt = (int) (heightInt * 2.54);
+                        weightInt = (int) (weightInt / 2.2f);
+                    }
+
+
+                    mEditor.putInt("height", heightInt);
+                    mEditor.putInt("weight", weightInt);
+                    mEditor.putInt("age", Integer.parseInt(age.getText().toString()));
+                    mEditor.commit();
+
+                    CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
+
+                    User user = new User(
+                            mPreferences.getInt("weight", 0),
+                            mPreferences.getInt("height", 0),
+                            mPreferences.getInt("age", 0),
+                            enumGender.values()[mPreferences.getInt("gender", 0)],
+                            enumGoal.values()[mPreferences.getInt("goal", 0)],
+                            enumUnit.values()[mPreferences.getInt("unit", 0)],
+                            enumActivityLevel.values()[mPreferences.getInt("activity", 0)]
+                    );
+
+                    user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
+
+                    mEditor.putInt("caloricIntake", user.getCaloricIntake());
+                    mEditor.commit();
+
+                    finish();
                 }
-
-
-                mEditor.putInt("height",heightInt);
-                mEditor.putInt("weight",weightInt);
-                mEditor.putInt("age",Integer.parseInt(age.getText().toString()));
-                mEditor.commit();
-
-                CalculateCaloricIntake calculateCaloricIntake = new CalculateCaloricIntake();
-
-                User user = new User(
-                    mPreferences.getInt("weight", 0),
-                    mPreferences.getInt("height", 0),
-                    mPreferences.getInt("age", 0),
-                    enumGender.values()[mPreferences.getInt("gender", 0)],
-                    enumGoal.values()[mPreferences.getInt("goal", 0)],
-                    enumUnit.values()[mPreferences.getInt("unit", 0)],
-                    enumActivityLevel.values()[mPreferences.getInt("activity", 0)]
-                );
-
-                user.setCaloricIntake(calculateCaloricIntake.calculateCalories(user));
-
-                mEditor.putInt("caloricIntake", user.getCaloricIntake());
-                mEditor.commit();
-
-                finish();
             }
         });
 
     }
 
+    private void setLowMediumHighButtons(Button active, Button inactive, Button inactive2){
+        setButtonActive(active);
+        setButtonInactivate(inactive);
+        setButtonInactivate(inactive2);
+    }
+
+    private void setButtonInactivate(Button button){
+        // deactivate the other button
+        button.setBackgroundColor(Color.parseColor("#002196F3"));
+        button.setTextColor(Color.parseColor("#000000"));
+    }
+
+    private void setButtonActive(Button button){
+        button.setBackgroundColor(Color.parseColor("#03A9F4"));
+        button.setTextColor(Color.parseColor("#FFFFFF"));
+
+    }
 
 }

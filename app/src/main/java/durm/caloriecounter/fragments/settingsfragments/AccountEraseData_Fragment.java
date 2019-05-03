@@ -51,9 +51,9 @@ public class AccountEraseData_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.eraseDataFragment).commit();
-
+             //   activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+             //           .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.eraseDataFragment).commit();
+                activity.getSupportFragmentManager().popBackStack();
             }
         });
 
