@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.settingsactivities.UserAccountActivity;
@@ -25,6 +26,7 @@ public class AccountSetGoal_Fragment extends Fragment {
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     private Button lose, maintain, gain;
+    private ImageButton back;
 
     public AccountSetGoal_Fragment(){
 
@@ -53,7 +55,13 @@ public class AccountSetGoal_Fragment extends Fragment {
         lose = view.findViewById(R.id.b_lose_weight);
         maintain = view.findViewById(R.id.b_maintain_weight);
         gain = view.findViewById(R.id.b_gain_weight);
-
+        back = view.findViewById(R.id.imageButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.getSupportFragmentManager().popBackStack();
+            }
+        });
 
         lose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +86,9 @@ public class AccountSetGoal_Fragment extends Fragment {
                 mEditor.putInt("caloricIntake", cal);
 
                 mEditor.commit();
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
-
+               // activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+               //         .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
+                activity.getSupportFragmentManager().popBackStack();
             }
         });
         maintain.setOnClickListener(new View.OnClickListener() {
@@ -105,9 +113,9 @@ public class AccountSetGoal_Fragment extends Fragment {
                 mEditor.putInt("caloricIntake", cal);
 
                 mEditor.commit();
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
-
+               // activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+               //         .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
+                activity.getSupportFragmentManager().popBackStack();
 
             }
         });
@@ -133,9 +141,9 @@ public class AccountSetGoal_Fragment extends Fragment {
                 mEditor.putInt("caloricIntake", cal);
 
                 mEditor.commit();
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
-
+               // activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+               //         .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeGoalFragment).commit();
+                activity.getSupportFragmentManager().popBackStack();
             }
         });
 

@@ -12,6 +12,17 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/recipe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingRight="8dp"
+            android:text="Recipe Name"
+            android:textSize="30sp" />
+
+        <TextView
             android:id="@+id/textViewIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +32,7 @@
             android:layout_marginBottom="16dp"
             android:text="Ingredients"
             android:textColor="#3d3d3d"
-            android:textSize="36sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/ingredients_text"

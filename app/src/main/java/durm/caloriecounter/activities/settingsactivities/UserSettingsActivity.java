@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import durm.caloriecounter.R;
@@ -20,6 +21,8 @@ public class UserSettingsActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     private Button accSettings, updateDetails,preferences;
+    private ImageView avatar;
+
 
 
     @Override
@@ -30,6 +33,8 @@ public class UserSettingsActivity extends AppCompatActivity {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
         name = findViewById(R.id.settings_user);
+        avatar = findViewById(R.id.avatar);
+
 
         // set the name of the user;
         name.setText("Hi, " + mPreferences.getString("username","User") + "!");
@@ -73,6 +78,11 @@ public class UserSettingsActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         name.setText(mPreferences.getString("username", ""));
+        if(mPreferences.getInt("gender",0) == 0)
+            avatar.setImageResource(R.drawable.ic_avatar_male);
+        else
+            avatar.setImageResource(R.drawable.ic_avatar_female);
+
         super.onResume();
     }
 }

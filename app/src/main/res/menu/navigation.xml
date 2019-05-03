@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_two"
+        android:icon="@drawable/ic_home_clip"
 
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_sheet"
+        android:icon="@drawable/ic_view_list_black_24dp"
         android:title="Recipes" />
 
 

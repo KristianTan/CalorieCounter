@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="164dp"
         android:fontFamily="sans-serif-thin"
         android:text="Your Name"
         android:textAlignment="center"
@@ -22,7 +21,9 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/editUserName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
     <Button
         android:id="@+id/setupbuttonNext"
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="64dp"
         android:fontFamily="sans-serif-light"
         android:text="Save"
         android:textColor="#000000"
@@ -44,7 +45,7 @@
         android:id="@+id/editUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="64dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:singleLine="false"
@@ -54,5 +55,18 @@
         app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
 
 </android.support.constraint.ConstraintLayout>
