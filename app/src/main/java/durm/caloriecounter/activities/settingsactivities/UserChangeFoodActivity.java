@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import durm.caloriecounter.R;
 
@@ -19,7 +20,8 @@ public class UserChangeFoodActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     private Button allfood,vegan,meat,vegetarian;
-
+    private ImageButton back;
+    private String buttonPressedColor = "#03A9F4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,27 +36,34 @@ public class UserChangeFoodActivity extends AppCompatActivity {
         vegan = findViewById(R.id.buttonVegan);
         meat = findViewById(R.id.buttonMeat);
         vegetarian = findViewById(R.id.buttonVegetarian);
+        back = findViewById(R.id.imageButton);
 
         switch (mPreferences.getInt("foodValue",0)){
 
             case 0:
-                allfood.setBackgroundColor(Color.parseColor("#2196F3"));
+                allfood.setBackgroundColor(Color.parseColor(buttonPressedColor));
                 allfood.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
             case 1:
-                vegan.setBackgroundColor(Color.parseColor("#2196F3"));
+                vegan.setBackgroundColor(Color.parseColor(buttonPressedColor));
                 vegan.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
             case 2:
-                meat.setBackgroundColor(Color.parseColor("#2196F3"));
+                meat.setBackgroundColor(Color.parseColor(buttonPressedColor));
                 meat.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
             case 3:
-                vegetarian.setBackgroundColor(Color.parseColor("#2196F3"));
+                vegetarian.setBackgroundColor(Color.parseColor(buttonPressedColor));
                 vegetarian.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
         }
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         allfood.setOnClickListener(new View.OnClickListener() {
 

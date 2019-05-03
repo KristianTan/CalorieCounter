@@ -30,7 +30,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="64dp"
         android:fontFamily="sans-serif-light"
         android:gravity="bottom|center_vertical"
         android:text="VEGAN"
@@ -72,7 +72,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="64dp"
         android:fontFamily="sans-serif-light"
         android:gravity="bottom|center_vertical"
         android:text="Vegetarian"
@@ -127,6 +127,18 @@
         app:layout_constraintStart_toStartOf="@+id/buttonAllFood"
         app:layout_constraintTop_toTopOf="@+id/buttonAllFood"
         app:srcCompat="@drawable/ic_food_allfood" />
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
 
 
 </android.support.constraint.ConstraintLayout>

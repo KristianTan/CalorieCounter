@@ -38,6 +38,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
     String ingredients;
     String howToMake;
     Recipe recipe;
+
     private Button howToMakeButton;
     private Button deleteButton;
     private SharedPreferences mPreferences;
@@ -46,9 +47,9 @@ public class Recipe_Item_Data_Fragment extends Fragment {
     public TextView getIngredientsData() {
         return ingredientsData;
     }
-
+    public TextView getRecipeName(){return  recipeName;}
     private TextView ingredientsData;
-
+    private TextView recipeName;
 
     public Recipe_Item_Data_Fragment() {
 
@@ -79,7 +80,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
         howToMake = MainActivity.itemOpenedNumber + "";
         howToMakeButton = view.findViewById(R.id.howToButton);
         deleteButton = view.findViewById(R.id.deleteButton);
-
+        recipeName = view.findViewById(R.id.recipe_name);
         howToMakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

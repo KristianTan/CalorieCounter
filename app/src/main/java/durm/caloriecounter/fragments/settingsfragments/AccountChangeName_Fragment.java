@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SetUpActivity;
@@ -22,6 +23,7 @@ public class AccountChangeName_Fragment extends Fragment {
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     private Button save;
+    private ImageButton back;
 
     public AccountChangeName_Fragment(){
 
@@ -46,6 +48,13 @@ public class AccountChangeName_Fragment extends Fragment {
 
         save = view.findViewById(R.id.setupbuttonNext);
         name = view.findViewById(R.id.editUserName);
+        back = view.findViewById(R.id.imageButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.getSupportFragmentManager().popBackStack();
+            }
+        });
 
         name.setText(mPreferences.getString("username","User"));
 
@@ -61,8 +70,10 @@ public class AccountChangeName_Fragment extends Fragment {
 
                 mEditor.putString("username",name.getText().toString());
                 mEditor.commit();
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeNameFragment).commit();
+          //      activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+          //              .show(UserAccountActivity.accountSettings).hide(UserAccountActivity.changeNameFragment).commit();
+               activity.getSupportFragmentManager().popBackStack();
+
 
             }
         });
