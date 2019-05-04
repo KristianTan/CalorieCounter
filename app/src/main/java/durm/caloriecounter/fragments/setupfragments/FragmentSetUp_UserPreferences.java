@@ -126,6 +126,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
             }
         });
+        
         mid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +140,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
             }
         });
+
         high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,10 +154,6 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
             }
         });
-
-
-
-
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

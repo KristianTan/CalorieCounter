@@ -1,6 +1,5 @@
 package durm.caloriecounter.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -122,7 +121,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
                         }
                     }
                 }
-                //
+
                 AppCompatActivity activity = (AppCompatActivity)view.getContext();
                 activity.getSupportFragmentManager().popBackStack();
 
