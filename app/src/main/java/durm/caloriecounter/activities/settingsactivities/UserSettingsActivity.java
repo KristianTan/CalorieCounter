@@ -58,6 +58,7 @@ public class UserSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profileIntent = new Intent(c, UserAccountActivity.class);
                 startActivity(profileIntent);
+
             }
         });
 
@@ -66,6 +67,7 @@ public class UserSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profileIntent = new Intent(c, UserChangeFoodActivity.class);
                 startActivity(profileIntent);
+
             }
         });
         updateDetails.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +75,7 @@ public class UserSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profileIntent = new Intent(c, UserUpdateDetailsActivity.class);
                 startActivity(profileIntent);
+
             }
         });
 
@@ -87,5 +90,10 @@ public class UserSettingsActivity extends AppCompatActivity {
             avatar.setImageResource(R.drawable.ic_avatar_female);
 
         super.onResume();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_none, R.anim.slide_down);
     }
 }

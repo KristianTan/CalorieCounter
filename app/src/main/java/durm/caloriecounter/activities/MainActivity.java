@@ -2,7 +2,6 @@ package durm.caloriecounter.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -29,8 +28,6 @@ import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
 import durm.caloriecounter.fragments.Recipes_fragment;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
-import durm.caloriecounter.requests.CaloriesPerMeal;
-import durm.caloriecounter.requests.GetRecipeData;
 
 import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
@@ -208,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent profileIntent = new Intent(this, UserSettingsActivity.class);
             startActivity(profileIntent);
+            overridePendingTransition(R.anim.slide_up,R.anim.anim_none);
            // Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
             return true;
         }
@@ -247,6 +245,5 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
-
 
 }
