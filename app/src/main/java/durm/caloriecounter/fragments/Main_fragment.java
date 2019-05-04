@@ -11,7 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -45,6 +47,7 @@ public class Main_fragment extends Fragment {
     private SharedPreferences.Editor mEditor;
     public ViewAdapter adapter;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     // Test Data Arrays.
     final public static ArrayList<String> titles = new ArrayList<>();
@@ -59,12 +62,6 @@ public class Main_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Added 6 fragments for tests;
-        // EVERYTHING WILL FALL APART IF YOU DELETE SOMETHING;
-        // had no time to implement any fail safe.
-
-        // Add meal data to the fragments
 
     }
 
@@ -83,6 +80,10 @@ public class Main_fragment extends Fragment {
 
         this.titleText = view.findViewById(R.id.textViewFoodType);
         this.calories = view.findViewById(R.id.TargetTextNumber);
+        progressBar = view.findViewById(R.id.progressBar);
+
+        // hide the progress bar
+        progressBar.setVisibility(View.GONE);
 
         calories.setText(mPreferences.getInt("caloricIntake", 0) + " calories");
 
@@ -134,6 +135,8 @@ public class Main_fragment extends Fragment {
         for(Recipe r : RecipeListSingleton.getInstance().recipeList) {
             titles.add(r.getKey() + ": " + r.getLabel());
             info.add(r.getCalories() / r.getServings() + " cal");
+
+
         }
         // Food menu adapter
         adapter = new ViewAdapter(c, titles, info);
@@ -173,6 +176,9 @@ public class Main_fragment extends Fragment {
     }
 
     public void setRecipesForDay() {
+
+
+        progressBar.setVisibility(View.VISIBLE);
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         mEditor.putString("mealsGeneratedDate", sdf.format(Calendar.getInstance().getTime()));
 
@@ -198,6 +204,14 @@ public class Main_fragment extends Fragment {
 
                         adapter.notifyDataSetChanged();
                         recyclerView.setAdapter(adapter);
+
+
+
+                        //test
+                        if(titles.size() == 4){
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(getContext(),"Loaded",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }).execute(String.valueOf(meals.get(key)), key);

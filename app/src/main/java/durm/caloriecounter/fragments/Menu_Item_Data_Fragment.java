@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,6 @@ import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
-import durm.caloriecounter.viewHolders.SavedRecipesViewHolder;
 
 /*
  *
@@ -104,22 +104,40 @@ public class Menu_Item_Data_Fragment extends Fragment {
                 Map<String, ?> prefs = mPreferences.getAll();
                 int count = 0;
                 Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
+                boolean repeated = false;
 
                 for(String key : prefs.keySet()) {
                     Matcher matcher = pattern.matcher(key);
                     if(prefs.get(key) instanceof String && matcher.matches()) {
                         count += 1;
+                        Recipe r = gson.fromJson((String)prefs.get(key), Recipe.class);
+                        if(r.getLabel().equals(recipe.getLabel())) {
+                            repeated = true;
+                            break;
+                        }
                     }
                 }
-                Recipes_fragment.titles.add(recipe.getLabel());
-                Recipes_fragment.info.add(recipe.getCalories() / recipe.getServings() + " cal");
-                RecipeListSingleton.getInstance().savedRecipeList.add(recipe);
-                Recipes_fragment.getAdapter().notifyDataSetChanged();
-                mEditor.putString("savedRecipe" + count, json);
-                mEditor.commit();
 
-                Toast savedToast = Toast.makeText(view.getContext(), "Recipe saved", Toast.LENGTH_SHORT);
-                savedToast.show();
+                if(repeated) {
+                    Toast notSavedToast = Toast.makeText(view.getContext(), "You have already saved this recipe", Toast.LENGTH_SHORT);
+                    notSavedToast.show();
+                } else {
+                    Recipes_fragment.titles.add(recipe.getLabel());
+                    Recipes_fragment.info.add(recipe.getCalories() / recipe.getServings() + " cal");
+                    RecipeListSingleton.getInstance().savedRecipeList.add(recipe);
+                    Recipes_fragment.getAdapter().notifyDataSetChanged();
+                    mEditor.putString("savedRecipe" + count, json);
+                    mEditor.commit();
+
+                    Toast savedToast = Toast.makeText(view.getContext(), "Recipe saved", Toast.LENGTH_SHORT);
+                    savedToast.show();
+
+                }
+
+                AppCompatActivity activity = (AppCompatActivity)view.getContext();
+
+                activity.getSupportFragmentManager().popBackStack();
+
             }
         });
         

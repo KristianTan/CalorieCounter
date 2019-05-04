@@ -24,7 +24,9 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#FFFFFF"
             android:fontFamily="sans-serif-light"
-            app:titleTextAppearance="@style/Toolbar.TitleText" />
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            android:elevation="24dp"
+            />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -55,7 +57,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation"
+        android:elevation="24dp"
+        />
 
 
 </android.support.constraint.ConstraintLayout>

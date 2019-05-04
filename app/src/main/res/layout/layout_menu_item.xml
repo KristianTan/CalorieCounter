@@ -14,7 +14,8 @@
         android:paddingTop="6dp"
         android:paddingRight="16dp"
         android:paddingBottom="6dp"
-        app:cardCornerRadius="6dp"
+        android:background="@drawable/shadow"
+        app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false">
@@ -34,7 +35,7 @@
                 android:paddingBottom="6dp"
                 android:text="Text Vew"
                 android:textAlignment="viewStart"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/ItemText_Cal"

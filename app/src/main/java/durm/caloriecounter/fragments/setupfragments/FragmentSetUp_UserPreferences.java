@@ -126,6 +126,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
             }
         });
+        
         mid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +140,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
             }
         });
+
         high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,10 +154,6 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
             }
         });
-
-
-
-
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +183,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                     int heightInt = Integer.parseInt(height.getText().toString());
                     int weightInt = Integer.parseInt(weight.getText().toString());
 
+                    /*
                     if (SystemUsed == 1) {
 
                         // transform everything back to metric cm, kg
@@ -192,6 +191,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                         weightInt = (int) (weightInt / 2.2f);
                     }
 
+                    */
 
                     mEditor.putInt("height", heightInt);
                     mEditor.putInt("weight", weightInt);

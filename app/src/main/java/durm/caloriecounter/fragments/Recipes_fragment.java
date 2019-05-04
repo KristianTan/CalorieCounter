@@ -12,7 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.google.gson.Gson;
 
@@ -22,11 +23,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import durm.caloriecounter.R;
-import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.SearchActivity;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
-import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.viewAdapters.SavedRecipesViewAdapter;
 
 public class Recipes_fragment extends Fragment {
@@ -35,6 +34,7 @@ public class Recipes_fragment extends Fragment {
     // Test Data Arrays.
     final public static ArrayList<String> titles = new ArrayList<>();
     final public static ArrayList<String> info = new ArrayList<>();
+    FloatingActionButton fab;
 
     public static SavedRecipesViewAdapter getAdapter() {
         return adapter;
@@ -73,7 +73,14 @@ public class Recipes_fragment extends Fragment {
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(adapter);
 
-        FloatingActionButton fab = view.findViewById(R.id.fab);
+
+        Animation a = AnimationUtils.loadAnimation(view.getContext(), R.anim.slide_up);
+
+
+        fab = view.findViewById(R.id.fab);
+
+        fab.startAnimation(a);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -2,7 +2,6 @@ package durm.caloriecounter.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -29,20 +28,20 @@ import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
 import durm.caloriecounter.fragments.Recipes_fragment;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
-import durm.caloriecounter.requests.CaloriesPerMeal;
-import durm.caloriecounter.requests.GetRecipeData;
+
+import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
 public class MainActivity extends AppCompatActivity {
 
 
     // Create the toolbar.
-    private  Toolbar toolbar;
+    private Toolbar toolbar;
 
     // Create the shared prefs variables.
 
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
-
+    public static BottomNavigationView navigation;
     // Create the fragments.
     public static final Main_fragment fragment1 = new Main_fragment();
     public static final Recipes_fragment fragment2 = new Recipes_fragment();
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public static final Recipe_Item_Data_Fragment saveRecipeDataFragment = new Recipe_Item_Data_Fragment();
 
     // Experimental for now.
-    public static int numberOfMeals = 6;
+//    public static int numberOfMeals = 6;
     public static int foodActiveFragment;
     public static int itemOpenedNumber;
 
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // Call the method responsible for creating the toolbar
+        // Call the method responsible for creating the toolbar
         toolbarOptions();
 
         // Set the SharedPrefs variable
@@ -76,17 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Check if the first time set up of the app has been completed !IMPORTANT
 
-        if(mPreferences.getInt("setUP",0) == 0){
+        if (mPreferences.getInt("setUP", 0) == 0) {
             // If the setup was never done launch the set up activity
 
             Intent profileIntent = new Intent(this, SetUpActivity.class);
-            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(profileIntent);
             ActivityCompat.finishAffinity(this);
         }
 
         // Create nav-bar
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
 
         // Assign listener
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -96,87 +95,76 @@ public class MainActivity extends AppCompatActivity {
         fmMain.beginTransaction().add(R.id.main_container, saveRecipeDataFragment, "4").hide(saveRecipeDataFragment).commit();
         fmMain.beginTransaction().add(R.id.main_container, itemDataFragment, "3").hide(itemDataFragment).commit();
         fmMain.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit(); // hide it so we only have 1 active
-        fmMain.beginTransaction().add(R.id.main_container,fragment1, "1").commit();
+        fmMain.beginTransaction().add(R.id.main_container, fragment1, "1").commit();
 
+        loadSavedRecipes();
 
-
-        // Load the data if it was't loaded yet.
-        if(true){ // testing purpose only BUGGY!!!!
-            createData();
-        }
-
-        mEditor.putInt("dataloaded",1);
+        mEditor.putInt("dataloaded", 1);
         mEditor.commit();
     }
 
 
     // Add data here.
-    private void createData(){
-        // It only works for 6 meals for now.
-
+    private void loadSavedRecipes() {
         // Display saved recipes
-        if(MainActivity.numberOfMeals == 6) {
-            Map<String, ?> prefs = mPreferences.getAll();
-            Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
-            RecipeListSingleton.getInstance().savedRecipeList.clear();
+        Map<String, ?> prefs = mPreferences.getAll();
+        Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
+        RecipeListSingleton.getInstance().savedRecipeList.clear();
 
-            for(String key : prefs.keySet()) {
-                Matcher matcher = pattern.matcher(key);
-                if(prefs.get(key) instanceof String && matcher.matches()) {
-                    // parse and display
-                    Gson gson = new Gson();
-                    String json = mPreferences.getString(key, "");
-                    Recipe r = gson.fromJson(json, Recipe.class);
-                    Recipes_fragment.titles.add(r.getLabel());
-                    Recipes_fragment.info.add(r.getCalories() + " cal");
-                    RecipeListSingleton.getInstance().savedRecipeList.add(r);
-                }
+        for (String key : prefs.keySet()) {
+            Matcher matcher = pattern.matcher(key);
+            if (prefs.get(key) instanceof String && matcher.matches()) {
+                // parse and display
+                Gson gson = new Gson();
+                String json = mPreferences.getString(key, "");
+                Recipe r = gson.fromJson(json, Recipe.class);
+                Recipes_fragment.titles.add(r.getLabel());
+                Recipes_fragment.info.add(r.getCalories() + " cal");
+                RecipeListSingleton.getInstance().savedRecipeList.add(r);
             }
         }
-
-
     }
 
     // Add information specific to a fragment.
-    private void addDataToList(){
+    private void addDataToList() {
 
 
         // Titles inside fragments.
-        addTitleData(0,"Breakfast");
-        addTitleData(1,"Morning Snack");
-        addTitleData(2,"Lunch");
-        addTitleData(3,"Afternoon Snack");
-        addTitleData(4,"Dinner");
-        addTitleData(5,"Night Snack");
+        addTitleData(0, "Breakfast");
+        addTitleData(1, "Morning Snack");
+        addTitleData(2, "Lunch");
+        addTitleData(3, "Afternoon Snack");
+        addTitleData(4, "Dinner");
+        addTitleData(5, "Night Snack");
 
         // Foods inside fragments;
 
         // Fragment 0;
-        addFoodData(0,"Bread and Butter");
-        addFoodData(0,"Black Tea");
+        addFoodData(0, "Bread and Butter");
+        addFoodData(0, "Black Tea");
 
         // Fragment 1;
-        addFoodData(1,"Energy Baton");
-        addFoodData(1,"Water");
+        addFoodData(1, "Energy Baton");
+        addFoodData(1, "Water");
 
         // Fragment 2;
-        addFoodData(2,"Fried Chicken");
-        addFoodData(2,"French Fries");
-        addFoodData(2,"Fizzy Drink");
+        addFoodData(2, "Fried Chicken");
+        addFoodData(2, "French Fries");
+        addFoodData(2, "Fizzy Drink");
 
 
     }
 
     // Sets and adds foods for each fragment.
-    private void addFoodData(int index, String foodName){
+    private void addFoodData(int index, String foodName) {
 //       menuFragments.get(index).titles.add(foodName);
     }
 
-    private void addTitleData(int index, String foodName){
+    private void addTitleData(int index, String foodName) {
 //       menuFragments.get(index).titleOfFragment = foodName;
     }
 
-    private void toolbarOptions(){
+    private void toolbarOptions() {
 
         // Create and set the toolbar
         toolbar = findViewById(R.id.toolbar);
@@ -185,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         // Set the title of the toolbar
         getSupportActionBar().setTitle("FOOD PLANNER");
         // Set the icon for the toolbar
-      //  getSupportActionBar().setIcon(R.drawable.user_icon);
+        //  getSupportActionBar().setIcon(R.drawable.user_icon);
 
     }
 
@@ -201,19 +189,20 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here
         int id = item.getItemId();
 
-       // Find the settings action
+        // Find the settings action
         if (id == R.id.action_settings) {
 
             Intent profileIntent = new Intent(this, UserSettingsActivity.class);
             startActivity(profileIntent);
-           // Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
+            overridePendingTransition(R.anim.slide_up, R.anim.anim_none);
+            // Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    
+
     // Create listener for the nav-bar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -223,24 +212,27 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    fmMain.popBackStack();
+
+                    fmMain.popBackStackImmediate();
                     // if we are not on the home fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment2)
-                             .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
+                    fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_right).hide(fragment2)
+                            .show(fragment1).commit();
 
                     return true;
 
                 case R.id.navigation_dashboard:
-                    fmMain.popBackStack();
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(fragment1)
-                                .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
-                        //
+
+
+                    fmMain.popBackStackImmediate();
+                    fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right).hide(fragment1)
+                            .show(fragment2).commit();
+                    //
+
                     return true;
 
             }
             return false;
         }
     };
-
 
 }
