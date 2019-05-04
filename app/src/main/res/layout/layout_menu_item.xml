@@ -14,8 +14,9 @@
         android:paddingTop="6dp"
         android:paddingRight="16dp"
         android:paddingBottom="6dp"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="0dp"
+        android:stateListAnimator="@anim/lift_on_touch"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0.1dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false">
 

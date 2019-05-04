@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
-
+    public static BottomNavigationView navigation;
     // Create the fragments.
     public static final Main_fragment fragment1 = new Main_fragment();
     public static final Recipes_fragment fragment2 = new Recipes_fragment();
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Create nav-bar
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
 
         // Assign listener
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -223,18 +223,22 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    fmMain.popBackStack();
+
+                    fmMain.popBackStackImmediate();
                     // if we are not on the home fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment2)
-                             .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
+                       fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right,R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment2)
+                             .show(fragment1).commit();
 
                     return true;
 
                 case R.id.navigation_dashboard:
-                    fmMain.popBackStack();
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(fragment1)
-                                .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
+
+
+                    fmMain.popBackStackImmediate();
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment1)
+                                .show(fragment2).commit();
                         //
+
                     return true;
 
             }

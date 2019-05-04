@@ -42,8 +42,12 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
         // Show that fragment.
+
+      //  activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out,android.R.anim.fade_in,android.R.anim.fade_out)
+      //          .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
+
         activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
+              .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
 
 
 
