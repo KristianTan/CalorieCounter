@@ -42,8 +42,12 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
         // Show that fragment.
+
+      //  activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out,android.R.anim.fade_in,android.R.anim.fade_out)
+      //          .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
+
         activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
+              .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
 
 
 
@@ -54,14 +58,17 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
 
         Recipe thisRecipe = RecipeListSingleton.getInstance().recipeList.get(getAdapterPosition());
 
+        int i =1;
         for(String item : thisRecipe.getIngredients()) {
-            ingredients = ingredients.concat(item + "\n");
+            ingredients = ingredients.concat(i+".   "+item + "\n\n");
+            i++;
         }
 
         MainActivity.itemDataFragment.getIngredientsData().setText(ingredients);
         MainActivity.itemDataFragment.setHowToMake(thisRecipe.getRecipeURL());
         MainActivity.itemDataFragment.setRecipe(thisRecipe);
         MainActivity.itemDataFragment.getRecipeName().setText(thisRecipe.getLabel());
+
 //        MainActivity.itemDataFragment.getHowToMakeData().setText(MainActivity.itemDataFragment.getHowToMake());
 //        Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
 

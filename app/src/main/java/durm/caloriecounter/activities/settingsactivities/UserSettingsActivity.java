@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,7 +41,8 @@ public class UserSettingsActivity extends AppCompatActivity {
         // set the name of the user;
         name.setText("Hi, " + mPreferences.getString("username","User") + "!");
 
-
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.pop_in);
+        avatar.startAnimation(a);
 
 
         accSettings = findViewById(R.id.buttonAccount);
@@ -55,6 +58,7 @@ public class UserSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profileIntent = new Intent(c, UserAccountActivity.class);
                 startActivity(profileIntent);
+
             }
         });
 
@@ -63,6 +67,7 @@ public class UserSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profileIntent = new Intent(c, UserChangeFoodActivity.class);
                 startActivity(profileIntent);
+
             }
         });
         updateDetails.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +75,7 @@ public class UserSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profileIntent = new Intent(c, UserUpdateDetailsActivity.class);
                 startActivity(profileIntent);
+
             }
         });
 
@@ -84,5 +90,10 @@ public class UserSettingsActivity extends AppCompatActivity {
             avatar.setImageResource(R.drawable.ic_avatar_female);
 
         super.onResume();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_none, R.anim.slide_down);
     }
 }

@@ -2,7 +2,6 @@ package durm.caloriecounter.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -29,8 +28,8 @@ import durm.caloriecounter.fragments.Recipe_Item_Data_Fragment;
 import durm.caloriecounter.fragments.Recipes_fragment;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
-import durm.caloriecounter.requests.CaloriesPerMeal;
-import durm.caloriecounter.requests.GetRecipeData;
+
+import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
-
+    public static BottomNavigationView navigation;
     // Create the fragments.
     public static final Main_fragment fragment1 = new Main_fragment();
     public static final Recipes_fragment fragment2 = new Recipes_fragment();
@@ -80,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
             // If the setup was never done launch the set up activity
 
             Intent profileIntent = new Intent(this, SetUpActivity.class);
-            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(profileIntent);
             ActivityCompat.finishAffinity(this);
         }
 
         // Create nav-bar
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
 
         // Assign listener
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -206,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent profileIntent = new Intent(this, UserSettingsActivity.class);
             startActivity(profileIntent);
+            overridePendingTransition(R.anim.slide_up,R.anim.anim_none);
            // Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
             return true;
         }
@@ -223,24 +223,27 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    fmMain.popBackStack();
+
+                    fmMain.popBackStackImmediate();
                     // if we are not on the home fragment
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment2)
-                             .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment1).commit();
+                       fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right,R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment2)
+                             .show(fragment1).commit();
 
                     return true;
 
                 case R.id.navigation_dashboard:
-                    fmMain.popBackStack();
-                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left).hide(fragment1)
-                                .hide(itemDataFragment).hide(saveRecipeDataFragment).show(fragment2).commit();
+
+
+                    fmMain.popBackStackImmediate();
+                        fmMain.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).hide(fragment1)
+                                .show(fragment2).commit();
                         //
+
                     return true;
 
             }
             return false;
         }
     };
-
 
 }

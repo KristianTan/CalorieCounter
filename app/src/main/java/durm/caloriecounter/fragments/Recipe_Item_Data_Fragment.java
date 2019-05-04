@@ -124,11 +124,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
                 }
                 //
                 AppCompatActivity activity = (AppCompatActivity)view.getContext();
-
                 activity.getSupportFragmentManager().popBackStack();
-
-                activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                        .show(MainActivity.fragment2).hide(MainActivity.saveRecipeDataFragment).commit();
 
                 Toast savedToast = Toast.makeText(view.getContext(), "Recipe deleted", Toast.LENGTH_SHORT);
                 savedToast.show();

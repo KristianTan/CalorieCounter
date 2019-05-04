@@ -10,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SetUpActivity;
@@ -20,6 +23,7 @@ public class AccountEraseData_Fragment extends Fragment {
 
 
     Button no,yes;
+    ImageView androidHead;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -45,7 +49,9 @@ public class AccountEraseData_Fragment extends Fragment {
 
         no = view.findViewById(R.id.buttonAccountNo);
         yes = view.findViewById(R.id.buttonAccountYes);
-
+        androidHead = view.findViewById(R.id.android_head);
+        Animation a = AnimationUtils.loadAnimation(view.getContext(), R.anim.pop_in);
+        androidHead.startAnimation(a);
 
         no.setOnClickListener(new View.OnClickListener() {
             @Override

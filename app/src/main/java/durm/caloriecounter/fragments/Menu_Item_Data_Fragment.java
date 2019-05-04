@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,6 +121,11 @@ public class Menu_Item_Data_Fragment extends Fragment {
 
                 Toast savedToast = Toast.makeText(view.getContext(), "Recipe saved", Toast.LENGTH_SHORT);
                 savedToast.show();
+
+                AppCompatActivity activity = (AppCompatActivity)view.getContext();
+
+                activity.getSupportFragmentManager().popBackStack();
+
             }
         });
         
