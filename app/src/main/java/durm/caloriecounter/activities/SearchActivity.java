@@ -34,9 +34,9 @@ public class SearchActivity extends AppCompatActivity {
                  AsyncTask<String, Integer, ArrayList<Recipe>> getSearchResults = new GetSearchResults(getApplicationContext(), new GetSearchResults.AsyncResponse() {
                      @Override
                      public void processFinish(ArrayList<Recipe> output) {
-
+                        // Display list of recipes
                      }
-                 }).execute("", query);
+                 }).execute(query);
 
                 return false;
             }
