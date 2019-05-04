@@ -51,7 +51,9 @@
                 android:paddingTop="0dp"
                 android:paddingEnd="0dp"
                 android:paddingRight="0dp"
-                android:paddingBottom="0dp" />
+                android:paddingBottom="0dp"
+                android:layoutAnimation="@anim/layout_anim_fall_down"
+                />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
@@ -68,6 +70,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/ic_add"
+        android:stateListAnimator="@anim/lift_on_touch"
         app:elevation="2dp" />
 
 </RelativeLayout>

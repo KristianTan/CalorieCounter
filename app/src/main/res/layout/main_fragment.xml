@@ -81,6 +81,7 @@
             android:paddingEnd="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
+            android:layoutAnimation="@anim/layout_anim_fall_down"
 
             />
 

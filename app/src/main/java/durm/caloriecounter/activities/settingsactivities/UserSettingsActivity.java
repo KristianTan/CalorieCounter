@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,7 +41,8 @@ public class UserSettingsActivity extends AppCompatActivity {
         // set the name of the user;
         name.setText("Hi, " + mPreferences.getString("username","User") + "!");
 
-
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.pop_in);
+        avatar.startAnimation(a);
 
 
         accSettings = findViewById(R.id.buttonAccount);

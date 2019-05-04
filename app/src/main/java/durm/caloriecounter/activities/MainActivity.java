@@ -32,6 +32,8 @@ import durm.caloriecounter.models.RecipeListSingleton;
 import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.requests.GetRecipeData;
 
+import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             // If the setup was never done launch the set up activity
 
             Intent profileIntent = new Intent(this, SetUpActivity.class);
-            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(profileIntent);
             ActivityCompat.finishAffinity(this);
         }
