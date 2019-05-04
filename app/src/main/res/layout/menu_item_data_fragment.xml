@@ -49,14 +49,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
             android:text="HOW TO MAKE"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/saveButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/saveButton"
@@ -65,10 +60,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="SAVE"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 

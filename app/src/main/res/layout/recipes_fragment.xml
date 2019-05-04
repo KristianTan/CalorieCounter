@@ -54,7 +54,14 @@
                 android:paddingTop="2dp"
                 android:paddingEnd="0dp"
                 android:paddingRight="0dp"
-                android:paddingBottom="2dp" />
+                android:paddingBottom="2dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/helperView"
+                android:layout_width="match_parent"
+                android:layout_height="75dp" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
@@ -69,9 +76,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/ic_add"
         android:stateListAnimator="@anim/lift_on_touch"
-        app:elevation="2dp" />
+        app:elevation="8dp" />
 
 </RelativeLayout>
