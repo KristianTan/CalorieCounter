@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -24,11 +23,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import durm.caloriecounter.R;
-import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.SearchActivity;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
-import durm.caloriecounter.requests.CaloriesPerMeal;
 import durm.caloriecounter.viewAdapters.SavedRecipesViewAdapter;
 
 public class Recipes_fragment extends Fragment {
