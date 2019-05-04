@@ -80,7 +80,7 @@ public class Main_fragment extends Fragment {
 
         this.titleText = view.findViewById(R.id.textViewFoodType);
         this.calories = view.findViewById(R.id.TargetTextNumber);
-        progressBar = view.findViewById(R.id.progressBar);
+        this.progressBar = view.findViewById(R.id.progressBar);
 
         // hide the progress bar
         progressBar.setVisibility(View.GONE);
