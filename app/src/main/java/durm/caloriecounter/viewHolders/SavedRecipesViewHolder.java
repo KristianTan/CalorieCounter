@@ -41,8 +41,10 @@ public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements V
 
         String ingredients = "";
 
+        int i =1;
         for(String item : thisRecipe.getIngredients()) {
-            ingredients = ingredients.concat(item + "\n");
+            ingredients = ingredients.concat(i+".   "+item + "\n\n");
+            i++;
         }
 
         MainActivity.saveRecipeDataFragment.getIngredientsData().setText(ingredients);

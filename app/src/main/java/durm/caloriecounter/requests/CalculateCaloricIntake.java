@@ -8,8 +8,8 @@ public class CalculateCaloricIntake {
     public int calculateCalories(User user) {
         // Use the Mifflin-St Jeor equation to calculate caloric intake
         // Equation uses kg and cm so may need conversion logic
-
         if(user.getUnit() == enumUnit.IMPERIAL) {
+
             user.setHeight((int)Math.round(user.getHeight() * 2.54)); // Convert height to cm
             user.setWeight((int)Math.round(user.getWeight() * 0.453592)); // convert lbs to kg
          }

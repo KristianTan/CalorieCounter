@@ -47,6 +47,8 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
         save = findViewById(R.id.setupbuttonNext);
         back = findViewById(R.id.imageButton);
 
+
+
         // set the edit text
         height = findViewById(R.id.setup_height);
         height.setInputType(
@@ -219,13 +221,13 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
                     int heightInt = Integer.parseInt(height.getText().toString());
                     int weightInt = Integer.parseInt(weight.getText().toString());
 
+                    /*
                     if (SystemUsed == 1) {
 
                         // transform everything back to metric cm, kg
                         heightInt = (int) (heightInt * 2.54);
                         weightInt = (int) (weightInt / 2.2f);
-                    }
-
+                    }*/
 
                     mEditor.putInt("height", heightInt);
                     mEditor.putInt("weight", weightInt);
