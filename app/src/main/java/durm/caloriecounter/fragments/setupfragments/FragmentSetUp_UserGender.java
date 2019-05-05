@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SetUpActivity;
@@ -22,7 +25,7 @@ public class FragmentSetUp_UserGender extends Fragment {
     private SharedPreferences.Editor mEditor;
 
     private Button male, female;
-
+    private TextView genderText;
 
     public FragmentSetUp_UserGender() {
 
@@ -44,10 +47,16 @@ public class FragmentSetUp_UserGender extends Fragment {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         mEditor = mPreferences.edit();
 
-        next = view.findViewById(R.id.setupbuttonNext);
-
         male = view.findViewById(R.id.b_male);
         female = view.findViewById(R.id.b_female);
+        genderText = view.findViewById(R.id.activityLevel);
+
+       // Animation a = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_fall_down);
+       // male.startAnimation(a);
+       // female.startAnimation(a);
+      //  genderText.startAnimation(a);
+
+
 
 
 
