@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import durm.caloriecounter.R;
+import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.SearchActivity;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
@@ -43,6 +44,8 @@ public class Recipes_fragment extends Fragment {
     private static SavedRecipesViewAdapter adapter;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
+
+
     public Recipes_fragment() {
 
     }
@@ -86,6 +89,7 @@ public class Recipes_fragment extends Fragment {
             public void onClick(View view) {
                 Intent profileIntent = new Intent(c, SearchActivity.class);
                 startActivity(profileIntent);
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).commit();
             }
         });
 
