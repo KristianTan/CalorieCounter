@@ -10,6 +10,8 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
     private Button metric,imperial;
     private Button low,mid,high;
     private TextView heightUnits,weightUnits;
+    private TextView textTitle,activityText,ageText,heightText,weightText,yearsText;
 
     public FragmentSetUp_UserPreferences(){
 
@@ -73,6 +76,15 @@ public class FragmentSetUp_UserPreferences extends Fragment {
         low = view.findViewById(R.id.b_lose_weight);
         mid = view.findViewById(R.id.b_maintain_weight);
         high = view.findViewById(R.id.b_gain_weight);
+        textTitle = view.findViewById(R.id.textTitle);
+        activityText = view.findViewById(R.id.activityLevel);
+        ageText = view.findViewById(R.id.ageText);
+        heightText = view.findViewById(R.id.heightText);
+        weightText = view.findViewById(R.id.weightText);
+        yearsText = view.findViewById(R.id.years);
+
+       // setAnimations(view);
+
 
 
         metric.setOnClickListener(new View.OnClickListener() {
@@ -211,5 +223,26 @@ public class FragmentSetUp_UserPreferences extends Fragment {
     }
 
 
+    private void setAnimations(View view){
+        Animation a = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_fall_down);
+        textTitle.startAnimation(a);
+        metric.startAnimation(a);
+        imperial.startAnimation(a);
+        heightUnits.startAnimation(a);
+        height.startAnimation(a);
+        weightUnits.startAnimation(a);
+        weight.startAnimation(a);
+        activityText.startAnimation(a);
+        low.startAnimation(a);
+        mid.startAnimation(a);
+        high.startAnimation(a);
+        age.startAnimation(a);
+        ageText.startAnimation(a);
+        heightText.startAnimation(a);
+        weightText.startAnimation(a);
+        yearsText.startAnimation(a);
+        next.startAnimation(a);
+
+    }
 
 }

@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.SetUpActivity;
@@ -22,6 +25,7 @@ public class FragmentSetUp_UserGoal extends Fragment {
     private SharedPreferences.Editor mEditor;
 
     private Button lose, maintain, gain;
+    private TextView goal;
 
 
     public FragmentSetUp_UserGoal() {
@@ -44,11 +48,18 @@ public class FragmentSetUp_UserGoal extends Fragment {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         mEditor = mPreferences.edit();
 
-        next = view.findViewById(R.id.setupbuttonNext);
-
         lose = view.findViewById(R.id.b_lose_weight);
         maintain = view.findViewById(R.id.b_maintain_weight);
         gain = view.findViewById(R.id.b_gain_weight);
+        goal = view.findViewById(R.id.activityLevel);
+
+       // Animation a = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_fall_down);
+       // lose.startAnimation(a);
+       // maintain.startAnimation(a);
+       // gain.startAnimation(a);
+       // goal.startAnimation(a);
+
+
 
 
         lose.setOnClickListener(new View.OnClickListener() {

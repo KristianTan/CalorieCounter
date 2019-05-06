@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
+import durm.caloriecounter.activities.SearchActivity;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
 
@@ -42,8 +43,8 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
 
         // Show that fragment.
 
-        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out,android.R.anim.fade_in,android.R.anim.fade_out)
-                .show(MainActivity.itemDataFragment).hide(MainActivity.fragment2).addToBackStack(null).commit();
+        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .show(SearchActivity.itemSearchFragment).hide(SearchActivity.searchFragment).addToBackStack(null).commit();
 
         // Tell the code on what fragment we are so we can access it anywhere.
 //        MainActivity.foodActiveFragment = getAdapterPosition();
@@ -58,13 +59,12 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
             i++;
         }
 
-        MainActivity.itemDataFragment.getIngredientsData().setText(ingredients);
-        MainActivity.itemDataFragment.setHowToMake(thisRecipe.getRecipeURL());
-        MainActivity.itemDataFragment.setRecipe(thisRecipe);
-        MainActivity.itemDataFragment.getRecipeName().setText(thisRecipe.getLabel());
+        SearchActivity.itemSearchFragment.getIngredientsData().setText(ingredients);
+        SearchActivity.itemSearchFragment.setHowToMake(thisRecipe.getRecipeURL());
+        SearchActivity.itemSearchFragment.setRecipe(thisRecipe);
+        SearchActivity.itemSearchFragment.getRecipeName().setText(thisRecipe.getLabel());
+     //   SearchActivity.itemSearchFragment.getHowToMakeData().setText(MainActivity.itemDataFragment.getHowToMake());
 
-//        MainActivity.itemDataFragment.getHowToMakeData().setText(MainActivity.itemDataFragment.getHowToMake());
-        Toast.makeText(activity,getAdapterPosition()+"", Toast.LENGTH_SHORT).show();
 
     }
 
