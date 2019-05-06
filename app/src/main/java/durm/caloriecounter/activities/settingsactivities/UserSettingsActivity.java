@@ -3,6 +3,7 @@ package durm.caloriecounter.activities.settingsactivities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import durm.caloriecounter.R;
 
@@ -24,6 +26,7 @@ public class UserSettingsActivity extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
     private Button accSettings, updateDetails,preferences;
     private ImageView avatar;
+
 
 
 
@@ -78,16 +81,55 @@ public class UserSettingsActivity extends AppCompatActivity {
 
             }
         });
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(mPreferences.getInt("easterEgg",0) == 0){
+
+
+                    Toast.makeText(c,easterEggCounter + " CLICKS!",Toast.LENGTH_SHORT).show();
+
+                    if(easterEggCounter >4){
+
+                        final MediaPlayer easterEggSound = MediaPlayer.create(getApplicationContext(),R.raw.sound);
+
+                        if(mPreferences.getInt("gender",0) == 0)
+                            avatar.setImageResource(R.drawable.ic_male_eyes);
+                        else
+                            avatar.setImageResource(R.drawable.ic_female_eyes);
+
+                        easterEggSound.start();
+                        mEditor.putInt("easterEgg",1);
+                        mEditor.commit();
+                    }
+
+                    easterEggCounter++;
+                }
+            }
+        });
 
     }
+
+    private int easterEggCounter = 1;
 
     @Override
     public void onResume() {
         name.setText(mPreferences.getString("username", ""));
-        if(mPreferences.getInt("gender",0) == 0)
+        if(mPreferences.getInt("gender",0) == 0){
+
+            if(mPreferences.getInt("easterEgg",0) == 0)
             avatar.setImageResource(R.drawable.ic_avatar_male);
-        else
-            avatar.setImageResource(R.drawable.ic_avatar_female);
+            else
+                avatar.setImageResource(R.drawable.ic_male_eyes);
+        }
+
+        else{
+            if(mPreferences.getInt("easterEgg",0) == 0)
+            avatar.setImageResource(R.drawable.ic_female_2);
+            else avatar.setImageResource(R.drawable.ic_female_eyes);
+        }
+
 
         super.onResume();
     }
