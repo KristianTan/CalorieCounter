@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -36,10 +37,12 @@ public class Recipes_fragment extends Fragment {
     final public static ArrayList<String> titles = new ArrayList<>();
     final public static ArrayList<String> info = new ArrayList<>();
     FloatingActionButton fab;
+    private static TextView noRecipesText;
 
     public static SavedRecipesViewAdapter getAdapter() {
         return adapter;
     }
+    public static TextView getNoRecipesText(){return noRecipesText;}
 
     private static SavedRecipesViewAdapter adapter;
     private SharedPreferences mPreferences;
@@ -66,12 +69,15 @@ public class Recipes_fragment extends Fragment {
         mEditor = mPreferences.edit();
         // create the recycler for the menu data
         RecyclerView recyclerView = view.findViewById(R.id.RecycleViewRecipes);
+        noRecipesText = view.findViewById(R.id.norecipes);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
         // Food menu adapter
         adapter = new SavedRecipesViewAdapter(c,titles,info);
+
+
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(adapter);
@@ -93,6 +99,9 @@ public class Recipes_fragment extends Fragment {
             }
         });
 
+        if(adapter.getItemCount() >0){
+            noRecipesText.setVisibility(View.GONE);
+        }
 
         return view;
     }
@@ -101,6 +110,7 @@ public class Recipes_fragment extends Fragment {
     public void onResume() {
         titles.clear();
         info.clear();
+
 
         Map<String, ?> prefs = mPreferences.getAll();
         Pattern pattern = Pattern.compile("^(savedRecipe)[\\d]+");
@@ -118,6 +128,10 @@ public class Recipes_fragment extends Fragment {
                 RecipeListSingleton.getInstance().savedRecipeList.add(r);
             }
         }
+
+
+
+
         super.onResume();
     }
 

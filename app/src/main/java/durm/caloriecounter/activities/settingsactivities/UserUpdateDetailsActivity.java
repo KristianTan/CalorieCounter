@@ -2,6 +2,7 @@ package durm.caloriecounter.activities.settingsactivities;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -77,6 +78,7 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
         mid = findViewById(R.id.b_maintain_weight);
         high = findViewById(R.id.b_gain_weight);
 
+
         // How are you doing this, Kris?
         enumUnit unitUsed = enumUnit.values()[mPreferences.getInt("units", 0)];
         enumActivityLevel activityLevel = enumActivityLevel.values()[mPreferences.getInt("activity",0)];
@@ -98,24 +100,20 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
             SystemUsed = 1; // imperial
 
             // set to active
-            imperial.setBackgroundColor(Color.parseColor("#03A9F4"));
-            imperial.setTextColor(Color.parseColor("#FFFFFF"));
+            setButtonActive(imperial);
 
             // deactivate the other button
-            metric.setBackgroundColor(Color.parseColor("#002196F3"));
-            metric.setTextColor(Color.parseColor("#000000"));
+           setButtonInactivate(metric);
             heightUnits.setText("inch");
             weightUnits.setText("pounds");
         } else {
             SystemUsed = 0; // metric default
 
             // set to active
-            metric.setBackgroundColor(Color.parseColor("#03A9F4"));
-            metric.setTextColor(Color.parseColor("#FFFFFF"));
+            setButtonActive(metric);
 
             // deactivate the other button
-            imperial.setBackgroundColor(Color.parseColor("#002196F3"));
-            imperial.setTextColor(Color.parseColor("#000000"));
+            setButtonInactivate(imperial);
 
             heightUnits.setText("cm");
             weightUnits.setText("kg");
@@ -271,7 +269,10 @@ public class UserUpdateDetailsActivity extends AppCompatActivity {
     }
 
     private void setButtonActive(Button button){
-        button.setBackgroundColor(Color.parseColor("#03A9F4"));
+        GradientDrawable shape =  new GradientDrawable();
+        shape.setCornerRadius(40);
+        shape.setColor(Color.parseColor("#03A9F4"));
+        button.setBackground(shape);
         button.setTextColor(Color.parseColor("#FFFFFF"));
 
     }

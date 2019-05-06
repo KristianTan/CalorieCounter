@@ -16,12 +16,11 @@
         android:paddingBottom="6dp"
         android:layout_margin="2dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
+        app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false">
 
         <LinearLayout
-            android:background="@drawable/gradient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -38,9 +37,9 @@
                 android:paddingRight="6dp"
                 android:paddingBottom="6dp"
                 android:text="Text Vew"
-                android:textColor="#FFFFFF"
                 android:textAlignment="viewStart"
-                android:textSize="20sp" />
+                android:textSize="19sp"
+                android:textColor="#3C3C3C"/>
 
             <TextView
                 android:id="@+id/ItemText_Cal"
@@ -51,7 +50,7 @@
                 android:paddingRight="6dp"
                 android:paddingBottom="24dp"
                 android:text="500 Kcal     3 Items"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#525252"/>
 
         </LinearLayout>
 

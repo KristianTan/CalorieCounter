@@ -39,7 +39,9 @@
         android:textColor="#ffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"/>
 
     <ImageView
         android:id="@+id/imageViewVegan"
@@ -65,7 +67,9 @@
         android:textColor="#ffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonVegetarian"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"/>
 
     <Button
         android:id="@+id/buttonVegetarian"
@@ -81,7 +85,9 @@
         android:textColor="#ffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"/>
 
     <ImageView
         android:id="@+id/imageViewMeat"
@@ -117,7 +123,9 @@
         android:textColor="#ffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonVegan"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"/>
 
     <ImageView
         android:id="@+id/imageViewAllfood"

@@ -76,11 +76,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:background="@android:color/transparent"
                 android:src="@drawable/ic_autorenew_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:foreground="@drawable/button_click_effect"
+                android:background="@drawable/gradient"/>
         </android.support.constraint.ConstraintLayout>
 
         <ProgressBar

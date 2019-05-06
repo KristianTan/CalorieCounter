@@ -2,6 +2,7 @@ package durm.caloriecounter.fragments.setupfragments;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -83,9 +84,11 @@ public class FragmentSetUp_UserPreferences extends Fragment {
         weightText = view.findViewById(R.id.weightText);
         yearsText = view.findViewById(R.id.years);
 
+
+        setButtonActive(metric);
+        setButtonActive(low);
+
        // setAnimations(view);
-
-
 
         metric.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,15 +97,15 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                 SystemUsed = 0; // metric default
 
                 // set to active
-                metric.setBackgroundColor(Color.parseColor("#03A9F4"));
+                setButtonActive(metric);
 
                 // deactivate the other button
-                imperial.setBackgroundColor(Color.parseColor("#002196F3"));
+                setButtonInactivate(imperial);
 
                 heightUnits.setText("cm");
                 weightUnits.setText("kg");
 
-                mEditor.putInt("units", SystemUsed);
+                mEditor.putInt("units", 0);
 
             }
         });
@@ -114,14 +117,14 @@ public class FragmentSetUp_UserPreferences extends Fragment {
                 SystemUsed = 1; // imperial
 
                 // set to active
-                imperial.setBackgroundColor(Color.parseColor("#03A9F4"));
-
+                setButtonActive(imperial);
                 // deactivate the other button
-                metric.setBackgroundColor(Color.parseColor("#002196F3"));
+                setButtonInactivate(metric);
+
                 heightUnits.setText("inch");
                 weightUnits.setText("pounds");
 
-                mEditor.putInt("units", SystemUsed);
+                mEditor.putInt("units", 1);
             }
         });
 
@@ -130,43 +133,28 @@ public class FragmentSetUp_UserPreferences extends Fragment {
             public void onClick(View v) {
 
                 mEditor.putInt("activity",0);
-                // set to active
-                low.setBackgroundColor(Color.parseColor("#03A9F4"));
-                // deactivate the other button
-               mid.setBackgroundColor(Color.parseColor("#002196F3"));
-               high.setBackgroundColor(Color.parseColor("#002196F3"));
+                setLowMediumHighButtons(low,mid,high);
 
             }
         });
-        
         mid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 mEditor.putInt("activity",1);
-                // set to active
-                mid.setBackgroundColor(Color.parseColor("#03A9F4"));
-                // deactivate the other button
-                low.setBackgroundColor(Color.parseColor("#002196F3"));
-                high.setBackgroundColor(Color.parseColor("#002196F3"));
+                setLowMediumHighButtons(mid,low,high);
 
             }
         });
-
         high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 mEditor.putInt("activity",2);
-                // set to active
-                high.setBackgroundColor(Color.parseColor("#03A9F4"));
-                // deactivate the other button
-                mid.setBackgroundColor(Color.parseColor("#002196F3"));
-                low.setBackgroundColor(Color.parseColor("#002196F3"));
+                setLowMediumHighButtons(high,mid,low);
 
             }
         });
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -242,6 +230,26 @@ public class FragmentSetUp_UserPreferences extends Fragment {
         weightText.startAnimation(a);
         yearsText.startAnimation(a);
         next.startAnimation(a);
+
+    }
+
+    private void setLowMediumHighButtons(Button active, Button inactive, Button inactive2){
+        setButtonActive(active);
+        setButtonInactivate(inactive);
+        setButtonInactivate(inactive2);
+    }
+
+    private void setButtonInactivate(Button button){
+        // deactivate the other button
+        button.setBackgroundColor(Color.parseColor("#002196F3"));
+
+    }
+
+    private void setButtonActive(Button button){
+        GradientDrawable shape =  new GradientDrawable();
+        shape.setCornerRadius(40);
+        shape.setColor(Color.parseColor("#03A9F4"));
+        button.setBackground(shape);
 
     }
 

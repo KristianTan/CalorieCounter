@@ -94,6 +94,9 @@ public class Recipe_Item_Data_Fragment extends Fragment {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 Recipes_fragment.titles.remove(recipe.getLabel());
                 Recipes_fragment.info.remove(recipe.getCalories() / recipe.getServings() + " cal");
                 String i = RecipeListSingleton.getInstance().savedRecipeList.toString(); // Is it same object reference
@@ -121,6 +124,10 @@ public class Recipe_Item_Data_Fragment extends Fragment {
                         }
                     }
                 }
+                if(Recipes_fragment.getAdapter().getItemCount() == 0){
+
+                    Recipes_fragment.getNoRecipesText().setVisibility(View.VISIBLE);
+                }
 
                 AppCompatActivity activity = (AppCompatActivity)view.getContext();
                 activity.getSupportFragmentManager().popBackStack();
@@ -130,6 +137,9 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
                 mEditor.remove(keyToRemove);
                 mEditor.commit();
+
+
+
             }
         });
 

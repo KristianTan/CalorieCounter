@@ -47,7 +47,11 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonDetails"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"/>
 
     <Button
         android:id="@+id/buttonDetails"
@@ -64,7 +68,11 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonPreferences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"/>
 
     <Button
         android:id="@+id/buttonPreferences"
@@ -81,7 +89,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"/>
 
     <TextView
         android:id="@+id/textView3"
