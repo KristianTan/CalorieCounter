@@ -247,7 +247,7 @@ public class FragmentSetUp_UserPreferences extends Fragment {
 
     private void setButtonActive(Button button){
         GradientDrawable shape =  new GradientDrawable();
-        shape.setCornerRadius(40);
+        shape.setCornerRadius(100);
         shape.setColor(Color.parseColor("#03A9F4"));
         button.setBackground(shape);
 

@@ -38,9 +38,11 @@
         android:textAlignment="center"
         android:textColor="#ffff"
         android:textSize="18sp"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
+        android:foreground="@drawable/button_click_effect2"
         android:background="@drawable/gradient"/>
 
     <ImageView
@@ -68,8 +70,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonVegetarian"
         app:layout_constraintEnd_toEndOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        android:foreground="@drawable/button_click_effect2"
+        android:background="@drawable/gradient"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"/>
 
     <Button
         android:id="@+id/buttonVegetarian"
@@ -86,8 +90,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        android:foreground="@drawable/button_click_effect2"
+        android:background="@drawable/gradient"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"/>
 
     <ImageView
         android:id="@+id/imageViewMeat"
@@ -124,8 +130,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonVegan"
         app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        android:foreground="@drawable/button_click_effect2"
+        android:background="@drawable/gradient"
+        android:paddingTop="1dp"
+        android:paddingBottom="10dp"/>
 
     <ImageView
         android:id="@+id/imageViewAllfood"
