@@ -14,16 +14,20 @@
         android:paddingTop="6dp"
         android:paddingRight="16dp"
         android:paddingBottom="6dp"
-        android:background="@drawable/shadow"
+        android:layout_margin="2dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
+        app:cardElevation="2dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false">
 
         <LinearLayout
+            android:background="@drawable/gradient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            >
 
             <TextView
                 android:id="@+id/ItemText"
@@ -34,6 +38,7 @@
                 android:paddingRight="6dp"
                 android:paddingBottom="6dp"
                 android:text="Text Vew"
+                android:textColor="#FFFFFF"
                 android:textAlignment="viewStart"
                 android:textSize="20sp" />
 
@@ -45,7 +50,8 @@
                 android:paddingTop="4dp"
                 android:paddingRight="6dp"
                 android:paddingBottom="24dp"
-                android:text="500 Kcal     3 Items" />
+                android:text="500 Kcal     3 Items"
+                android:textColor="#FFFFFF"/>
 
         </LinearLayout>
 

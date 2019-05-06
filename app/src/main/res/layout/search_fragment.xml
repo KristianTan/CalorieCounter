@@ -39,6 +39,8 @@
         android:id="@+id/RecyclerViewSearchResults"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
         android:layoutAnimation="@anim/layout_anim_fall_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
