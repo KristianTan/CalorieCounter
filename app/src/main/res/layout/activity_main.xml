@@ -6,7 +6,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    >
 
     <!-- Appbar -->
     <android.support.design.widget.AppBarLayout
@@ -15,7 +16,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="24dp">
 
         <!-- Toolbar -->
         <android.support.v7.widget.Toolbar
@@ -25,7 +27,7 @@
             android:background="#FFFFFF"
             android:fontFamily="sans-serif-light"
             app:titleTextAppearance="@style/Toolbar.TitleText"
-            android:elevation="24dp"
+
             />
 
 

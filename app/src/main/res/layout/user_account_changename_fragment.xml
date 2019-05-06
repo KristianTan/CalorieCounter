@@ -39,7 +39,9 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"/>
 
     <EditText
         android:id="@+id/editUserName"
@@ -54,7 +56,8 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -63,10 +66,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back" />
+        app:srcCompat="@drawable/ic_back"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -38,7 +38,9 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:foreground="@drawable/button_click_effect"
+        android:background="@drawable/gradient"/>
 
     <EditText
         android:id="@+id/editUserName"

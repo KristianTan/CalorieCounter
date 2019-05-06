@@ -2,6 +2,7 @@ package durm.caloriecounter.activities.settingsactivities;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
@@ -41,19 +42,19 @@ public class UserChangeFoodActivity extends AppCompatActivity {
         switch (mPreferences.getInt("foodValue",0)){
 
             case 0:
-                allfood.setBackgroundColor(Color.parseColor(buttonPressedColor));
+                setButtonActive(allfood);
                 allfood.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
             case 1:
-                vegan.setBackgroundColor(Color.parseColor(buttonPressedColor));
+                setButtonActive(vegan);
                 vegan.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
             case 2:
-                meat.setBackgroundColor(Color.parseColor(buttonPressedColor));
+                setButtonActive(meat);
                 meat.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
             case 3:
-                vegetarian.setBackgroundColor(Color.parseColor(buttonPressedColor));
+                setButtonActive(vegetarian);
                 vegetarian.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
         }
@@ -121,5 +122,14 @@ public class UserChangeFoodActivity extends AppCompatActivity {
 
     }
 
+
+    private void setButtonActive(Button button){
+        GradientDrawable shape =  new GradientDrawable();
+        shape.setCornerRadius(40);
+        shape.setColor(Color.parseColor("#03A9F4"));
+        button.setBackground(shape);
+        button.setTextColor(Color.parseColor("#FFFFFF"));
+
+    }
 
 }

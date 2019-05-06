@@ -11,17 +11,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingRight="8dp"
+            android:padding="12dp"
             android:text="Recipe Name"
-            android:textSize="30sp" />
+            android:textSize="26sp"
+            android:textColor="#3C3C3C"
+            />
 
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        >
         <TextView
             android:id="@+id/textViewIngredients"
             android:layout_width="match_parent"
@@ -31,8 +49,9 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="Ingredients"
-            android:textColor="#3d3d3d"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="#525252"
+            />
 
         <TextView
             android:id="@+id/ingredients_text"
@@ -44,6 +63,9 @@
             android:textAlignment="textStart"
             android:textSize="18sp" />
 
+    </LinearLayout>
+
+    </android.support.v7.widget.CardView>
         <Button
             android:id="@+id/howToButton"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -51,16 +73,26 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="HOW TO MAKE"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_margin="8dp"
+            android:elevation="0dp"
+            android:foreground="@drawable/button_click_effect"
+            android:background="@drawable/gradient"
+            />
 
         <Button
             android:id="@+id/saveButton"
+            android:layout_margin="8dp"
+            android:elevation="0dp"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="SAVE"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:foreground="@drawable/button_click_effect"
+            android:background="@drawable/gradient"
+            />
 
     </LinearLayout>
 

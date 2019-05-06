@@ -98,6 +98,9 @@ public class Menu_Item_Data_Fragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Recipes_fragment.getNoRecipesText().setVisibility(View.GONE);
+
                 Gson gson = new Gson();
                 String json = gson.toJson(recipe);
 
@@ -137,6 +140,10 @@ public class Menu_Item_Data_Fragment extends Fragment {
                 AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
                 activity.getSupportFragmentManager().popBackStack();
+
+
+
+
 
             }
         });
