@@ -12,8 +12,9 @@ import java.util.List;
 
 import durm.caloriecounter.R;
 import durm.caloriecounter.viewHolders.FoodMenuViewHolder;
+import durm.caloriecounter.viewHolders.SearchResultsViewHolder;
 
-public class ViewAdapter extends RecyclerView.Adapter<FoodMenuViewHolder> {
+public class SearchResultsViewAdapter extends RecyclerView.Adapter<SearchResultsViewHolder> {
 
 
     private LayoutInflater layoutInflater;
@@ -22,7 +23,7 @@ public class ViewAdapter extends RecyclerView.Adapter<FoodMenuViewHolder> {
     private List<String> titleData,infoData;
 
 
-    public ViewAdapter (Context context,List<String> titleData,List<String> info ){
+    public SearchResultsViewAdapter(Context context, List<String> titleData, List<String> info ){
         this.layoutInflater = LayoutInflater.from(context);
         this.titleData = titleData;
         this.infoData = info;
@@ -30,15 +31,15 @@ public class ViewAdapter extends RecyclerView.Adapter<FoodMenuViewHolder> {
 
     @NonNull
     @Override
-    public FoodMenuViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public SearchResultsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view = layoutInflater.inflate(R.layout.layout_menu_item,viewGroup,false);
-        FoodMenuViewHolder holder = new FoodMenuViewHolder(view);
+        SearchResultsViewHolder holder = new SearchResultsViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodMenuViewHolder foodMenuViewHolder, int i) {
+    public void onBindViewHolder(@NonNull SearchResultsViewHolder searchResultsViewHolder, int i) {
 
         // Get the data.
         String title = titleData.get(i);
@@ -48,15 +49,15 @@ public class ViewAdapter extends RecyclerView.Adapter<FoodMenuViewHolder> {
 
 
         // Set the title.
-        foodMenuViewHolder.titleText.setText(title);
+        searchResultsViewHolder.titleText.setText(title);
 
 
         // Set the info.
         if(info!=null){
-            foodMenuViewHolder.infoData.setText(info);
+            searchResultsViewHolder.infoData.setText(info);
         }
         else {
-            foodMenuViewHolder.infoData.setText("ERROR GETTING DATA");
+            searchResultsViewHolder.infoData.setText("ERROR GETTING DATA");
         }
 
 
