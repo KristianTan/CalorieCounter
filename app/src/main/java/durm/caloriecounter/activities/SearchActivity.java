@@ -32,7 +32,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.e);
         titles.clear();
         info.clear();
         RecyclerView recyclerView = findViewById(R.id.RecyclerViewSearchResults);
@@ -63,7 +63,7 @@ public class SearchActivity extends AppCompatActivity {
                          if (output.size() != 0) {
                              for (Recipe r : output) {
                                  titles.add(r.getLabel());
-                                 info.add(r.getCalories() + " cal");
+                                 info.add(r.getCalories() / r.getServings() + " cal");
                                  adapter.notifyDataSetChanged();
                                  RecipeListSingleton.getInstance().searchResultsList.add(r);
                              }
@@ -79,6 +79,19 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) { return false; }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                titles.clear();
+                info.clear();
+                adapter.notifyDataSetChanged();
+                RecipeListSingleton.getInstance().searchResultsList.clear();
+                searchView.setQuery("", false);
+
+                return false;
+            }
         });
 
     }

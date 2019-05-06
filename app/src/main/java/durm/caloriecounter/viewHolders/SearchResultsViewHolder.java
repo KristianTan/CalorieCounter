@@ -45,11 +45,6 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
         activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out,android.R.anim.fade_in,android.R.anim.fade_out)
                 .show(MainActivity.itemDataFragment).hide(MainActivity.fragment2).addToBackStack(null).commit();
 
-//        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-//              .show(MainActivity.itemDataFragment).hide(MainActivity.fragment1).addToBackStack(null).commit();
-
-
-
         // Tell the code on what fragment we are so we can access it anywhere.
 //        MainActivity.foodActiveFragment = getAdapterPosition();
 
@@ -59,7 +54,7 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
 
         int i =1;
         for(String item : thisRecipe.getIngredients()) {
-            ingredients = ingredients.concat(i+".   "+item + "\n\n");
+            ingredients = ingredients.concat(i + ".   " + item + "\n");
             i++;
         }
 
