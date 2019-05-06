@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class Main_fragment extends Fragment {
     public ViewAdapter adapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    private ImageButton refresh;
 
     // Test Data Arrays.
     final public static ArrayList<String> titles = new ArrayList<>();
@@ -80,7 +82,8 @@ public class Main_fragment extends Fragment {
 
         this.titleText = view.findViewById(R.id.textViewFoodType);
         this.calories = view.findViewById(R.id.TargetTextNumber);
-        this.progressBar = view.findViewById(R.id.progressBar);
+        progressBar = view.findViewById(R.id.progressBar);
+        refresh = view.findViewById(R.id.refreshButton);
 
         // hide the progress bar
         progressBar.setVisibility(View.GONE);
@@ -145,8 +148,36 @@ public class Main_fragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(canRefresh){
+                    RecipeListSingleton.getInstance().recipeList.clear();
+                    setRecipesForDay();
+                }
+                else {
+
+                    Toast.makeText(getContext(),"Wait one minute before refreshing",Toast.LENGTH_SHORT).show();
+
+                }
+
+                canRefresh = false;
+
+               refresh.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        canRefresh = true;
+                    }
+                }, 60000);
+
+            }
+        });
+
         return view;
     }
+
+    boolean canRefresh = true;
 
     @Override
     public void onResume() {
@@ -179,6 +210,7 @@ public class Main_fragment extends Fragment {
 
 
         progressBar.setVisibility(View.VISIBLE);
+        refresh.setVisibility(View.INVISIBLE);
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         mEditor.putString("mealsGeneratedDate", sdf.format(Calendar.getInstance().getTime()));
 
@@ -210,6 +242,7 @@ public class Main_fragment extends Fragment {
                         //test
                         if(titles.size() == 4){
                             progressBar.setVisibility(View.GONE);
+                            refresh.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(),"Loaded",Toast.LENGTH_SHORT).show();
                         }
                     }
