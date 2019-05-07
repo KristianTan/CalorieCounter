@@ -56,7 +56,6 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
         activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
                 .show(SearchActivity.itemSearchFragment).hide(SearchActivity.searchFragment).addToBackStack(null).commit();
 
-        setTitleText(null);
         String ingredients = "";
 
         int i =1;
@@ -71,9 +70,5 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
         SearchActivity.itemSearchFragment.getRecipeName().setText(thisRecipe.getLabel());
     }
 
-
-    private void setTitleText(String text) {
-        SearchActivity.itemSearchFragment.getMealTitle().setText(text);
-    }
 
 }

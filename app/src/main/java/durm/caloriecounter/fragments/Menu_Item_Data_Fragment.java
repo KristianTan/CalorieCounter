@@ -44,7 +44,6 @@ public class Menu_Item_Data_Fragment extends Fragment {
     private TextView ingredientsData;
     private TextView howToMakeData;
     private TextView recipeName;
-    private TextView textMeal;
     private ImageView mealImage;
     private Recipe recipe;
     private SharedPreferences mPreferences;
@@ -76,7 +75,6 @@ public class Menu_Item_Data_Fragment extends Fragment {
         howToMakeButton = view.findViewById(R.id.howToButton);
         saveButton = view.findViewById(R.id.saveButton);
         recipeName = view.findViewById(R.id.recipe_name);
-        textMeal = view.findViewById(R.id.textMeal);
         mealImage = view.findViewById(R.id.imageMeal);
 
         ingredients = MainActivity.foodActiveFragment + "";
@@ -156,37 +154,19 @@ public class Menu_Item_Data_Fragment extends Fragment {
         return view;
     }
 
-
-
-
-    public String getHowToMake() {
-        return howToMake;
-    }
-
     public void setHowToMake(String howToMake) {
         this.howToMake = howToMake;
     }
+
     public TextView getIngredientsData() {
         return ingredientsData;
     }
 
-    public void setIngredientsData(TextView ingredientsData) {
-        this.ingredientsData = ingredientsData;
-    }
     public TextView getRecipeName(){
         return recipeName;
     }
-    public TextView getMealTitle(){return textMeal;}
+
     public ImageView getMealImage(){return mealImage;}
-
-    public TextView getHowToMakeData() {
-        return howToMakeData;
-    }
-
-    public void setHowToMakeData(TextView howToMakeData) {
-        this.howToMakeData = howToMakeData;
-    }
-
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
