@@ -21,19 +21,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardElevation="10dp"
-                app:cardCornerRadius="6dp"
+                app:cardCornerRadius="20dp"
                 android:layout_margin="6dp"
                 >
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/imageMeal"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/new_recipes_bg" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/textMeal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp"

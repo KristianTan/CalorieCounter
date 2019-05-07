@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,8 @@ public class Menu_Item_Data_Fragment extends Fragment {
     private TextView ingredientsData;
     private TextView howToMakeData;
     private TextView recipeName;
+    private TextView textMeal;
+    private ImageView mealImage;
     private Recipe recipe;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
@@ -73,6 +76,8 @@ public class Menu_Item_Data_Fragment extends Fragment {
         howToMakeButton = view.findViewById(R.id.howToButton);
         saveButton = view.findViewById(R.id.saveButton);
         recipeName = view.findViewById(R.id.recipe_name);
+        textMeal = view.findViewById(R.id.textMeal);
+        mealImage = view.findViewById(R.id.imageMeal);
 
         ingredients = MainActivity.foodActiveFragment + "";
         howToMake = MainActivity.itemOpenedNumber + "";
@@ -171,6 +176,8 @@ public class Menu_Item_Data_Fragment extends Fragment {
     public TextView getRecipeName(){
         return recipeName;
     }
+    public TextView getMealTitle(){return textMeal;}
+    public ImageView getMealImage(){return mealImage;}
 
     public TextView getHowToMakeData() {
         return howToMakeData;

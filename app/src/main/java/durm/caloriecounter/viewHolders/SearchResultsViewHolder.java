@@ -63,6 +63,8 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
         SearchActivity.itemSearchFragment.setHowToMake(thisRecipe.getRecipeURL());
         SearchActivity.itemSearchFragment.setRecipe(thisRecipe);
         SearchActivity.itemSearchFragment.getRecipeName().setText(thisRecipe.getLabel());
+        SearchActivity.itemSearchFragment.getMealImage().setVisibility(View.GONE);
+        SearchActivity.itemSearchFragment.getMealTitle().setVisibility(View.GONE);
      //   SearchActivity.itemSearchFragment.getHowToMakeData().setText(MainActivity.itemDataFragment.getHowToMake());
 
 

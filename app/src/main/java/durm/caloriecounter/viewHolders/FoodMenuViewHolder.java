@@ -1,5 +1,6 @@
 package durm.caloriecounter.viewHolders;
 
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -69,11 +70,35 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder implements View.
         MainActivity.itemDataFragment.setRecipe(thisRecipe);
         MainActivity.itemDataFragment.getRecipeName().setText(thisRecipe.getLabel());
 
+
+        switch (getAdapterPosition()){
+            case 0:
+                setTitleText("");
+                MainActivity.itemDataFragment.getMealImage().setImageResource(R.drawable.breakfast_bg);
+                break;
+            case 1:
+                setTitleText("");
+                MainActivity.itemDataFragment.getMealImage().setImageResource(R.drawable.lunch_bg);
+                break;
+            case 2:
+                setTitleText("");
+                MainActivity.itemDataFragment.getMealImage().setImageResource(R.drawable.snack_bg);
+                break;
+            case 3:
+                setTitleText("");
+                MainActivity.itemDataFragment.getMealImage().setImageResource(R.drawable.dinner_bg);
+                break;
+        }
+
+
 //        MainActivity.itemDataFragment.getHowToMakeData().setText(MainActivity.itemDataFragment.getHowToMake());
 //        Toast.makeText(activity,getAdapterPosition()+"",Toast.LENGTH_SHORT).show();
 
     }
 
+    private void setTitleText(String text){
+        MainActivity.itemDataFragment.getMealTitle().setText(text);
+    }
 
 
 
