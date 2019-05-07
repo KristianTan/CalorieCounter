@@ -12,6 +12,7 @@ import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.activities.SearchActivity;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
+import durm.caloriecounter.requests.ImageDownloadTask;
 
 
 public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -43,15 +44,20 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
 
         // Show that fragment.
 
-        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
-                .show(SearchActivity.itemSearchFragment).hide(SearchActivity.searchFragment).addToBackStack(null).commit();
 
         // Tell the code on what fragment we are so we can access it anywhere.
 //        MainActivity.foodActiveFragment = getAdapterPosition();
-
-        String ingredients = "";
-
         Recipe thisRecipe = RecipeListSingleton.getInstance().searchResultsList.get(getAdapterPosition());
+
+        ImageDownloadTask m = new ImageDownloadTask();
+        m.imageView = SearchActivity.itemSearchFragment.getMealImage();
+        m.execute(thisRecipe.getImageURL());
+
+        activity.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
+                .show(SearchActivity.itemSearchFragment).hide(SearchActivity.searchFragment).addToBackStack(null).commit();
+
+        setTitleText(null);
+        String ingredients = "";
 
         int i =1;
         for(String item : thisRecipe.getIngredients()) {
@@ -63,14 +69,11 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
         SearchActivity.itemSearchFragment.setHowToMake(thisRecipe.getRecipeURL());
         SearchActivity.itemSearchFragment.setRecipe(thisRecipe);
         SearchActivity.itemSearchFragment.getRecipeName().setText(thisRecipe.getLabel());
-     //   SearchActivity.itemSearchFragment.getHowToMakeData().setText(MainActivity.itemDataFragment.getHowToMake());
-
-
     }
 
 
-
-
-
+    private void setTitleText(String text) {
+        SearchActivity.itemSearchFragment.getMealTitle().setText(text);
+    }
 
 }

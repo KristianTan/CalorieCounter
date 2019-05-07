@@ -15,7 +15,8 @@
         android:paddingRight="16dp"
         android:paddingBottom="6dp"
         android:layout_margin="2dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="20dp"
+        android:foreground="@drawable/button_click_effect2"
         app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false">

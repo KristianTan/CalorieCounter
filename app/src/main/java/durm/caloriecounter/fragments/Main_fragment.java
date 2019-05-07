@@ -237,8 +237,6 @@ public class Main_fragment extends Fragment {
                         adapter.notifyDataSetChanged();
                         recyclerView.setAdapter(adapter);
 
-
-
                         //test
                         if(titles.size() == 4){
                             progressBar.setVisibility(View.GONE);
