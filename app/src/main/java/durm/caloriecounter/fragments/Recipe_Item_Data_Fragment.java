@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
     private Button howToMakeButton;
     private Button deleteButton;
+    private ImageView mealImage;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -80,6 +82,9 @@ public class Recipe_Item_Data_Fragment extends Fragment {
         howToMakeButton = view.findViewById(R.id.howToButton);
         deleteButton = view.findViewById(R.id.deleteButton);
         recipeName = view.findViewById(R.id.recipe_name);
+        mealImage = view.findViewById(R.id.imageMeal);
+
+
         howToMakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +166,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
         this.recipe = recipe;
     }
 
-
+    public ImageView getMealImage(){return mealImage;}
 
 }
 

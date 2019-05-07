@@ -10,6 +10,7 @@ import durm.caloriecounter.R;
 import durm.caloriecounter.activities.MainActivity;
 import durm.caloriecounter.models.Recipe;
 import durm.caloriecounter.models.RecipeListSingleton;
+import durm.caloriecounter.requests.ImageDownloadTask;
 
 
 public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -40,6 +41,15 @@ public class SavedRecipesViewHolder extends RecyclerView.ViewHolder implements V
         Recipe thisRecipe = RecipeListSingleton.getInstance().savedRecipeList.get(getAdapterPosition());
 
         String ingredients = "";
+
+
+        ImageDownloadTask m = new ImageDownloadTask();
+        m.imageView = MainActivity.saveRecipeDataFragment.getMealImage();
+        m.execute(thisRecipe.getImageURL());
+
+        if(MainActivity.saveRecipeDataFragment.getMealImage() == null) {
+            MainActivity.saveRecipeDataFragment.getMealImage().setImageResource(R.drawable.fork_bg);
+        }
 
         int i =1;
         for(String item : thisRecipe.getIngredients()) {
