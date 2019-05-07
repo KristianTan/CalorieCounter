@@ -111,15 +111,20 @@ public class Search_fragment extends Fragment {
                         progressBar.setVisibility(View.GONE);
                         RecipeListSingleton.getInstance().searchResultsList.clear();
 
-                        if (output.size() != 0) {
-                            for (Recipe r : output) {
-                                titles.add(r.getLabel());
-                                info.add(r.getCalories() / r.getServings() + " cal");
-                                adapter.notifyDataSetChanged();
-                                RecipeListSingleton.getInstance().searchResultsList.add(r);
+                        if (output != null) {
+                            if (output.size() != 0) {
+                                for (Recipe r : output) {
+                                    titles.add(r.getLabel());
+                                    info.add(r.getCalories() / r.getServings() + " cal");
+                                    adapter.notifyDataSetChanged();
+                                    RecipeListSingleton.getInstance().searchResultsList.add(r);
+                                }
+                            } else {
+                                Toast savedToast = Toast.makeText(view.getContext(), "No results found for: '" + query + "'", Toast.LENGTH_SHORT);
+                                savedToast.show();
                             }
                         } else {
-                            Toast savedToast = Toast.makeText(view.getContext(), "No results found for: '" + query + "'", Toast.LENGTH_SHORT);
+                            Toast savedToast = Toast.makeText(view.getContext(), "API overloaded.  Please try again in a minute", Toast.LENGTH_SHORT);
                             savedToast.show();
                         }
                     }
