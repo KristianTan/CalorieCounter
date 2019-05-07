@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Recipe {
     private ArrayList<String> ingredients;
     private String recipeURL;
+    private String imageURL;
     private String label;
     private String key;
     private int calories;
@@ -17,6 +18,7 @@ public class Recipe {
     public Recipe(JSONObject json) throws JSONException {
 
         this.recipeURL = json.getString("url");
+        this.imageURL = json.getString("image");
         this.label = json.getString("label");
         this.calories = json.getInt("calories");
         this.servings = json.getInt("yield");
@@ -72,5 +74,13 @@ public class Recipe {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }
