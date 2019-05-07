@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
     private Button howToMakeButton;
     private Button deleteButton;
     private ImageView mealImage;
+    private CardView recipeCard;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -83,7 +85,7 @@ public class Recipe_Item_Data_Fragment extends Fragment {
         deleteButton = view.findViewById(R.id.deleteButton);
         recipeName = view.findViewById(R.id.recipe_name);
         mealImage = view.findViewById(R.id.imageMeal);
-
+        recipeCard = view.findViewById(R.id.recipe_card);
 
         howToMakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,5 +170,8 @@ public class Recipe_Item_Data_Fragment extends Fragment {
 
     public ImageView getMealImage(){return mealImage;}
 
+    public CardView getRecipeCard() {
+        return recipeCard;
+    }
 }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class Menu_Item_Data_Fragment extends Fragment {
     private TextView ingredientsData;
     private TextView howToMakeData;
     private TextView recipeName;
+    private CardView recipeCard;
     private ImageView mealImage;
     private Recipe recipe;
     private SharedPreferences mPreferences;
@@ -76,6 +78,7 @@ public class Menu_Item_Data_Fragment extends Fragment {
         saveButton = view.findViewById(R.id.saveButton);
         recipeName = view.findViewById(R.id.recipe_name);
         mealImage = view.findViewById(R.id.imageMeal);
+        recipeCard = view.findViewById(R.id.recipe_card);
 
         ingredients = MainActivity.foodActiveFragment + "";
         howToMake = MainActivity.itemOpenedNumber + "";
@@ -172,5 +175,8 @@ public class Menu_Item_Data_Fragment extends Fragment {
         this.recipe = recipe;
     }
 
+    public CardView getRecipeCard() {
+        return recipeCard;
+    }
 }
 

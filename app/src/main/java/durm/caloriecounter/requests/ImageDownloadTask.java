@@ -4,6 +4,9 @@ package durm.caloriecounter.requests;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import java.io.BufferedInputStream;
@@ -14,8 +17,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import durm.caloriecounter.R;
+import durm.caloriecounter.activities.MainActivity;
+
 public class ImageDownloadTask extends AsyncTask<String, Integer, Bitmap> {
     public ImageView imageView;
+    public AppCompatActivity activity;
 
     @Override
     protected Bitmap doInBackground(String... url) {
@@ -56,9 +63,16 @@ public class ImageDownloadTask extends AsyncTask<String, Integer, Bitmap> {
         return null;
     }
 
+    protected void onProgressUpdate(Integer... progress){
+        //
+    }
+
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
         imageView.setImageBitmap(bitmap);
+        Animation anim2 = AnimationUtils.loadAnimation(activity, R.anim.fade_in);
+        imageView.startAnimation(anim2);
+
     }
 }

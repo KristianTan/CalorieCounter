@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,16 +42,18 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder implements 
     @Override
     public void onClick(View view){
 
+        SearchActivity.itemSearchFragment.getMealImage().setImageResource(R.drawable.white_box);
+
         AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
         // Show that fragment.
-
 
         // Tell the code on what fragment we are so we can access it anywhere.
 //        MainActivity.foodActiveFragment = getAdapterPosition();
         Recipe thisRecipe = RecipeListSingleton.getInstance().searchResultsList.get(getAdapterPosition());
 
         ImageDownloadTask m = new ImageDownloadTask();
+        m.activity = activity;
         m.imageView = SearchActivity.itemSearchFragment.getMealImage();
         m.execute(thisRecipe.getImageURL());
 
