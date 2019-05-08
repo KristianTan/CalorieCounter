@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import durm.caloriecounter.R;
@@ -18,6 +19,7 @@ public class AccountSettings_Fragment extends Fragment {
 
 
     Button goal, name, eraseData;
+    ImageButton back;
 
 
     public AccountSettings_Fragment(){
@@ -42,7 +44,7 @@ public class AccountSettings_Fragment extends Fragment {
         goal = view.findViewById(R.id.buttonAccount);
         name = view.findViewById(R.id.buttonDetails);
         eraseData = view.findViewById(R.id.buttonPreferences);
-
+        back = view.findViewById(R.id.imageButton);
 
        goal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +67,14 @@ public class AccountSettings_Fragment extends Fragment {
                         .show(UserAccountActivity.eraseDataFragment).hide(UserAccountActivity.accountSettings).addToBackStack(null).commit();
             }
         });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+            }
+        });
+
 
         return view;
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class UserSettingsActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     private Button accSettings, updateDetails,preferences;
+    private ImageButton back;
     private ImageView avatar;
 
 
@@ -39,6 +41,7 @@ public class UserSettingsActivity extends AppCompatActivity {
         mEditor = mPreferences.edit();
         name = findViewById(R.id.settings_user);
         avatar = findViewById(R.id.avatar);
+        back = findViewById(R.id.imageButton);
 
 
         // set the name of the user;
@@ -108,6 +111,14 @@ public class UserSettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
     }
 
