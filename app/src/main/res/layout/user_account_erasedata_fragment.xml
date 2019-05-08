@@ -16,10 +16,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-thin"
-        android:text="Your data will be erased.       Do you want to continue?"
+        android:text="Your data will be erased. Do you want to continue?"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAccountNo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,14 +32,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
+        android:foreground="@drawable/button_click_effect"
         android:text="Yes"
         android:textColor="#000000"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
 
     <Button
         android:id="@+id/buttonAccountNo"
@@ -48,14 +48,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
+        android:foreground="@drawable/button_click_effect"
         android:text="No"
         android:textColor="#000000"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintEnd_toStartOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/android_head"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/description2"
         app:layout_constraintEnd_toEndOf="parent"

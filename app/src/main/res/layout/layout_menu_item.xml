@@ -39,8 +39,8 @@
                 android:paddingBottom="6dp"
                 android:text="Text Vew"
                 android:textAlignment="viewStart"
-                android:textSize="19sp"
-                android:textColor="#3C3C3C"/>
+                android:textColor="#3C3C3C"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/ItemText_Cal"
@@ -49,9 +49,10 @@
                 android:paddingLeft="6dp"
                 android:paddingTop="4dp"
                 android:paddingRight="6dp"
-                android:paddingBottom="24dp"
+                android:paddingBottom="18dp"
                 android:text="500 Kcal     3 Items"
-                android:textColor="#525252"/>
+                android:textColor="#525252"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

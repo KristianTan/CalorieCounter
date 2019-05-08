@@ -10,20 +10,19 @@
 
     <TextView
         android:id="@+id/description2"
-        android:layout_width="371dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-thin"
         android:text="Your Name"
         android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="36sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/editUserName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.32999998" />
 
     <Button
         android:id="@+id/setupbuttonNext"
@@ -32,32 +31,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
-        android:text="Save"
+        android:foreground="@drawable/button_click_effect"
+        android:text="SAVE"
         android:textColor="#000000"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:singleLine="false"
         android:text="User"
         android:textAlignment="center"
         android:textColor="#000000"
+        android:backgroundTint="#000000"
         app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71000004" />
 
     <ImageButton
         android:id="@+id/imageButton"

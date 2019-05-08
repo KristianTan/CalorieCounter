@@ -17,51 +17,51 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
+        android:foreground="@drawable/button_click_effect"
         android:text="Next"
         android:textColor="#ffff"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/setup_height"
         android:layout_width="139dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/gradient"
         android:ems="10"
+        android:foreground="@drawable/button_click_effect"
         android:inputType="textPersonName"
         android:text="0"
         android:textAlignment="center"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:backgroundTint="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/setup_weight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/setup_weight"
         android:layout_width="139dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/gradient"
         android:ems="10"
+        android:foreground="@drawable/button_click_effect"
         android:inputType="textPersonName"
         android:text="0"
         android:textAlignment="center"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:backgroundTint="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/setup_age"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/setup_age"
@@ -69,19 +69,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:background="@drawable/gradient"
         android:ems="10"
+        android:foreground="@drawable/button_click_effect"
         android:inputType="textPersonName"
         android:text="0"
         android:textAlignment="center"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:backgroundTint="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/activityLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <Button
         android:id="@+id/b_lose_weight"
@@ -90,14 +91,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
+        android:foreground="@drawable/button_click_effect"
         android:text="LOW"
         android:textColor="#ffff"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
-        app:layout_constraintEnd_toStartOf="@+id/b_maintain_weight"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintEnd_toStartOf="@+id/b_maintain_weight" />
 
     <Button
         android:id="@+id/b_maintain_weight"
@@ -105,15 +106,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
+        android:foreground="@drawable/button_click_effect"
         android:text="Mid"
         android:textColor="#ffff"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/b_gain_weight"
@@ -122,47 +123,46 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
-        android:text="High"
 
-        android:textColor="#ffff"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
-        app:layout_constraintStart_toEndOf="@+id/b_maintain_weight"
         android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        android:text="High"
+        android:textColor="#ffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/setupbuttonNext"
+        app:layout_constraintStart_toEndOf="@+id/b_maintain_weight" />
 
     <Button
         android:id="@+id/b_metric"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="160dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
+        android:foreground="@drawable/button_click_effect"
         android:text="METRIC"
         android:textColor="#ffff"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/setup_height"
-        app:layout_constraintEnd_toStartOf="@+id/Helper"
-        android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        app:layout_constraintEnd_toStartOf="@+id/Helper" />
 
     <Button
         android:id="@+id/b_imperial"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="160dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:background="@drawable/gradient"
         android:fontFamily="sans-serif-light"
-        android:text="Imperial"
 
-        android:textColor="#ffff"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/setup_height"
-        app:layout_constraintStart_toEndOf="@+id/Helper"
         android:foreground="@drawable/button_click_effect"
-        android:background="@drawable/gradient"/>
+        android:text="Imperial"
+        android:textColor="#ffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/setup_height"
+        app:layout_constraintStart_toEndOf="@+id/Helper" />
 
     <TextView
         android:id="@+id/Helper"
@@ -182,7 +182,7 @@
         android:layout_marginStart="8dp"
         android:text="cm"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/setup_height"
         app:layout_constraintStart_toEndOf="@+id/setup_height" />
 
@@ -193,7 +193,7 @@
         android:layout_marginStart="8dp"
         android:text="kg"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/setup_weight"
         app:layout_constraintStart_toEndOf="@+id/setup_weight" />
 
@@ -204,7 +204,7 @@
         android:layout_marginStart="8dp"
         android:text="years"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/setup_age"
         app:layout_constraintStart_toEndOf="@+id/setup_age" />
 
@@ -214,11 +214,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif-light"
         android:text="Activity level"
         android:textColor="#FFFF"
-        android:textSize="36sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/b_maintain_weight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -232,7 +232,7 @@
         android:text="Height"
         android:textAlignment="center"
         android:textColor="#FFFF"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/setup_height"
         app:layout_constraintEnd_toStartOf="@+id/setup_height" />
 
@@ -245,7 +245,7 @@
         android:text="Weight"
         android:textAlignment="center"
         android:textColor="#FFFF"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/setup_weight"
         app:layout_constraintEnd_toStartOf="@+id/setup_weight" />
 
@@ -258,7 +258,7 @@
         android:text="Age"
         android:textAlignment="center"
         android:textColor="#FFFF"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/setup_age"
         app:layout_constraintEnd_toStartOf="@+id/setup_age" />
 
@@ -272,9 +272,11 @@
         android:text="About You "
         android:textAlignment="center"
         android:textColor="#ffff"
-        android:textSize="36sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/Helper"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
 </android.support.constraint.ConstraintLayout>
